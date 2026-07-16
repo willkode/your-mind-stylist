@@ -1,0 +1,62 @@
+{
+  "name": "UserEmailSequence",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "User email"
+    },
+    "sequence_id": {
+      "type": "string",
+      "description": "Reference to EmailSequence"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "completed",
+        "unsubscribed"
+      ],
+      "default": "active",
+      "description": "Enrollment status"
+    },
+    "current_step": {
+      "type": "number",
+      "default": 0,
+      "description": "Last completed step"
+    },
+    "next_send_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When to send next email"
+    },
+    "started_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When enrolled"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When completed"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context (product_id, booking_id, etc.)"
+    },
+    "emails_sent": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of emails sent to this user"
+    }
+  },
+  "required": [
+    "user_email",
+    "sequence_id"
+  ]
+}

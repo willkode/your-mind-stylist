@@ -1,0 +1,39 @@
+{
+  "name": "ConstellationEvent",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User who earned the star"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "lesson_completed",
+        "module_completed",
+        "course_completed",
+        "note_created",
+        "session_completed",
+        "streak_day_completed",
+        "return_after_resistance",
+        "emotional_shift_detected",
+        "app_session",
+        "ten_minutes_present"
+      ],
+      "description": "Type of achievement"
+    },
+    "points": {
+      "type": "number",
+      "default": 1,
+      "description": "Points awarded"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional context"
+    }
+  },
+  "required": [
+    "user_id",
+    "event_type"
+  ]
+}

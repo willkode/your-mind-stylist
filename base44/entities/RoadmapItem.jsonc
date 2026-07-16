@@ -1,0 +1,75 @@
+{
+  "name": "RoadmapItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Feature/item title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Feature",
+        "Bug Fix",
+        "Enhancement",
+        "Content",
+        "Integration"
+      ],
+      "description": "Item category"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "default": "Medium",
+      "description": "Priority level"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Planned",
+        "In Progress",
+        "Testing",
+        "Completed",
+        "On Hold"
+      ],
+      "default": "Planned",
+      "description": "Current status"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Roadmap",
+        "BugTracker"
+      ],
+      "default": "Roadmap",
+      "description": "Where this item originated from"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Who's working on it"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Target completion date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "status"
+  ]
+}

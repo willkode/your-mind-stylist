@@ -1,0 +1,90 @@
+{
+  "name": "LeadMagnet",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Lead magnet title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug (e.g. '5-mindset-shifts')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description shown on landing page"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "URL of the downloadable file"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "Thumbnail/cover image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Mindset",
+        "Hypnosis",
+        "Emotional Intelligence",
+        "Leadership",
+        "Communication",
+        "Relationships",
+        "Other"
+      ],
+      "description": "Category for filtering"
+    },
+    "mailerlite_group_id": {
+      "type": "string",
+      "description": "MailerLite group ID to add subscriber to on download"
+    },
+    "benefits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Bullet points shown on landing page"
+    },
+    "cta_text": {
+      "type": "string",
+      "default": "Get Your Free Download",
+      "description": "Call-to-action button text"
+    },
+    "show_on_blog": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show this as the CTA at the end of all blog posts"
+    },
+    "show_on_homepage": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show this in the homepage section"
+    },
+    "show_on_programs": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show this as inline email capture on Programs page"
+    },
+    "show_on_products": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show this as inline email capture on product pages"
+    },
+    "download_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of downloads"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this lead magnet active and publicly accessible"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "file_url"
+  ]
+}

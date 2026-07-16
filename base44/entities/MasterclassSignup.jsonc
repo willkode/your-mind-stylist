@@ -1,0 +1,183 @@
+{
+  "name": "MasterclassSignup",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "email": {
+      "type": "string",
+      "description": "User email"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "User full name"
+    },
+    "signup_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When they signed up"
+    },
+    "signup_source": {
+      "type": "string",
+      "enum": [
+        "landing_page",
+        "home_page",
+        "blog",
+        "social_media",
+        "referral",
+        "other"
+      ],
+      "default": "landing_page",
+      "description": "Where they signed up from"
+    },
+    "biggest_challenge": {
+      "type": "string",
+      "description": "Their self-reported biggest challenge"
+    },
+    "role": {
+      "type": "string",
+      "description": "Their role/position (e.g., 'Leader', 'Entrepreneur', 'Professional')"
+    },
+    "watched": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether they've watched the masterclass"
+    },
+    "watch_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When they watched"
+    },
+    "watch_percentage": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentage watched (0-100)"
+    },
+    "watch_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "number",
+            "description": "Video timestamp in seconds"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "play",
+              "pause",
+              "seek",
+              "complete"
+            ],
+            "description": "User action"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "description": "Detailed watch behavior"
+    },
+    "confirmation_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Confirmation email sent"
+    },
+    "reminder_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Reminder email sent"
+    },
+    "post_email_1_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "First post-masterclass email sent"
+    },
+    "post_email_2_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Second post-masterclass email sent"
+    },
+    "post_email_3_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Third post-masterclass email sent"
+    },
+    "welcome_email_1_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "First welcome email sent"
+    },
+    "welcome_email_2_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Second welcome email sent (24h)"
+    },
+    "welcome_email_3_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Third welcome email sent (72h)"
+    },
+    "clicked_cta": {
+      "type": "boolean",
+      "default": false,
+      "description": "Clicked on any CTA in masterclass or emails"
+    },
+    "cta_clicks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cta_type": {
+            "type": "string",
+            "description": "Which CTA (e.g., 'certification', 'private_sessions', 'inner_rehearsal')"
+          },
+          "source": {
+            "type": "string",
+            "description": "Where they clicked (e.g., 'masterclass_page', 'email_1')"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "description": "Track all CTA clicks"
+    },
+    "converted_to": {
+      "type": "string",
+      "description": "What they purchased after (if any)"
+    },
+    "conversion_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When they converted"
+    },
+    "conversion_value": {
+      "type": "number",
+      "description": "Total purchase value in cents"
+    },
+    "exit_intent_shown": {
+      "type": "boolean",
+      "default": false,
+      "description": "Exit intent popup was shown"
+    },
+    "exit_intent_captured": {
+      "type": "boolean",
+      "default": false,
+      "description": "User engaged with exit intent"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes about this lead"
+    }
+  },
+  "required": [
+    "email",
+    "full_name"
+  ]
+}

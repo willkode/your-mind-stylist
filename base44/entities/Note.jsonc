@@ -1,0 +1,63 @@
+{
+  "name": "Note",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User who created the note"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "lesson",
+        "module",
+        "course",
+        "track",
+        "freeform"
+      ],
+      "description": "Where the note was created"
+    },
+    "source_id": {
+      "type": "string",
+      "description": "ID of the source (lesson, module, etc.)"
+    },
+    "content": {
+      "type": "string",
+      "description": "Note content"
+    },
+    "sentiment_primary": {
+      "type": "string",
+      "enum": [
+        "calm",
+        "clarity",
+        "resistance",
+        "overwhelm",
+        "confidence",
+        "curiosity",
+        "tension",
+        "momentum"
+      ],
+      "description": "Primary emotional sentiment"
+    },
+    "sentiment_score": {
+      "type": "number",
+      "description": "Sentiment confidence 0.0-1.0"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Auto + manual tags"
+    },
+    "spotlight": {
+      "type": "boolean",
+      "default": false,
+      "description": "User favorited note"
+    }
+  },
+  "required": [
+    "user_id",
+    "content"
+  ]
+}

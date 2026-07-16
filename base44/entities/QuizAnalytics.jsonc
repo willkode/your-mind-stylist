@@ -1,0 +1,85 @@
+{
+  "name": "QuizAnalytics",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "description": "Reference to Quiz entity"
+    },
+    "total_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of attempts"
+    },
+    "unique_users": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of unique users who attempted"
+    },
+    "pass_rate": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentage of attempts that passed"
+    },
+    "average_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Average score across all attempts"
+    },
+    "average_time_taken": {
+      "type": "number",
+      "default": 0,
+      "description": "Average time in seconds"
+    },
+    "question_stats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "question_text": {
+            "type": "string"
+          },
+          "correct_percentage": {
+            "type": "number"
+          },
+          "total_responses": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Per-question analytics"
+    },
+    "score_distribution": {
+      "type": "object",
+      "properties": {
+        "0-20": {
+          "type": "number"
+        },
+        "21-40": {
+          "type": "number"
+        },
+        "41-60": {
+          "type": "number"
+        },
+        "61-80": {
+          "type": "number"
+        },
+        "81-100": {
+          "type": "number"
+        }
+      },
+      "description": "Distribution of scores"
+    },
+    "last_calculated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When analytics were last calculated"
+    }
+  },
+  "required": [
+    "quiz_id"
+  ]
+}

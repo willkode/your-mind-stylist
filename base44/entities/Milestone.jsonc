@@ -1,0 +1,77 @@
+{
+  "name": "Milestone",
+  "type": "object",
+  "properties": {
+    "milestone_type": {
+      "type": "string",
+      "enum": [
+        "consistency",
+        "emotional_shift",
+        "learning",
+        "engagement",
+        "breakthrough",
+        "custom"
+      ],
+      "description": "Category of milestone"
+    },
+    "milestone_key": {
+      "type": "string",
+      "description": "Unique identifier for this milestone type (e.g., 'first_lesson', 'calm_week')"
+    },
+    "milestone_name": {
+      "type": "string",
+      "description": "Display name of milestone"
+    },
+    "milestone_description": {
+      "type": "string",
+      "description": "What this milestone represents"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon name or emoji to display"
+    },
+    "unlocked_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When milestone was achieved"
+    },
+    "celebrated": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has user seen the celebration"
+    },
+    "celebration_shown_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When celebration was displayed"
+    },
+    "points_awarded": {
+      "type": "number",
+      "default": 0,
+      "description": "Points/depth markers earned (if using gamification)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional data about the milestone achievement",
+      "properties": {
+        "streak_count": {
+          "type": "number"
+        },
+        "improvement_percentage": {
+          "type": "number"
+        },
+        "related_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "milestone_type",
+    "milestone_key",
+    "milestone_name"
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "name": "Affiliate",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "affiliate_code": {
+      "type": "string",
+      "description": "Unique affiliate code (e.g., 'ROBERTA2024')"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "active",
+        "suspended",
+        "inactive"
+      ],
+      "default": "pending",
+      "description": "Affiliate account status"
+    },
+    "commission_rate": {
+      "type": "number",
+      "default": 20,
+      "description": "Commission percentage (0-100)"
+    },
+    "commission_tier": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "silver",
+        "gold",
+        "platinum"
+      ],
+      "default": "standard",
+      "description": "Commission tier level"
+    },
+    "total_referrals": {
+      "type": "number",
+      "default": 0,
+      "description": "Total number of referrals"
+    },
+    "successful_conversions": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of paid conversions"
+    },
+    "total_revenue_generated": {
+      "type": "number",
+      "default": 0,
+      "description": "Total revenue from referrals in cents"
+    },
+    "total_commission_earned": {
+      "type": "number",
+      "default": 0,
+      "description": "Total commission earned in cents"
+    },
+    "commission_pending": {
+      "type": "number",
+      "default": 0,
+      "description": "Commission pending payout in cents"
+    },
+    "commission_paid": {
+      "type": "number",
+      "default": 0,
+      "description": "Commission already paid out in cents"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "paypal",
+        "bank_transfer",
+        "stripe",
+        "check"
+      ],
+      "description": "Preferred payout method"
+    },
+    "payment_email": {
+      "type": "string",
+      "description": "PayPal email or payment contact"
+    },
+    "bank_details": {
+      "type": "object",
+      "properties": {
+        "account_holder": {
+          "type": "string"
+        },
+        "account_number": {
+          "type": "string"
+        },
+        "routing_number": {
+          "type": "string"
+        },
+        "bank_name": {
+          "type": "string"
+        }
+      },
+      "description": "Bank account details for payouts"
+    },
+    "stripe_account_id": {
+      "type": "string",
+      "description": "Stripe Connect account ID"
+    },
+    "referral_link": {
+      "type": "string",
+      "description": "Full affiliate referral link"
+    },
+    "custom_message": {
+      "type": "string",
+      "description": "Custom message for their audience"
+    },
+    "approved_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When affiliate was approved"
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Manager who approved"
+    },
+    "last_payout_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last payout date"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes about affiliate"
+    }
+  },
+  "required": [
+    "user_id",
+    "affiliate_code"
+  ]
+}

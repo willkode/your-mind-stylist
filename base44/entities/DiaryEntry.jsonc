@@ -1,0 +1,62 @@
+{
+  "name": "DiaryEntry",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Entry date"
+    },
+    "title": {
+      "type": "string",
+      "description": "Entry title (optional)"
+    },
+    "content": {
+      "type": "string",
+      "description": "Journal entry content"
+    },
+    "mood": {
+      "type": "string",
+      "enum": [
+        "joyful",
+        "content",
+        "calm",
+        "neutral",
+        "anxious",
+        "sad",
+        "frustrated",
+        "energized",
+        "tired",
+        "grateful"
+      ],
+      "description": "Emotional state during entry"
+    },
+    "energy_level": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Energy level (1-10)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Entry tags for categorization"
+    },
+    "prompt_used": {
+      "type": "string",
+      "description": "If using a prompt, store it here"
+    },
+    "is_favorite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Mark as favorite entry"
+    }
+  },
+  "required": [
+    "date",
+    "content",
+    "mood"
+  ]
+}

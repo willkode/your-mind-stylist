@@ -1,0 +1,155 @@
+{
+  "name": "DepthMarker",
+  "type": "object",
+  "properties": {
+    "current_depth_level": {
+      "type": "number",
+      "default": 1,
+      "description": "Current depth level (1-10)"
+    },
+    "total_depth_points": {
+      "type": "number",
+      "default": 0,
+      "description": "Cumulative depth points earned"
+    },
+    "points_to_next_level": {
+      "type": "number",
+      "default": 100,
+      "description": "Points needed for next level"
+    },
+    "growth_rings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ring_number": {
+            "type": "number",
+            "description": "Which ring (1-10)"
+          },
+          "unlocked_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this ring was unlocked"
+          },
+          "ring_name": {
+            "type": "string",
+            "description": "Name of this depth level"
+          },
+          "unlocked_content_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Content unlocked at this ring"
+          }
+        }
+      },
+      "description": "History of unlocked growth rings"
+    },
+    "mastery_areas": {
+      "type": "object",
+      "properties": {
+        "emotional_awareness": {
+          "type": "number",
+          "default": 0,
+          "description": "Mastery score 0-100"
+        },
+        "consistent_practice": {
+          "type": "number",
+          "default": 0,
+          "description": "Mastery score 0-100"
+        },
+        "breakthrough_capacity": {
+          "type": "number",
+          "default": 0,
+          "description": "Mastery score 0-100"
+        },
+        "integration_depth": {
+          "type": "number",
+          "default": 0,
+          "description": "Mastery score 0-100"
+        },
+        "reflective_wisdom": {
+          "type": "number",
+          "default": 0,
+          "description": "Mastery score 0-100"
+        }
+      },
+      "description": "Mastery scores by area"
+    },
+    "unlocked_content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "enum": [
+              "course",
+              "lesson",
+              "resource",
+              "audio",
+              "tool",
+              "feature"
+            ],
+            "description": "Type of unlocked content"
+          },
+          "content_id": {
+            "type": "string",
+            "description": "ID of the content"
+          },
+          "content_title": {
+            "type": "string",
+            "description": "Title of content"
+          },
+          "unlocked_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When it was unlocked"
+          },
+          "viewed": {
+            "type": "boolean",
+            "default": false,
+            "description": "Has user accessed it"
+          }
+        }
+      },
+      "description": "All unlocked content"
+    },
+    "achievements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "achievement_key": {
+            "type": "string",
+            "description": "Unique key"
+          },
+          "achievement_name": {
+            "type": "string",
+            "description": "Display name"
+          },
+          "earned_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When earned"
+          },
+          "points_awarded": {
+            "type": "number",
+            "description": "Depth points earned"
+          }
+        }
+      },
+      "description": "Special achievements earned"
+    },
+    "last_points_earned": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time points were awarded"
+    }
+  },
+  "required": [
+    "current_depth_level",
+    "total_depth_points"
+  ]
+}

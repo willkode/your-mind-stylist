@@ -1,0 +1,59 @@
+{
+  "name": "UserWebinarAccess",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "webinar_id": {
+      "type": "string",
+      "description": "Reference to Webinar entity"
+    },
+    "access_granted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When access was granted"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user purchased (if paid)"
+    },
+    "stripe_payment_intent_id": {
+      "type": "string",
+      "description": "Stripe payment intent ID for audit"
+    },
+    "access_type": {
+      "type": "string",
+      "enum": [
+        "free",
+        "purchased",
+        "gifted",
+        "admin_granted"
+      ],
+      "default": "free",
+      "description": "How access was obtained"
+    },
+    "watched": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has user watched the webinar"
+    },
+    "watch_percentage": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentage watched (0-100)"
+    },
+    "last_watched_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time user watched"
+    }
+  },
+  "required": [
+    "user_id",
+    "webinar_id",
+    "access_type"
+  ]
+}

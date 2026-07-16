@@ -1,0 +1,76 @@
+{
+  "name": "UserPackage",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "User's email"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "User's full name"
+    },
+    "package_id": {
+      "type": "string",
+      "description": "Reference to ServicePackage entity"
+    },
+    "sessions_total": {
+      "type": "number",
+      "description": "Total sessions in package"
+    },
+    "sessions_used": {
+      "type": "number",
+      "default": 0,
+      "description": "Sessions already booked/used"
+    },
+    "sessions_remaining": {
+      "type": "number",
+      "description": "Sessions left"
+    },
+    "purchase_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When package was purchased"
+    },
+    "expiry_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When package expires"
+    },
+    "amount_paid": {
+      "type": "number",
+      "description": "Total amount paid in cents"
+    },
+    "stripe_payment_intent_id": {
+      "type": "string",
+      "description": "Stripe payment intent ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "depleted",
+        "refunded"
+      ],
+      "default": "active",
+      "description": "Package status"
+    },
+    "booking_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of bookings using this package"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    }
+  },
+  "required": [
+    "user_email",
+    "package_id",
+    "sessions_total"
+  ]
+}

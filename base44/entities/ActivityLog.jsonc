@@ -1,0 +1,26 @@
+{
+  "name": "ActivityLog",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Action performed"
+    },
+    "actor": {
+      "type": "string",
+      "description": "User who performed the action"
+    },
+    "target": {
+      "type": "string",
+      "description": "Target of the action"
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional details"
+    }
+  },
+  "required": [
+    "action",
+    "actor"
+  ]
+}

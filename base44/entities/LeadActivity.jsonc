@@ -1,0 +1,44 @@
+{
+  "name": "LeadActivity",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "Reference to Lead"
+    },
+    "activity_type": {
+      "type": "string",
+      "enum": [
+        "email_sent",
+        "email_opened",
+        "email_clicked",
+        "call_completed",
+        "meeting_scheduled",
+        "meeting_completed",
+        "note_added",
+        "stage_changed",
+        "proposal_sent",
+        "form_submitted",
+        "page_visited",
+        "product_viewed"
+      ],
+      "description": "Type of activity"
+    },
+    "description": {
+      "type": "string",
+      "description": "Activity details"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional data"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Who logged this"
+    }
+  },
+  "required": [
+    "lead_id",
+    "activity_type"
+  ]
+}

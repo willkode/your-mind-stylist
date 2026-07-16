@@ -1,0 +1,126 @@
+{
+  "name": "GroupSession",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Session title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Session description"
+    },
+    "session_type": {
+      "type": "string",
+      "enum": [
+        "workshop",
+        "masterclass",
+        "group_coaching",
+        "webinar",
+        "training"
+      ],
+      "description": "Type of group session"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When session is scheduled"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 90,
+      "description": "Session duration"
+    },
+    "max_participants": {
+      "type": "number",
+      "description": "Maximum number of participants"
+    },
+    "current_participants": {
+      "type": "number",
+      "default": 0,
+      "description": "Current enrollment count"
+    },
+    "price_per_person": {
+      "type": "number",
+      "description": "Price per participant in cents"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "stripe_product_id": {
+      "type": "string",
+      "description": "Stripe product ID"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "Stripe price ID"
+    },
+    "zoom_meeting_id": {
+      "type": "string",
+      "description": "Zoom meeting ID"
+    },
+    "zoom_join_url": {
+      "type": "string",
+      "description": "Zoom join URL"
+    },
+    "zoom_password": {
+      "type": "string",
+      "description": "Zoom password"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "open",
+        "full",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "scheduled",
+      "description": "Session status"
+    },
+    "participant_emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of participant emails"
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Session materials/resources"
+    },
+    "recording_url": {
+      "type": "string",
+      "description": "Recording URL (after session)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Session notes"
+    }
+  },
+  "required": [
+    "title",
+    "session_type",
+    "scheduled_date",
+    "max_participants",
+    "price_per_person"
+  ]
+}

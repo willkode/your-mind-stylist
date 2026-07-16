@@ -1,0 +1,116 @@
+{
+  "name": "Webinar",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Webinar title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full webinar description (HTML)"
+    },
+    "short_description": {
+      "type": "string",
+      "description": "Brief summary for listings"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webinar is scheduled"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Webinar duration in minutes"
+    },
+    "media_url": {
+      "type": "string",
+      "description": "Video/media URL (YouTube, Vimeo, hosted file)"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "Thumbnail image URL"
+    },
+    "price": {
+      "type": "number",
+      "default": 0,
+      "description": "Price in cents (0 = free)"
+    },
+    "stripe_product_id": {
+      "type": "string",
+      "description": "Stripe product ID"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "Stripe price ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft",
+      "description": "Publication status"
+    },
+    "access_level": {
+      "type": "string",
+      "enum": [
+        "free",
+        "paid",
+        "product_bundle"
+      ],
+      "default": "free",
+      "description": "Access control level"
+    },
+    "template_choice": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "detailed"
+      ],
+      "default": "detailed",
+      "description": "Page template style"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show in featured sections"
+    },
+    "registration_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Total registrations"
+    },
+    "learning_outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key takeaways/outcomes"
+    },
+    "host_name": {
+      "type": "string",
+      "description": "Webinar host name"
+    },
+    "host_bio": {
+      "type": "string",
+      "description": "Brief host bio"
+    },
+    "host_image": {
+      "type": "string",
+      "description": "Host photo URL"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "status",
+    "access_level"
+  ]
+}

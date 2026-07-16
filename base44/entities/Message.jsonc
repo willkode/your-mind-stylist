@@ -1,0 +1,71 @@
+{
+  "name": "Message",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Sender name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Sender email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Sender phone"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Contact",
+        "Support",
+        "Speaking",
+        "Private Work",
+        "Other"
+      ],
+      "description": "Message type"
+    },
+    "reaching_out_as": {
+      "type": "string",
+      "description": "Sender role/type"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Areas of interest"
+    },
+    "message": {
+      "type": "string",
+      "description": "Message content"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "description": "Preferred contact method"
+    },
+    "availability": {
+      "type": "string",
+      "description": "Availability notes"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "in_progress",
+        "resolved"
+      ],
+      "default": "new",
+      "description": "Message status"
+    },
+    "internal_notes": {
+      "type": "string",
+      "description": "Manager's internal notes"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ]
+}

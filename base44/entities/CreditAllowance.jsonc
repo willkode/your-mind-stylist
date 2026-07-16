@@ -1,0 +1,71 @@
+{
+  "name": "CreditAllowance",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user this allowance belongs to"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "starter",
+        "standard"
+      ],
+      "default": "starter",
+      "description": "Current credit tier \u2014 starter (unpaid) or standard ($79/mo)"
+    },
+    "monthly_limit": {
+      "type": "number",
+      "default": 0,
+      "description": "Base credits per month (500 for standard, 0 for starter)"
+    },
+    "credits_used": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits consumed in the current billing period"
+    },
+    "credits_remaining": {
+      "type": "number",
+      "default": 0,
+      "description": "Credits remaining (may exceed monthly_limit due to top-ups)"
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start of the current billing period"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End of the current billing period"
+    },
+    "stripe_subscription_id": {
+      "type": "string",
+      "description": "Stripe subscription ID for the standard plan"
+    },
+    "stripe_customer_id": {
+      "type": "string",
+      "description": "Stripe customer ID"
+    },
+    "auto_renew": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the subscription auto-renews"
+    },
+    "last_reset_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time credits were reset to monthly_limit"
+    }
+  },
+  "required": [
+    "user_email",
+    "tier",
+    "monthly_limit"
+  ]
+}

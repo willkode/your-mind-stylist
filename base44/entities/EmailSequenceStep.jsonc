@@ -1,0 +1,81 @@
+{
+  "name": "EmailSequenceStep",
+  "type": "object",
+  "properties": {
+    "sequence_id": {
+      "type": "string",
+      "description": "Reference to EmailSequence"
+    },
+    "step_number": {
+      "type": "number",
+      "description": "Order in sequence (1, 2, 3...)"
+    },
+    "delay_days": {
+      "type": "number",
+      "description": "Days after previous email (0 = immediate)"
+    },
+    "delay_hours": {
+      "type": "number",
+      "default": 0,
+      "description": "Additional hours delay"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "preview_text": {
+      "type": "string",
+      "description": "Preview/preheader text"
+    },
+    "body_html": {
+      "type": "string",
+      "description": "HTML email body"
+    },
+    "body_text": {
+      "type": "string",
+      "description": "Plain text version"
+    },
+    "template_variables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available variables: {{name}}, {{product_name}}, etc."
+    },
+    "cta_text": {
+      "type": "string",
+      "description": "Call-to-action button text"
+    },
+    "cta_url": {
+      "type": "string",
+      "description": "CTA button URL"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this step active"
+    },
+    "sent_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Times sent"
+    },
+    "open_rate": {
+      "type": "number",
+      "default": 0,
+      "description": "Open rate percentage"
+    },
+    "click_rate": {
+      "type": "number",
+      "default": 0,
+      "description": "Click rate percentage"
+    }
+  },
+  "required": [
+    "sequence_id",
+    "step_number",
+    "delay_days",
+    "subject",
+    "body_html"
+  ]
+}

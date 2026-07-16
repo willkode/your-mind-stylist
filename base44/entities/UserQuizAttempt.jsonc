@@ -1,0 +1,69 @@
+{
+  "name": "UserQuizAttempt",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "quiz_id": {
+      "type": "string",
+      "description": "Reference to Quiz entity"
+    },
+    "attempt_number": {
+      "type": "number",
+      "description": "Attempt number for this user"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "selected_options": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "is_correct": {
+            "type": "boolean"
+          },
+          "points_earned": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "User's answers"
+    },
+    "score": {
+      "type": "number",
+      "description": "Score as percentage (0-100)"
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Did user pass"
+    },
+    "time_taken": {
+      "type": "number",
+      "description": "Time taken in seconds"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When attempt started"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When attempt completed"
+    }
+  },
+  "required": [
+    "user_id",
+    "quiz_id",
+    "attempt_number"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "name": "LearningReflection",
+  "type": "object",
+  "properties": {
+    "reflection_type": {
+      "type": "string",
+      "enum": [
+        "lesson",
+        "module",
+        "course",
+        "consultation",
+        "style_pause",
+        "weekly",
+        "monthly"
+      ],
+      "description": "Type of activity being reflected on"
+    },
+    "related_id": {
+      "type": "string",
+      "description": "ID of related entity (lesson_id, booking_id, pause_id, etc.)"
+    },
+    "related_title": {
+      "type": "string",
+      "description": "Snapshot of title/name for easy reference"
+    },
+    "reflection_text": {
+      "type": "string",
+      "description": "User's reflection content"
+    },
+    "what_shifted": {
+      "type": "string",
+      "description": "Quick capture: what changed or resonated"
+    },
+    "mood_before": {
+      "type": "string",
+      "enum": [
+        "joyful",
+        "content",
+        "calm",
+        "neutral",
+        "anxious",
+        "sad",
+        "frustrated",
+        "energized",
+        "tired",
+        "grateful"
+      ],
+      "description": "Emotional state before activity"
+    },
+    "mood_after": {
+      "type": "string",
+      "enum": [
+        "joyful",
+        "content",
+        "calm",
+        "neutral",
+        "anxious",
+        "sad",
+        "frustrated",
+        "energized",
+        "tired",
+        "grateful"
+      ],
+      "description": "Emotional state after activity"
+    },
+    "energy_before": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Energy level before (1-10)"
+    },
+    "energy_after": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Energy level after (1-10)"
+    },
+    "breakthrough_tagged": {
+      "type": "boolean",
+      "default": false,
+      "description": "User marked this as an aha moment"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Custom tags for categorization"
+    }
+  },
+  "required": [
+    "reflection_type",
+    "reflection_text"
+  ]
+}

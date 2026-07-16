@@ -1,0 +1,104 @@
+{
+  "name": "Application",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Applicant's email"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Applicant's full name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "product_key": {
+      "type": "string",
+      "enum": [
+        "salon-coaching",
+        "couture-coaching"
+      ],
+      "description": "Which product they're applying for"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Product display name"
+    },
+    "current_situation": {
+      "type": "string",
+      "description": "Describe current challenges"
+    },
+    "goals": {
+      "type": "string",
+      "description": "What they hope to achieve"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "1-3_months",
+        "3-6_months",
+        "flexible"
+      ],
+      "description": "When they want to start"
+    },
+    "budget_confirmed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Budget is confirmed"
+    },
+    "previous_experience": {
+      "type": "string",
+      "description": "Previous coaching/therapy experience"
+    },
+    "referral_source": {
+      "type": "string",
+      "description": "How they heard about us"
+    },
+    "additional_info": {
+      "type": "string",
+      "description": "Anything else to share"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "reviewing",
+        "interview_scheduled",
+        "accepted",
+        "declined",
+        "withdrawn"
+      ],
+      "default": "pending",
+      "description": "Application status"
+    },
+    "priority_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Internal priority score"
+    },
+    "manager_notes": {
+      "type": "string",
+      "description": "Internal notes from manager"
+    },
+    "interview_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled interview date"
+    },
+    "decision_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When decision was made"
+    }
+  },
+  "required": [
+    "user_email",
+    "user_name",
+    "product_key",
+    "current_situation",
+    "goals"
+  ]
+}

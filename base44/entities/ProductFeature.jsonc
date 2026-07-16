@@ -1,0 +1,23 @@
+{
+  "name": "ProductFeature",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Reference to Product entity"
+    },
+    "text": {
+      "type": "string",
+      "description": "Feature bullet point text"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Display order"
+    }
+  },
+  "required": [
+    "product_id",
+    "text",
+    "display_order"
+  ]
+}

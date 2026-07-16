@@ -1,0 +1,68 @@
+{
+  "name": "GiftCode",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Unique gift code (auto-generated, uppercase alphanumeric)"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Reference to Product entity"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "product",
+        "course",
+        "webinar"
+      ],
+      "description": "Type of product this code grants access to"
+    },
+    "recipient_user_id": {
+      "type": "string",
+      "description": "User ID of intended recipient (who should get course access)"
+    },
+    "recipient_email": {
+      "type": "string",
+      "description": "Optional: email this code is intended for"
+    },
+    "recipient_name": {
+      "type": "string",
+      "description": "Optional: name of recipient"
+    },
+    "is_single_use": {
+      "type": "boolean",
+      "default": true,
+      "description": "Can this code only be used once?"
+    },
+    "times_used": {
+      "type": "number",
+      "default": 0,
+      "description": "How many times this code has been used"
+    },
+    "max_uses": {
+      "type": "number",
+      "description": "Maximum times code can be used (null = unlimited)"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this code expires (null = never)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this code currently active?"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes about this gift code"
+    }
+  },
+  "required": [
+    "code",
+    "product_id",
+    "product_type"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "name": "QuizQuestion",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "description": "Reference to Quiz entity"
+    },
+    "question_text": {
+      "type": "string",
+      "description": "The question"
+    },
+    "question_type": {
+      "type": "string",
+      "enum": [
+        "multiple_choice",
+        "true_false",
+        "multiple_select"
+      ],
+      "default": "multiple_choice",
+      "description": "Type of question"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "is_correct": {
+            "type": "boolean"
+          },
+          "archetype": {
+            "type": "string",
+            "description": "Archetype key this option maps to (for archetype quizzes)"
+          }
+        }
+      },
+      "description": "Answer options"
+    },
+    "explanation": {
+      "type": "string",
+      "description": "Explanation shown after answering"
+    },
+    "points": {
+      "type": "number",
+      "default": 1,
+      "description": "Points for correct answer"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order"
+    },
+    "time_limit_seconds": {
+      "type": "number",
+      "description": "Time limit for this question in seconds (null = no limit)"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium",
+      "description": "Question difficulty"
+    },
+    "times_answered": {
+      "type": "number",
+      "default": 0,
+      "description": "Total times this question was answered"
+    },
+    "times_correct": {
+      "type": "number",
+      "default": 0,
+      "description": "Total times answered correctly"
+    },
+    "avg_time_spent": {
+      "type": "number",
+      "default": 0,
+      "description": "Average time spent on this question (seconds)"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "question_text",
+    "options",
+    "order"
+  ]
+}

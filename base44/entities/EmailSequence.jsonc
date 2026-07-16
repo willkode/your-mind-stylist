@@ -1,0 +1,65 @@
+{
+  "name": "EmailSequence",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Sequence name (e.g., 'Masterclass Welcome')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Internal description"
+    },
+    "trigger_type": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "signup",
+        "masterclass_signup",
+        "product_purchase",
+        "booking_completed",
+        "course_started",
+        "course_completed",
+        "abandoned_cart",
+        "inactive_user",
+        "lead_magnet_download",
+        "consultation_submitted",
+        "webinar_registered",
+        "tag_added",
+        "form_submitted"
+      ],
+      "description": "What triggers this sequence"
+    },
+    "trigger_conditions": {
+      "type": "object",
+      "description": "Additional conditions (product_id, course_id, tag_name, etc.)"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is sequence active"
+    },
+    "total_emails": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of emails in sequence"
+    },
+    "total_subscribers": {
+      "type": "number",
+      "default": 0,
+      "description": "Total users enrolled"
+    },
+    "mailerlite_group_id": {
+      "type": "string",
+      "description": "MailerLite group ID for this sequence"
+    },
+    "mailerlite_automation_id": {
+      "type": "string",
+      "description": "MailerLite automation ID"
+    }
+  },
+  "required": [
+    "name",
+    "trigger_type"
+  ]
+}

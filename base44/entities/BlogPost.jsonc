@@ -1,0 +1,114 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Blog post title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "author_id": {
+      "type": "string",
+      "description": "Reference to Author entity"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Restyle Monday",
+        "Thursday Tailoring",
+        "Emotional Intelligence",
+        "Culture",
+        "Leadership & Teams",
+        "Communication",
+        "Identity & Confidence",
+        "Stress & Regulation",
+        "Relationships",
+        "Inner Rehearsal",
+        "Hypnosis & the Brain",
+        "Personal & Professional Development"
+      ],
+      "description": "Blog post category"
+    },
+    "post_type": {
+      "type": "string",
+      "enum": [
+        "written",
+        "video"
+      ],
+      "default": "written",
+      "description": "Type of post \u2014 written article or video"
+    },
+    "video_embed_url": {
+      "type": "string",
+      "description": "YouTube or Vimeo embed URL for video posts"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary for listings"
+    },
+    "content": {
+      "type": "string",
+      "description": "Main post content (HTML from ReactQuill)"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Featured image URL"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Post tags"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_review",
+        "scheduled",
+        "published",
+        "rejected"
+      ],
+      "default": "draft",
+      "description": "Post status"
+    },
+    "publish_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When to publish"
+    },
+    "read_time": {
+      "type": "number",
+      "description": "Estimated read time in minutes"
+    },
+    "meta_title": {
+      "type": "string",
+      "description": "SEO meta title"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "SEO meta description"
+    },
+    "seo_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SEO keywords"
+    },
+    "rejection_reason": {
+      "type": "string",
+      "description": "Reason for rejection (for guest posts)"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "category",
+    "content"
+  ]
+}

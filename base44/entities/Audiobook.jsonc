@@ -1,0 +1,111 @@
+{
+  "name": "Audiobook",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Audiobook title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author name"
+    },
+    "narrator": {
+      "type": "string",
+      "description": "Narrator name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Audiobook description (HTML)"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Cover art image URL"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "Main audio file URL (MP3 recommended)"
+    },
+    "total_duration_seconds": {
+      "type": "number",
+      "description": "Total duration in seconds"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Chapter title"
+          },
+          "start_seconds": {
+            "type": "number",
+            "description": "Start time in seconds"
+          },
+          "duration_seconds": {
+            "type": "number",
+            "description": "Chapter duration in seconds"
+          }
+        }
+      },
+      "description": "Chapter markers with timestamps"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Product entity ID that grants access to this audiobook"
+    },
+    "resource_id": {
+      "type": "string",
+      "description": "Resource entity ID for the downloadable file"
+    },
+    "download_url": {
+      "type": "string",
+      "description": "Direct download URL (MP3 or M4B) for offline listening"
+    },
+    "file_format": {
+      "type": "string",
+      "enum": [
+        "mp3",
+        "m4b",
+        "m4a",
+        "other"
+      ],
+      "default": "mp3",
+      "description": "Audio file format"
+    },
+    "file_size_mb": {
+      "type": "number",
+      "description": "File size in MB for download display"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft",
+      "description": "Publication status"
+    },
+    "access_level": {
+      "type": "string",
+      "enum": [
+        "free",
+        "product_gated"
+      ],
+      "default": "product_gated",
+      "description": "Access control"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "audio_url",
+    "status"
+  ]
+}

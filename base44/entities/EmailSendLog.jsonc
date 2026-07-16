@@ -1,0 +1,97 @@
+{
+  "name": "EmailSendLog",
+  "type": "object",
+  "properties": {
+    "recipient_email": {
+      "type": "string",
+      "description": "Email address of recipient"
+    },
+    "recipient_name": {
+      "type": "string",
+      "description": "Name of recipient"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "email_type": {
+      "type": "string",
+      "enum": [
+        "invite",
+        "resend_invite",
+        "booking_confirmation",
+        "booking_reminder",
+        "enrollment",
+        "individual",
+        "mass_campaign",
+        "sequence",
+        "masterclass",
+        "other"
+      ],
+      "description": "Category of email sent"
+    },
+    "send_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "mass_campaign",
+        "sequence",
+        "automated"
+      ],
+      "description": "How the email was sent"
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "base44",
+        "resend",
+        "mailerlite",
+        "system"
+      ],
+      "default": "base44",
+      "description": "Which service sent the email"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "sent",
+        "failed",
+        "unknown"
+      ],
+      "default": "sent",
+      "description": "Send status"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error details if failed"
+    },
+    "sent_by": {
+      "type": "string",
+      "description": "Email of user who triggered the send"
+    },
+    "campaign_subject": {
+      "type": "string",
+      "description": "Campaign name (for mass sends)"
+    },
+    "recipient_count": {
+      "type": "number",
+      "description": "Total recipients (for mass sends)"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "platform",
+        "mailerlite",
+        "resend"
+      ],
+      "default": "platform",
+      "description": "Legacy field \u2014 use provider instead"
+    }
+  },
+  "required": [
+    "recipient_email",
+    "subject",
+    "email_type",
+    "status"
+  ]
+}

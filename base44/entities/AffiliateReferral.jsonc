@@ -1,0 +1,113 @@
+{
+  "name": "AffiliateReferral",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string",
+      "description": "Reference to Affiliate entity"
+    },
+    "affiliate_code": {
+      "type": "string",
+      "description": "Affiliate code used"
+    },
+    "referred_user_email": {
+      "type": "string",
+      "description": "Email of referred user"
+    },
+    "referred_user_id": {
+      "type": "string",
+      "description": "User ID if they registered"
+    },
+    "referral_source": {
+      "type": "string",
+      "description": "Where referral came from (utm_source)"
+    },
+    "landing_page": {
+      "type": "string",
+      "description": "First page they landed on"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "converted",
+        "cancelled",
+        "refunded"
+      ],
+      "default": "pending",
+      "description": "Referral status"
+    },
+    "conversion_type": {
+      "type": "string",
+      "enum": [
+        "product",
+        "booking",
+        "subscription",
+        "webinar"
+      ],
+      "description": "What they purchased"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Product purchased"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "purchase_amount": {
+      "type": "number",
+      "description": "Purchase amount in cents"
+    },
+    "commission_rate": {
+      "type": "number",
+      "description": "Commission rate at time of purchase"
+    },
+    "commission_amount": {
+      "type": "number",
+      "description": "Commission earned in cents"
+    },
+    "commission_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "paid",
+        "cancelled"
+      ],
+      "default": "pending",
+      "description": "Commission payout status"
+    },
+    "stripe_payment_intent_id": {
+      "type": "string",
+      "description": "Stripe payment intent ID"
+    },
+    "converted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When conversion happened"
+    },
+    "commission_approved_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When commission was approved"
+    },
+    "commission_paid_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When commission was paid"
+    },
+    "payout_id": {
+      "type": "string",
+      "description": "Reference to payout batch"
+    },
+    "tracking_data": {
+      "type": "object",
+      "description": "Additional tracking metadata"
+    }
+  },
+  "required": [
+    "affiliate_id",
+    "affiliate_code"
+  ]
+}

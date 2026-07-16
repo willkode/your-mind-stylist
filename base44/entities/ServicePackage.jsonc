@@ -1,0 +1,85 @@
+{
+  "name": "ServicePackage",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Package name (e.g., '5-Session Package')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Package description"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "private_sessions",
+        "consultation",
+        "certification",
+        "other"
+      ],
+      "description": "Type of service included"
+    },
+    "session_count": {
+      "type": "number",
+      "description": "Number of sessions included"
+    },
+    "session_duration": {
+      "type": "number",
+      "default": 60,
+      "description": "Duration per session in minutes"
+    },
+    "price": {
+      "type": "number",
+      "description": "Total package price in cents"
+    },
+    "price_per_session": {
+      "type": "number",
+      "description": "Calculated price per session"
+    },
+    "discount_percentage": {
+      "type": "number",
+      "description": "Discount vs individual sessions"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "stripe_product_id": {
+      "type": "string",
+      "description": "Stripe product ID"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "Stripe price ID"
+    },
+    "validity_days": {
+      "type": "number",
+      "description": "Days until package expires (null = no expiry)"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is package available for purchase"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order on booking pages"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Package features/benefits"
+    }
+  },
+  "required": [
+    "name",
+    "service_type",
+    "session_count",
+    "price"
+  ]
+}

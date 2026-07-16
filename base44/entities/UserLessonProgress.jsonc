@@ -1,0 +1,54 @@
+{
+  "name": "UserLessonProgress",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "lesson_id": {
+      "type": "string",
+      "description": "Reference to Lesson entity"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is lesson completed"
+    },
+    "watch_time": {
+      "type": "number",
+      "default": 0,
+      "description": "Total watch time in seconds"
+    },
+    "last_position": {
+      "type": "number",
+      "default": 0,
+      "description": "Last playback position in seconds"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When lesson was completed"
+    },
+    "mood_before": {
+      "type": "string",
+      "description": "Emotional state before starting lesson"
+    },
+    "mood_after": {
+      "type": "string",
+      "description": "Emotional state after completing lesson"
+    },
+    "energy_before": {
+      "type": "number",
+      "description": "Energy level before lesson (1-10)"
+    },
+    "energy_after": {
+      "type": "number",
+      "description": "Energy level after lesson (1-10)"
+    }
+  },
+  "required": [
+    "user_id",
+    "lesson_id"
+  ]
+}

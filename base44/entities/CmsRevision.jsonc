@@ -1,0 +1,33 @@
+{
+  "name": "CmsRevision",
+  "type": "object",
+  "properties": {
+    "content_key": {
+      "type": "string",
+      "description": "Reference to CmsContent key"
+    },
+    "content": {
+      "type": "string",
+      "description": "Snapshot of content at this revision"
+    },
+    "edited_by": {
+      "type": "string",
+      "description": "Email of user who made the change"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "created",
+        "updated",
+        "restored"
+      ],
+      "default": "updated",
+      "description": "Type of change"
+    }
+  },
+  "required": [
+    "content_key",
+    "content",
+    "edited_by"
+  ]
+}

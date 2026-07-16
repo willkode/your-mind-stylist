@@ -1,0 +1,358 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Lead email"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "address_line1": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "address_line2": {
+      "type": "string",
+      "description": "Apartment, suite, etc."
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State / Province"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP / Postal code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "booked",
+        "qualified",
+        "proposal",
+        "negotiation",
+        "won",
+        "lost"
+      ],
+      "default": "new",
+      "description": "Pipeline stage"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "networking",
+        "internet",
+        "referral",
+        "client",
+        "colleague",
+        "vendor",
+        "website",
+        "masterclass",
+        "social_media",
+        "paid_ad",
+        "organic_search",
+        "email_campaign",
+        "event",
+        "booking_system",
+        "product_purchase",
+        "free_masterclass",
+        "csv_import",
+        "lead_magnet",
+        "contact_form",
+        "other"
+      ],
+      "description": "Primary source \u2014 how they found us"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All sources this lead came from (appended on duplicate)"
+    },
+    "lead_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "archived"
+      ],
+      "default": "active",
+      "description": "Lifecycle status of the lead record"
+    },
+    "invite_status": {
+      "type": "string",
+      "enum": [
+        "not_invited",
+        "invited",
+        "accepted"
+      ],
+      "default": "not_invited",
+      "description": "Current invite lifecycle state"
+    },
+    "invite_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of most recent invite send"
+    },
+    "invite_accepted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When they accepted the invite and created account"
+    },
+    "opted_out_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this person requested removal from email communications"
+    },
+    "email_consent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the lead explicitly consented to receive email communications"
+    },
+    "consent_given_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When email consent was given"
+    },
+    "what_inquired_about": {
+      "type": "string",
+      "description": "What they inquired about"
+    },
+    "what_they_bought": {
+      "type": "string",
+      "description": "Products/services purchased"
+    },
+    "date_of_purchase": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of most recent purchase"
+    },
+    "follow_up_actions": {
+      "type": "string",
+      "description": "Follow-up actions to take"
+    },
+    "interested_products": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product IDs they're interested in"
+    },
+    "budget_range": {
+      "type": "string",
+      "description": "Budget they mentioned"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "1-3_months",
+        "3-6_months",
+        "6+_months",
+        "not_sure"
+      ],
+      "description": "When they want to start"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Custom tags - unique per lead, not shared across all leads"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Manager email"
+    },
+    "last_contact_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time we contacted them"
+    },
+    "next_follow_up_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When to follow up"
+    },
+    "converted_to_client": {
+      "type": "boolean",
+      "default": false,
+      "description": "Did they become a client"
+    },
+    "converted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When they converted"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User if registered"
+    },
+    "total_value": {
+      "type": "number",
+      "default": 0,
+      "description": "Total purchase value in cents"
+    },
+    "utm_source": {
+      "type": "string",
+      "description": "UTM source"
+    },
+    "utm_medium": {
+      "type": "string",
+      "description": "UTM medium"
+    },
+    "utm_campaign": {
+      "type": "string",
+      "description": "UTM campaign"
+    },
+    "first_page_visited": {
+      "type": "string",
+      "description": "First page they visited"
+    },
+    "imported_from_csv": {
+      "type": "boolean",
+      "default": false,
+      "description": "Was this record imported from a CSV migration"
+    },
+    "imported_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the record was imported"
+    },
+    "import_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "CSV file names this record was imported from"
+    },
+    "migration_batch_id": {
+      "type": "string",
+      "description": "Unique batch ID for this import run"
+    },
+    "migration_source_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All CSV filenames that contributed to this record"
+    },
+    "original_csv_rows": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Raw original CSV row data for provenance/rollback"
+    },
+    "original_purchase_texts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Original what_they_bought text from each CSV source"
+    },
+    "pending_access_grants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "enum": [
+              "grant_product",
+              "enroll_course",
+              "grant_webinar"
+            ],
+            "description": "Type of access to provision"
+          },
+          "platform_item_name": {
+            "type": "string",
+            "description": "Human-readable name of the product/course/webinar"
+          },
+          "product_id": {
+            "type": "string",
+            "description": "Product entity ID (for grant_product)"
+          },
+          "course_id": {
+            "type": "string",
+            "description": "Course entity ID (for enroll_course)"
+          },
+          "webinar_id": {
+            "type": "string",
+            "description": "Webinar entity ID (for grant_webinar \u2014 stored as Course)"
+          },
+          "csv_purchase_text": {
+            "type": "string",
+            "description": "Original purchase text from CSV"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "inferred",
+              "uncertain"
+            ],
+            "description": "Mapping confidence level"
+          },
+          "protected": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this is protected content requiring manual approval"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "provisioned",
+              "failed",
+              "skipped"
+            ],
+            "default": "pending",
+            "description": "Grant provisioning status"
+          },
+          "provisioned_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When access was actually provisioned"
+          },
+          "migration_batch_id": {
+            "type": "string",
+            "description": "Batch ID for traceability"
+          }
+        }
+      },
+      "description": "Access grants to provision when user accepts invite"
+    }
+  },
+  "required": [
+    "email"
+  ]
+}

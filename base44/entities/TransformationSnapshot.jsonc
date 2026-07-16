@@ -1,0 +1,84 @@
+{
+  "name": "TransformationSnapshot",
+  "type": "object",
+  "properties": {
+    "snapshot_type": {
+      "type": "string",
+      "enum": [
+        "course_start",
+        "course_end",
+        "module_start",
+        "module_end",
+        "monthly",
+        "quarterly",
+        "program_start",
+        "program_end",
+        "custom"
+      ],
+      "description": "When/why snapshot was taken"
+    },
+    "related_id": {
+      "type": "string",
+      "description": "ID of related entity (course_id, module_id, program_id, etc.)"
+    },
+    "related_title": {
+      "type": "string",
+      "description": "Snapshot of related entity title"
+    },
+    "calm_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Calm vs Activated (0-100)"
+    },
+    "grounded_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Grounded vs Scattered (0-100)"
+    },
+    "open_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Open vs Guarded (0-100)"
+    },
+    "overall_mood": {
+      "type": "string",
+      "enum": [
+        "joyful",
+        "content",
+        "calm",
+        "neutral",
+        "anxious",
+        "sad",
+        "frustrated",
+        "energized",
+        "tired",
+        "grateful"
+      ],
+      "description": "General emotional state"
+    },
+    "energy_level": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Energy level (1-10)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "User's notes about this snapshot"
+    },
+    "intentions": {
+      "type": "string",
+      "description": "What they hope to achieve (for 'start' snapshots)"
+    },
+    "outcomes": {
+      "type": "string",
+      "description": "What actually changed (for 'end' snapshots)"
+    }
+  },
+  "required": [
+    "snapshot_type"
+  ]
+}

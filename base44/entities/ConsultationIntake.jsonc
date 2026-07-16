@@ -1,0 +1,296 @@
+{
+  "name": "ConsultationIntake",
+  "type": "object",
+  "properties": {
+    "booking_id": {
+      "type": "string",
+      "description": "Reference to associated booking"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "incomplete",
+        "submitted",
+        "reviewed"
+      ],
+      "default": "incomplete",
+      "description": "Form completion status"
+    },
+    "submitted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When form was submitted"
+    },
+    "consultation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled consultation date"
+    },
+    "reminder_24h_sent": {
+      "type": "boolean",
+      "default": false
+    },
+    "reminder_48h_sent": {
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "occupation": {
+      "type": "string"
+    },
+    "emergency_contact_name": {
+      "type": "string"
+    },
+    "emergency_contact_phone": {
+      "type": "string"
+    },
+    "emergency_secondary": {
+      "type": "boolean",
+      "default": false
+    },
+    "referring_party": {
+      "type": "string"
+    },
+    "how_did_you_hear": {
+      "type": "string"
+    },
+    "referred": {
+      "type": "string",
+      "description": "How did you find me or who referred you"
+    },
+    "children": {
+      "type": "string",
+      "description": "Children names and ages"
+    },
+    "spiritual": {
+      "type": "string",
+      "description": "Are you a spiritual person"
+    },
+    "after_life": {
+      "type": "string",
+      "description": "I believe this is the only life I live"
+    },
+    "higher_power": {
+      "type": "string",
+      "description": "I believe in a higher power"
+    },
+    "primary_concerns": {
+      "type": "string",
+      "description": "What issue are you interested in resolving"
+    },
+    "previous_hypnosis": {
+      "type": "string",
+      "description": "Have you experienced hypnosis before"
+    },
+    "previous_hypnosis_details": {
+      "type": "string"
+    },
+    "why_hypnosis": {
+      "type": "string",
+      "description": "Why are you addressing this now"
+    },
+    "issue_history": {
+      "type": "string",
+      "description": "How long have you been affected"
+    },
+    "impact_of_issue": {
+      "type": "string",
+      "description": "Ways tried to address before"
+    },
+    "impact_past": {
+      "type": "string",
+      "description": "How has this impacted your life in the past"
+    },
+    "time_money_invested": {
+      "type": "string",
+      "description": "How much time and money invested"
+    },
+    "support": {
+      "type": "string",
+      "description": "What people/places/events could get in the way"
+    },
+    "resolution_of_issue": {
+      "type": "string",
+      "description": "How would life be different if resolved"
+    },
+    "success": {
+      "type": "string",
+      "description": "What if nothing changes"
+    },
+    "why_me": {
+      "type": "string",
+      "description": "Why do you think I should work with you"
+    },
+    "what_else": {
+      "type": "string",
+      "description": "What else should I know"
+    },
+    "health_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Health conditions (legacy)"
+    },
+    "health_diagnosis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Diagnosed health conditions"
+    },
+    "other_conditions": {
+      "type": "string",
+      "description": "Other conditions details"
+    },
+    "health_conditions_other": {
+      "type": "string"
+    },
+    "current_medications": {
+      "type": "string"
+    },
+    "current_therapy": {
+      "type": "string",
+      "description": "Currently seeing someone for medical/emotional reasons"
+    },
+    "mental_health_diagnosis": {
+      "type": "string"
+    },
+    "mental_health_details": {
+      "type": "string"
+    },
+    "therapist_awareness": {
+      "type": "string"
+    },
+    "suicidal_thoughts": {
+      "type": "string"
+    },
+    "substance_use": {
+      "type": "string"
+    },
+    "substance_details": {
+      "type": "string"
+    },
+    "emotions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Excessive emotions being experienced"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Life events in the past year"
+    },
+    "events_explain": {
+      "type": "string",
+      "description": "Life events explanation"
+    },
+    "boundaries": {
+      "type": "string",
+      "description": "Understanding of diagnosis boundaries"
+    },
+    "goals_expectations": {
+      "type": "string"
+    },
+    "barriers_to_progress": {
+      "type": "string"
+    },
+    "commitment_level": {
+      "type": "string",
+      "description": "1-10 scale"
+    },
+    "additional_info": {
+      "type": "string"
+    },
+    "disclosure_forms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Disclosure forms acknowledged"
+    },
+    "policies": {
+      "type": "string",
+      "description": "Cancellation & Office Policy agreement"
+    },
+    "guarantee": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Practice guarantee acknowledgment"
+    },
+    "consent_no_medical_advice": {
+      "type": "boolean",
+      "default": false
+    },
+    "consent_not_therapy": {
+      "type": "boolean",
+      "default": false
+    },
+    "consent_confidentiality": {
+      "type": "boolean",
+      "default": false
+    },
+    "consent_voluntary": {
+      "type": "boolean",
+      "default": false
+    },
+    "consent_questions_answered": {
+      "type": "boolean",
+      "default": false
+    },
+    "signature_name": {
+      "type": "string"
+    },
+    "signature_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "guardian_signature": {
+      "type": "string",
+      "description": "If client is under 18"
+    },
+    "guardian_relationship": {
+      "type": "string"
+    },
+    "pdf_url": {
+      "type": "string",
+      "description": "URL to generated PDF"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "phone"
+  ]
+}

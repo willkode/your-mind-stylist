@@ -1,0 +1,113 @@
+{
+  "name": "Lesson",
+  "type": "object",
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "description": "Reference to Module entity"
+    },
+    "title": {
+      "type": "string",
+      "description": "Lesson title"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio",
+        "text",
+        "hybrid"
+      ],
+      "description": "Lesson content type"
+    },
+    "content": {
+      "type": "string",
+      "description": "Text content (HTML from ReactQuill)"
+    },
+    "media_url": {
+      "type": "string",
+      "description": "Video or audio file URL"
+    },
+    "embed_url": {
+      "type": "string",
+      "description": "Video embed URL (YouTube, Vimeo, etc.)"
+    },
+    "transcription_url": {
+      "type": "string",
+      "description": "Audio/video transcription file URL"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Lesson duration (e.g., '12:35')"
+    },
+    "key_takeaways": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key takeaways bullet points"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "pdf",
+              "link",
+              "audio",
+              "other"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Manual inline resources (legacy)"
+    },
+    "attached_resource_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of Resource entities attached to this lesson"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order within module"
+    },
+    "required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this lesson required"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lesson IDs that must be completed first"
+    },
+    "estimated_time": {
+      "type": "number",
+      "description": "Estimated completion time in minutes"
+    },
+    "enable_checkin": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show emotional check-in popup before and after this lesson"
+    }
+  },
+  "required": [
+    "module_id",
+    "title",
+    "type",
+    "order"
+  ]
+}

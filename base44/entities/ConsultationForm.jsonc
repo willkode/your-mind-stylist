@@ -1,0 +1,75 @@
+{
+  "name": "ConsultationForm",
+  "type": "object",
+  "properties": {
+    "step": {
+      "type": "number",
+      "description": "Step number (1-5)"
+    },
+    "step_title": {
+      "type": "string",
+      "description": "Title for this step"
+    },
+    "step_description": {
+      "type": "string",
+      "description": "Description/instructions for this step"
+    },
+    "field_name": {
+      "type": "string",
+      "description": "Field identifier (e.g., 'primary_concerns', 'name')"
+    },
+    "label": {
+      "type": "string",
+      "description": "Field label text"
+    },
+    "help_text": {
+      "type": "string",
+      "description": "Optional help/placeholder text"
+    },
+    "field_type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "email",
+        "tel",
+        "date",
+        "number",
+        "textarea",
+        "radio",
+        "checkbox",
+        "conditional_text"
+      ],
+      "description": "Type of form field"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this field required"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order within the step"
+    },
+    "conditional_field": {
+      "type": "string",
+      "description": "Field name this depends on (for conditional fields)"
+    },
+    "conditional_value": {
+      "type": "string",
+      "description": "Value that triggers this field"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Options for radio/checkbox fields"
+    }
+  },
+  "required": [
+    "step",
+    "field_name",
+    "label",
+    "field_type"
+  ]
+}

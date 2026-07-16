@@ -1,0 +1,97 @@
+{
+  "name": "AppointmentType",
+  "type": "object",
+  "properties": {
+    "manager_id": {
+      "type": "string",
+      "description": "Reference to User entity (the manager who provides this service)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Appointment type name (e.g., 'Private Session', 'Consultation')"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the service"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "private_sessions",
+        "consultation",
+        "certification",
+        "other"
+      ],
+      "description": "Service type category"
+    },
+    "duration": {
+      "type": "number",
+      "default": 60,
+      "description": "Session duration in minutes"
+    },
+    "session_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of sessions (for packages)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in cents"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "stripe_product_id": {
+      "type": "string",
+      "description": "Stripe product ID"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "Stripe price ID"
+    },
+    "zoom_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automatically create Zoom meetings for this appointment type"
+    },
+    "zoom_settings": {
+      "type": "object",
+      "description": "Zoom meeting configuration",
+      "properties": {
+        "host_video": {
+          "type": "boolean",
+          "default": true
+        },
+        "participant_video": {
+          "type": "boolean",
+          "default": true
+        },
+        "waiting_room": {
+          "type": "boolean",
+          "default": true
+        },
+        "mute_upon_entry": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this appointment type available for booking"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Display order on booking pages"
+    }
+  },
+  "required": [
+    "name",
+    "service_type",
+    "duration",
+    "price"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "IntegrationUsageLog",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the user who triggered the integration call"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Display name of the user"
+    },
+    "feature": {
+      "type": "string",
+      "enum": [
+        "blog_content_generator",
+        "blog_summarizer",
+        "seo_analyzer",
+        "seo_optimizer",
+        "image_generator",
+        "content_repurposer",
+        "lead_magnet_generator",
+        "pocket_script_generator",
+        "video_script_generator",
+        "email_sequence_generator",
+        "course_outline_generator",
+        "script_writer",
+        "social_media_transformer",
+        "webinar_outline_creator",
+        "ai_helper",
+        "ai_manager_assistant",
+        "ai_client_assistant",
+        "other"
+      ],
+      "description": "Which AI feature was used"
+    },
+    "integration_type": {
+      "type": "string",
+      "enum": [
+        "InvokeLLM",
+        "GenerateImage",
+        "UploadFile",
+        "TranscribeAudio",
+        "GenerateSpeech",
+        "other"
+      ],
+      "description": "Which Base44 integration was called"
+    },
+    "estimated_credits": {
+      "type": "number",
+      "default": 1,
+      "description": "Estimated integration credits consumed (1 for LLM, 1 for image, etc.)"
+    },
+    "details": {
+      "type": "string",
+      "description": "Brief description of what was generated (e.g. content type, prompt snippet)"
+    }
+  },
+  "required": [
+    "user_email",
+    "feature",
+    "integration_type"
+  ]
+}

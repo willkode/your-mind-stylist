@@ -1,0 +1,91 @@
+{
+  "name": "BugReport",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Auto-generated or user-provided title"
+    },
+    "description": {
+      "type": "string",
+      "description": "User's description of the bug"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "New",
+        "In Progress",
+        "Resolved",
+        "Archived"
+      ],
+      "default": "New",
+      "description": "Bug status"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "default": "Medium",
+      "description": "Bug priority"
+    },
+    "reporter_email": {
+      "type": "string",
+      "description": "Reporter's email"
+    },
+    "reporter_name": {
+      "type": "string",
+      "description": "Reporter's name"
+    },
+    "page_url": {
+      "type": "string",
+      "description": "Page where bug occurred"
+    },
+    "screenshot_url": {
+      "type": "string",
+      "description": "Auto-captured screenshot"
+    },
+    "additional_screenshots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional uploaded screenshots"
+    },
+    "browser_info": {
+      "type": "string",
+      "description": "Browser and OS information"
+    },
+    "reproduction_steps": {
+      "type": "string",
+      "description": "AI-generated reproduction steps"
+    },
+    "ai_analysis": {
+      "type": "string",
+      "description": "AI analysis of the bug"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Admin's internal notes"
+    },
+    "resolved_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the bug was resolved"
+    },
+    "tested": {
+      "type": "boolean",
+      "default": false,
+      "description": "Manager has tested and verified this item"
+    }
+  },
+  "required": [
+    "description",
+    "reporter_email",
+    "page_url",
+    "browser_info"
+  ]
+}

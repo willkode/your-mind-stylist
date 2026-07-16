@@ -1,0 +1,74 @@
+{
+  "name": "ProductPrice",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Reference to Product entity"
+    },
+    "billing_type": {
+      "type": "string",
+      "enum": [
+        "one_time",
+        "recurring"
+      ],
+      "description": "Payment type"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Price amount in cents"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "interval": {
+      "type": "string",
+      "enum": [
+        "month",
+        "year",
+        "one_time"
+      ],
+      "description": "Billing interval"
+    },
+    "interval_count": {
+      "type": "number",
+      "default": 1,
+      "description": "Number of intervals between billings"
+    },
+    "installments": {
+      "type": "number",
+      "description": "Number of installments (for payment plans)"
+    },
+    "label": {
+      "type": "string",
+      "description": "Display label (e.g., 'Full Pay', '3-Month Plan')"
+    },
+    "recommended": {
+      "type": "boolean",
+      "default": false,
+      "description": "Mark as recommended option"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Show on pricing pages"
+    },
+    "stripe_price_id": {
+      "type": "string",
+      "description": "Stripe price ID"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Order within product"
+    }
+  },
+  "required": [
+    "product_id",
+    "billing_type",
+    "amount",
+    "interval",
+    "label"
+  ]
+}

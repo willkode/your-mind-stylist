@@ -1,0 +1,93 @@
+{
+  "name": "StylePause",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Pause title"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "reset",
+        "restyle",
+        "interrupt",
+        "anchor"
+      ],
+      "description": "Pause category"
+    },
+    "duration_seconds": {
+      "type": "number",
+      "description": "Duration in seconds"
+    },
+    "script_text": {
+      "type": "string",
+      "description": "Full text script (legacy / fallback)"
+    },
+    "content_mode": {
+      "type": "string",
+      "enum": [
+        "text",
+        "steps",
+        "audio",
+        "steps_and_audio"
+      ],
+      "default": "text",
+      "description": "How this pause is delivered"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Instruction text for this step"
+          },
+          "duration_seconds": {
+            "type": "number",
+            "description": "How long to show this step (default 10)"
+          },
+          "breath_cue": {
+            "type": "string",
+            "enum": [
+              "none",
+              "inhale",
+              "exhale",
+              "hold",
+              "breathe"
+            ],
+            "description": "Optional breathing animation cue"
+          }
+        }
+      },
+      "description": "Guided steps for animated step-by-step mode"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "Audio file URL (upload or external link)"
+    },
+    "is_published": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this pause published"
+    },
+    "sort_order": {
+      "type": "number",
+      "default": 0,
+      "description": "Display order"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags for filtering/search"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "duration_seconds"
+  ]
+}

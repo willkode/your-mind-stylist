@@ -1,0 +1,43 @@
+{
+  "name": "Module",
+  "type": "object",
+  "properties": {
+    "course_id": {
+      "type": "string",
+      "description": "Reference to Course entity"
+    },
+    "title": {
+      "type": "string",
+      "description": "Module title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Module description"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order within course"
+    },
+    "required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this module required"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Module IDs that must be completed first"
+    },
+    "estimated_time": {
+      "type": "number",
+      "description": "Estimated completion time in minutes for all lessons"
+    }
+  },
+  "required": [
+    "course_id",
+    "title",
+    "order"
+  ]
+}

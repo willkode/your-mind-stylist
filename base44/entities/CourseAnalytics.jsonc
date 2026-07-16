@@ -1,0 +1,104 @@
+{
+  "name": "CourseAnalytics",
+  "type": "object",
+  "properties": {
+    "course_id": {
+      "type": "string",
+      "description": "Reference to Course entity"
+    },
+    "total_enrollments": {
+      "type": "number",
+      "default": 0,
+      "description": "Total students enrolled"
+    },
+    "active_students": {
+      "type": "number",
+      "default": 0,
+      "description": "Students who logged in last 30 days"
+    },
+    "completed_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of students who completed"
+    },
+    "avg_completion_rate": {
+      "type": "number",
+      "default": 0,
+      "description": "Average completion percentage"
+    },
+    "avg_time_to_complete": {
+      "type": "number",
+      "default": 0,
+      "description": "Average days to complete"
+    },
+    "total_lesson_views": {
+      "type": "number",
+      "default": 0,
+      "description": "Total lesson views across all students"
+    },
+    "avg_engagement_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Average engagement score (0-100)"
+    },
+    "top_performing_lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lesson_id": {
+            "type": "string"
+          },
+          "lesson_title": {
+            "type": "string"
+          },
+          "completion_rate": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Lessons with highest completion"
+    },
+    "struggling_lessons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "lesson_id": {
+            "type": "string"
+          },
+          "lesson_title": {
+            "type": "string"
+          },
+          "drop_off_rate": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Lessons where students drop off"
+    },
+    "monthly_enrollments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "month": {
+            "type": "string"
+          },
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Enrollment trends by month"
+    },
+    "last_calculated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When analytics were last calculated"
+    }
+  },
+  "required": [
+    "course_id"
+  ]
+}

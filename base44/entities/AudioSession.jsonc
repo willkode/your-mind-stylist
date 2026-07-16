@@ -1,0 +1,64 @@
+{
+  "name": "AudioSession",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Session title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Calm & Nervous System Resets",
+        "Confidence & Identity",
+        "Clarity & Decisions",
+        "Emotional Release",
+        "Performance Prep",
+        "Rest & Recovery"
+      ],
+      "description": "Session category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Session description (HTML)"
+    },
+    "audio_url": {
+      "type": "string",
+      "description": "Audio file URL"
+    },
+    "duration": {
+      "type": "number",
+      "description": "Duration in minutes"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Cover art URL"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Session tags"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Session status"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "category",
+    "audio_url"
+  ]
+}

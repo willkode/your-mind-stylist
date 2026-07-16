@@ -1,0 +1,81 @@
+{
+  "name": "VoiceProfile",
+  "type": "object",
+  "properties": {
+    "profile_name": {
+      "type": "string",
+      "description": "Name of this voice profile (e.g., 'My Writing Voice', 'Professional Tone')"
+    },
+    "tone_descriptors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tone adjectives (e.g., 'warm', 'authoritative', 'conversational')"
+    },
+    "writing_rules": {
+      "type": "string",
+      "description": "Detailed writing style rules and guidelines"
+    },
+    "example_text": {
+      "type": "string",
+      "description": "Sample of your writing for the AI to learn from"
+    },
+    "vocabulary_preferences": {
+      "type": "string",
+      "description": "Words/phrases to use or avoid"
+    },
+    "sentence_structure": {
+      "type": "string",
+      "enum": [
+        "short_punchy",
+        "medium_balanced",
+        "long_flowing",
+        "mixed"
+      ],
+      "default": "medium_balanced",
+      "description": "Preferred sentence length style"
+    },
+    "perspective": {
+      "type": "string",
+      "enum": [
+        "first_person",
+        "second_person",
+        "third_person",
+        "mixed"
+      ],
+      "default": "second_person",
+      "description": "Narrative perspective"
+    },
+    "use_contractions": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use contractions (I'm vs I am)"
+    },
+    "formality_level": {
+      "type": "string",
+      "enum": [
+        "casual",
+        "conversational",
+        "professional",
+        "formal"
+      ],
+      "default": "conversational",
+      "description": "Overall formality level"
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false,
+      "description": "Use this as default voice for all AI generation"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this profile active"
+    }
+  },
+  "required": [
+    "profile_name",
+    "writing_rules"
+  ]
+}

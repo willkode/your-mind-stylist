@@ -1,0 +1,38 @@
+{
+  "name": "UserAudioSession",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "audio_session_id": {
+      "type": "string",
+      "description": "Reference to AudioSession entity"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Did the user complete the session"
+    },
+    "progress": {
+      "type": "number",
+      "default": 0,
+      "description": "Playback progress percentage (0-100)"
+    },
+    "last_played": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time the session was played"
+    },
+    "favorite": {
+      "type": "boolean",
+      "default": false,
+      "description": "User favorited this session"
+    }
+  },
+  "required": [
+    "user_id",
+    "audio_session_id"
+  ]
+}

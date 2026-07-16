@@ -1,0 +1,183 @@
+{
+  "name": "WaitingList",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "User's email"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "User's full name"
+    },
+    "user_phone": {
+      "type": "string",
+      "description": "User's phone number"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "private_sessions",
+        "consultation",
+        "certification",
+        "other"
+      ],
+      "description": "Requested service type"
+    },
+    "appointment_type_id": {
+      "type": "string",
+      "description": "Specific appointment type requested"
+    },
+    "preferred_dates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "date"
+      },
+      "description": "User's preferred dates"
+    },
+    "preferred_times": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Preferred time ranges (e.g., 'morning', 'afternoon')"
+    },
+    "flexible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is user flexible with dates/times"
+    },
+    "requested_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user joined waiting list"
+    },
+    "priority_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Auto-calculated priority score (0-100)"
+    },
+    "priority_factors": {
+      "type": "object",
+      "properties": {
+        "wait_time_days": {
+          "type": "number"
+        },
+        "flexibility_score": {
+          "type": "number"
+        },
+        "urgency_level": {
+          "type": "string"
+        },
+        "client_value_score": {
+          "type": "number"
+        }
+      },
+      "description": "Breakdown of priority calculation"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "waiting",
+        "contacted",
+        "matched",
+        "booked",
+        "cancelled",
+        "expired"
+      ],
+      "default": "waiting",
+      "description": "Waiting list status"
+    },
+    "contacted_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user was contacted"
+    },
+    "matched_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When auto-matched with available slot"
+    },
+    "matched_slot": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "staff_id": {
+          "type": "string"
+        }
+      },
+      "description": "Auto-matched slot details"
+    },
+    "booked_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user booked a slot"
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "Associated booking ID if booked"
+    },
+    "notes": {
+      "type": "string",
+      "description": "User's additional notes or requirements"
+    },
+    "manager_notes": {
+      "type": "string",
+      "description": "Internal manager notes"
+    },
+    "urgency_level": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium",
+      "description": "How urgent is this request"
+    },
+    "communication_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "method": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "sent_by": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "History of communications"
+    },
+    "auto_match_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of times auto-match has run"
+    },
+    "last_auto_match": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last auto-match attempt"
+    }
+  },
+  "required": [
+    "user_email",
+    "user_name",
+    "service_type"
+  ]
+}

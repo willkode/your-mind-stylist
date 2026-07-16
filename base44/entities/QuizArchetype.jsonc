@@ -1,0 +1,71 @@
+{
+  "name": "QuizArchetype",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "description": "Reference to Quiz entity"
+    },
+    "key": {
+      "type": "string",
+      "description": "Internal identifier (e.g., 'leader', 'connector', 'steady', 'thoughtful')"
+    },
+    "title": {
+      "type": "string",
+      "description": "Archetype name (e.g., 'You're the Leader Dog')"
+    },
+    "emoji": {
+      "type": "string",
+      "description": "Single emoji for visual identity (e.g., '\ud83d\udc15')"
+    },
+    "color": {
+      "type": "string",
+      "description": "Hex color code for this archetype"
+    },
+    "summary": {
+      "type": "string",
+      "description": "1-2 sentence identity mirror"
+    },
+    "strengths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of strengths (3-5 items)"
+    },
+    "growth": {
+      "type": "string",
+      "description": "Growth edge \u2014 short paragraph on what to work with"
+    },
+    "relationships": {
+      "type": "string",
+      "description": "How this archetype shows up in relationships"
+    },
+    "stress": {
+      "type": "string",
+      "description": "Behavioral patterns under stress"
+    },
+    "restyle": {
+      "type": "string",
+      "description": "Restyle prompt \u2014 single reflection question"
+    },
+    "work_pattern": {
+      "type": "string",
+      "description": "How this archetype shows up at work"
+    },
+    "home_pattern": {
+      "type": "string",
+      "description": "How this archetype shows up at home"
+    },
+    "display_order": {
+      "type": "number",
+      "description": "Display order if listing all archetypes"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "key",
+    "title",
+    "summary"
+  ]
+}

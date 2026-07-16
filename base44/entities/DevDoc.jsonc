@@ -1,0 +1,46 @@
+{
+  "name": "DevDoc",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Document title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Feature",
+        "Flow",
+        "Integration",
+        "Content Spec",
+        "Other"
+      ],
+      "description": "Document category"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Document tags"
+    },
+    "content": {
+      "type": "string",
+      "description": "Document content (HTML)"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Document owner"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "category",
+    "content"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "CmsContent",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique block key (e.g., 'home.hero.title')"
+    },
+    "page": {
+      "type": "string",
+      "description": "Page name for organization"
+    },
+    "block_title": {
+      "type": "string",
+      "description": "Human-readable title (e.g., 'Homepage Hero Title')"
+    },
+    "content": {
+      "type": "string",
+      "description": "The actual text/HTML content"
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "short_text",
+        "rich_text"
+      ],
+      "default": "rich_text",
+      "description": "Type of content"
+    },
+    "max_length": {
+      "type": "number",
+      "description": "Optional character limit"
+    },
+    "is_draft": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if changes are unpublished"
+    },
+    "draft_content": {
+      "type": "string",
+      "description": "Draft version of content"
+    }
+  },
+  "required": [
+    "key",
+    "page",
+    "block_title",
+    "content"
+  ]
+}

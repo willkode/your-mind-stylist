@@ -1,0 +1,101 @@
+{
+  "name": "Quiz",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug (e.g., 'go-fetch-yourself')"
+    },
+    "title": {
+      "type": "string",
+      "description": "Quiz title (e.g., 'Which Dog Archetype Are You?')"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Short subtitle or tagline"
+    },
+    "intro": {
+      "type": "string",
+      "description": "Intro screen copy \u2014 sets context and intent"
+    },
+    "framework_type": {
+      "type": "string",
+      "enum": [
+        "archetype",
+        "personality",
+        "money",
+        "leadership",
+        "custom"
+      ],
+      "description": "Type of framework for future reusability"
+    },
+    "related_product_id": {
+      "type": "string",
+      "description": "Reference to Product entity (e.g., the book this quiz promotes)"
+    },
+    "results_intro_text": {
+      "type": "string",
+      "description": "Intro text shown before email gate (e.g., 'Which Dog Archetype Leads Your Life?')"
+    },
+    "results_email_copy": {
+      "type": "string",
+      "description": "Copy shown in email gate section (benefits, trust line, etc.)"
+    },
+    "email_gate_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Require email capture before showing results"
+    },
+    "lead_magnet_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Offer downloadable PDF after results"
+    },
+    "lead_magnet_title": {
+      "type": "string",
+      "description": "Title of downloadable lead magnet (e.g., 'Your Dog Archetype Guide')"
+    },
+    "lead_magnet_description": {
+      "type": "string",
+      "description": "Short description for the lead magnet offer"
+    },
+    "share_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Enable social share layer after results"
+    },
+    "share_template": {
+      "type": "string",
+      "description": "Share message template (e.g., 'I'm the [archetype] \u2014 what's yours?')"
+    },
+    "cta_product_id": {
+      "type": "string",
+      "description": "Product ID for final CTA button (typically the book)"
+    },
+    "cta_text": {
+      "type": "string",
+      "description": "CTA button text (e.g., 'Read Go Fetch Your Self')"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this quiz published and accessible"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "default": "draft",
+      "description": "Publication status"
+    }
+  },
+  "required": [
+    "slug",
+    "title",
+    "intro",
+    "framework_type"
+  ]
+}

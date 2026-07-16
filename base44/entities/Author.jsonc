@@ -1,0 +1,38 @@
+{
+  "name": "Author",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to User entity"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Public author name"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Author biography"
+    },
+    "profile_image": {
+      "type": "string",
+      "description": "Profile picture URL"
+    },
+    "social_links": {
+      "type": "object",
+      "description": "Social media links"
+    },
+    "is_guest": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a guest author"
+    },
+    "website": {
+      "type": "string",
+      "description": "Author website"
+    }
+  },
+  "required": [
+    "display_name"
+  ]
+}

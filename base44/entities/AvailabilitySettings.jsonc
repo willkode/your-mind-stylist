@@ -1,0 +1,37 @@
+{
+  "name": "AvailabilitySettings",
+  "type": "object",
+  "properties": {
+    "manager_id": {
+      "type": "string",
+      "description": "Reference to User entity (manager)"
+    },
+    "appointment_type_id": {
+      "type": "string",
+      "description": "Reference to AppointmentType (optional - null means default settings)"
+    },
+    "buffer_minutes": {
+      "type": "number",
+      "default": 15,
+      "description": "Buffer time between appointments (minutes)"
+    },
+    "min_notice_hours": {
+      "type": "number",
+      "default": 2,
+      "description": "Minimum hours notice required for booking"
+    },
+    "max_advance_days": {
+      "type": "number",
+      "default": 90,
+      "description": "Maximum days in advance that can be booked"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "America/Los_Angeles",
+      "description": "Manager's timezone"
+    }
+  },
+  "required": [
+    "manager_id"
+  ]
+}

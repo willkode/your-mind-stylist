@@ -1,0 +1,61 @@
+{
+  "name": "EmailTemplate",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique template identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Template display name"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "manager_notification",
+        "user_notification",
+        "admin_notification",
+        "booking_reminder",
+        "marketing",
+        "newsletter",
+        "follow_up",
+        "event",
+        "announcement"
+      ],
+      "description": "Template category"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line with variable placeholders"
+    },
+    "body": {
+      "type": "string",
+      "description": "Email body HTML with variable placeholders"
+    },
+    "variables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available variables for this template"
+    },
+    "is_starter": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a built-in starter template"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this template active"
+    }
+  },
+  "required": [
+    "key",
+    "name",
+    "category",
+    "subject",
+    "body"
+  ]
+}

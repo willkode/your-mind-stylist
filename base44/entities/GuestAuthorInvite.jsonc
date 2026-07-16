@@ -1,0 +1,42 @@
+{
+  "name": "GuestAuthorInvite",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Guest author email"
+    },
+    "invited_by": {
+      "type": "string",
+      "description": "Manager who sent invite"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "expired"
+      ],
+      "default": "pending",
+      "description": "Invitation status"
+    },
+    "invite_token": {
+      "type": "string",
+      "description": "Unique invite token"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Expiration date"
+    },
+    "message": {
+      "type": "string",
+      "description": "Personal message to guest"
+    }
+  },
+  "required": [
+    "email",
+    "invite_token",
+    "expires_at"
+  ]
+}

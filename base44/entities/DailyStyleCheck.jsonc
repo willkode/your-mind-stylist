@@ -1,0 +1,45 @@
+{
+  "name": "DailyStyleCheck",
+  "type": "object",
+  "properties": {
+    "state_key": {
+      "type": "string",
+      "enum": [
+        "calm_activated",
+        "grounded_scattered",
+        "open_guarded"
+      ],
+      "description": "Which state dimension was tracked"
+    },
+    "state_value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Position on the state spectrum (0-100)"
+    },
+    "voice_tone": {
+      "type": "string",
+      "enum": [
+        "supportive",
+        "neutral",
+        "critical",
+        "urgent",
+        "avoidant"
+      ],
+      "description": "Inner voice tone"
+    },
+    "identity_id": {
+      "type": "string",
+      "description": "Reference to Identity Wardrobe entry (nullable)"
+    },
+    "identity_name": {
+      "type": "string",
+      "description": "Snapshot of identity name at time of check-in"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional quick note"
+    }
+  },
+  "required": []
+}

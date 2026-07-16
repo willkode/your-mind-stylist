@@ -1,0 +1,53 @@
+{
+  "name": "UserAudiobookProgress",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "audiobook_id": {
+      "type": "string",
+      "description": "Reference to Audiobook entity"
+    },
+    "current_position_seconds": {
+      "type": "number",
+      "default": 0,
+      "description": "Current playback position in seconds"
+    },
+    "current_chapter_index": {
+      "type": "number",
+      "default": 0,
+      "description": "Index of current chapter"
+    },
+    "playback_speed": {
+      "type": "number",
+      "default": 1,
+      "description": "Preferred playback speed (0.75, 1, 1.25, 1.5, 2)"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has user finished the audiobook"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the audiobook was completed"
+    },
+    "last_played": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time user listened"
+    },
+    "total_listen_time_seconds": {
+      "type": "number",
+      "default": 0,
+      "description": "Total accumulated listening time"
+    }
+  },
+  "required": [
+    "user_id",
+    "audiobook_id"
+  ]
+}

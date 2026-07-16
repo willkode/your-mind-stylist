@@ -1,0 +1,48 @@
+{
+  "name": "BlogAnalytics",
+  "type": "object",
+  "properties": {
+    "blog_post_id": {
+      "type": "string",
+      "description": "Reference to BlogPost"
+    },
+    "views": {
+      "type": "number",
+      "default": 0,
+      "description": "Total page views"
+    },
+    "unique_views": {
+      "type": "number",
+      "default": 0,
+      "description": "Unique visitors"
+    },
+    "likes": {
+      "type": "number",
+      "default": 0,
+      "description": "Total likes"
+    },
+    "shares": {
+      "type": "number",
+      "default": 0,
+      "description": "Total shares"
+    },
+    "comments": {
+      "type": "number",
+      "default": 0,
+      "description": "Total comments"
+    },
+    "avg_time_on_page": {
+      "type": "number",
+      "default": 0,
+      "description": "Average time on page (seconds)"
+    },
+    "conversion_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Conversions from this post"
+    }
+  },
+  "required": [
+    "blog_post_id"
+  ]
+}

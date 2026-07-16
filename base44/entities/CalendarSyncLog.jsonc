@@ -1,0 +1,80 @@
+{
+  "name": "CalendarSyncLog",
+  "type": "object",
+  "properties": {
+    "sync_type": {
+      "type": "string",
+      "enum": [
+        "scheduled_sync",
+        "health_check",
+        "manual_test",
+        "booking_sync"
+      ],
+      "description": "What kind of sync operation was attempted"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "failure",
+        "warning"
+      ],
+      "description": "Outcome of the sync attempt"
+    },
+    "calendars_synced": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Calendar names/IDs that were synced"
+    },
+    "events_found": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of calendar events found"
+    },
+    "rules_created": {
+      "type": "number",
+      "default": 0,
+      "description": "Availability rules created"
+    },
+    "rules_deleted": {
+      "type": "number",
+      "default": 0,
+      "description": "Stale availability rules removed"
+    },
+    "error_message": {
+      "type": "string",
+      "description": "Error details if status is failure"
+    },
+    "error_type": {
+      "type": "string",
+      "enum": [
+        "auth_expired",
+        "api_error",
+        "rate_limit",
+        "network",
+        "unknown"
+      ],
+      "description": "Categorized error type for alerting"
+    },
+    "consecutive_failures": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of consecutive failures at time of this log"
+    },
+    "alert_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether an alert email was sent for this failure"
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "How long the sync took in milliseconds"
+    }
+  },
+  "required": [
+    "sync_type",
+    "status"
+  ]
+}

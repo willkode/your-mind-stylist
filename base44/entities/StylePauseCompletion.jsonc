@@ -1,0 +1,57 @@
+{
+  "name": "StylePauseCompletion",
+  "type": "object",
+  "properties": {
+    "pause_id": {
+      "type": "string",
+      "description": "Reference to StylePause"
+    },
+    "pause_title": {
+      "type": "string",
+      "description": "Snapshot of pause title"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user started the pause"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user completed the pause"
+    },
+    "completion_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "exited"
+      ],
+      "default": "completed",
+      "description": "How the session ended"
+    },
+    "reflection_response": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "a_little",
+        "not_yet"
+      ],
+      "description": "Did anything shift response"
+    },
+    "duration_listened": {
+      "type": "number",
+      "description": "Seconds actually listened/read"
+    },
+    "source_context": {
+      "type": "string",
+      "description": "Where user started from (e.g. post-checkin, browse)"
+    },
+    "linked_checkin_id": {
+      "type": "string",
+      "description": "Reference to DailyStyleCheck if from suggestion"
+    }
+  },
+  "required": [
+    "pause_id"
+  ]
+}

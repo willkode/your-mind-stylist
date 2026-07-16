@@ -1,0 +1,36 @@
+{
+  "name": "ProductVisibility",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Reference to Product entity"
+    },
+    "context": {
+      "type": "string",
+      "enum": [
+        "public",
+        "authenticated",
+        "admin"
+      ],
+      "description": "Where this product is visible"
+    },
+    "show_price": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to display price"
+    },
+    "cta_text": {
+      "type": "string",
+      "description": "Custom CTA button text for this context"
+    },
+    "cta_url": {
+      "type": "string",
+      "description": "Custom CTA URL for this context"
+    }
+  },
+  "required": [
+    "product_id",
+    "context"
+  ]
+}

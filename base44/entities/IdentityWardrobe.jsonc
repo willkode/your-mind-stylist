@@ -1,0 +1,32 @@
+{
+  "name": "IdentityWardrobe",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Identity/outfit name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of this identity"
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a starter identity"
+    },
+    "times_selected": {
+      "type": "number",
+      "default": 0,
+      "description": "How many times user selected this identity"
+    },
+    "last_selected": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time this identity was selected"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

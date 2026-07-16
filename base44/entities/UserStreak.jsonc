@@ -1,0 +1,33 @@
+{
+  "name": "UserStreak",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "current_streak": {
+      "type": "number",
+      "default": 0,
+      "description": "Current consecutive days"
+    },
+    "longest_streak": {
+      "type": "number",
+      "default": 0,
+      "description": "Longest streak ever"
+    },
+    "last_activity_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Last meaningful action date"
+    },
+    "streak_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is streak currently active"
+    }
+  },
+  "required": [
+    "user_id"
+  ]
+}

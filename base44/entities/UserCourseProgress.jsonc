@@ -1,0 +1,64 @@
+{
+  "name": "UserCourseProgress",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "course_id": {
+      "type": "string",
+      "description": "Reference to Course entity"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "completed"
+      ],
+      "default": "not_started",
+      "description": "Course status"
+    },
+    "completion_percentage": {
+      "type": "number",
+      "default": 0,
+      "description": "Percentage completed (0-100)"
+    },
+    "last_accessed_lesson_id": {
+      "type": "string",
+      "description": "Last lesson accessed"
+    },
+    "started_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user started course"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user completed course"
+    },
+    "certificate_issued": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has certificate been generated"
+    },
+    "certificate_url": {
+      "type": "string",
+      "description": "URL to certificate PDF"
+    },
+    "certificate_id": {
+      "type": "string",
+      "description": "Unique certificate ID"
+    },
+    "final_quiz_score": {
+      "type": "number",
+      "description": "Final quiz score if applicable"
+    }
+  },
+  "required": [
+    "user_id",
+    "course_id"
+  ]
+}

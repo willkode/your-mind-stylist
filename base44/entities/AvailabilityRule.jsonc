@@ -1,0 +1,75 @@
+{
+  "name": "AvailabilityRule",
+  "type": "object",
+  "properties": {
+    "manager_id": {
+      "type": "string",
+      "description": "Reference to User entity (manager)"
+    },
+    "appointment_type_id": {
+      "type": "string",
+      "description": "Reference to AppointmentType (optional - null means applies to all)"
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "available",
+        "blocked"
+      ],
+      "default": "available",
+      "description": "Type of availability rule"
+    },
+    "day_of_week": {
+      "type": "number",
+      "description": "0=Sunday, 1=Monday, etc. (null for specific date overrides)"
+    },
+    "specific_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Specific date override (takes precedence over day_of_week)"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start time in HH:mm format (24-hour)"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End time in HH:mm format (24-hour)"
+    },
+    "is_available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this time slot is available for booking"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason for blocking (for blocked slots)"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "calendar_sync"
+      ],
+      "default": "manual",
+      "description": "How this rule was created"
+    },
+    "calendar_name": {
+      "type": "string",
+      "description": "Name of the Google Calendar this event came from (e.g., 'Roberta', 'Family')"
+    },
+    "external_event_id": {
+      "type": "string",
+      "description": "ID from external calendar system"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this rule currently active"
+    }
+  },
+  "required": [
+    "start_time",
+    "end_time"
+  ]
+}

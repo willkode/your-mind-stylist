@@ -1,0 +1,33 @@
+{
+  "name": "MomentumLog",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "week_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Start of the week"
+    },
+    "daily_points": {
+      "type": "object",
+      "description": "Points per day (max 10/day)"
+    },
+    "total_points": {
+      "type": "number",
+      "default": 0,
+      "description": "Total weekly points"
+    },
+    "last_activity": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last meaningful action"
+    }
+  },
+  "required": [
+    "user_id",
+    "week_start"
+  ]
+}

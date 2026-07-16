@@ -1,0 +1,79 @@
+{
+  "name": "AffiliatePayout",
+  "type": "object",
+  "properties": {
+    "affiliate_id": {
+      "type": "string",
+      "description": "Reference to Affiliate entity"
+    },
+    "payout_amount": {
+      "type": "number",
+      "description": "Total payout amount in cents"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "payout_method": {
+      "type": "string",
+      "enum": [
+        "paypal",
+        "bank_transfer",
+        "stripe",
+        "check"
+      ],
+      "description": "Payment method used"
+    },
+    "referral_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of referrals included in this payout"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "default": "pending",
+      "description": "Payout status"
+    },
+    "payment_reference": {
+      "type": "string",
+      "description": "PayPal transaction ID or bank reference"
+    },
+    "stripe_transfer_id": {
+      "type": "string",
+      "description": "Stripe transfer ID if using Stripe Connect"
+    },
+    "processed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When payout was processed"
+    },
+    "completed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When payout completed"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes"
+    },
+    "failure_reason": {
+      "type": "string",
+      "description": "Reason if payout failed"
+    }
+  },
+  "required": [
+    "affiliate_id",
+    "payout_amount",
+    "payout_method"
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "User's email address"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "User's full name"
+    },
+    "staff_id": {
+      "type": "string",
+      "description": "Reference to User entity (staff member assigned)"
+    },
+    "appointment_type_id": {
+      "type": "string",
+      "description": "Reference to AppointmentType entity"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "private_sessions",
+        "consultation",
+        "certification",
+        "other"
+      ],
+      "description": "Type of service booked"
+    },
+    "session_count": {
+      "type": "number",
+      "description": "Number of sessions purchased"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Total amount in cents"
+    },
+    "currency": {
+      "type": "string",
+      "default": "usd",
+      "description": "Currency code"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid",
+        "failed",
+        "refunded",
+        "not_required"
+      ],
+      "default": "pending",
+      "description": "Payment status"
+    },
+    "stripe_checkout_session_id": {
+      "type": "string",
+      "description": "Stripe checkout session ID"
+    },
+    "stripe_payment_intent_id": {
+      "type": "string",
+      "description": "Stripe payment intent ID"
+    },
+    "booking_status": {
+      "type": "string",
+      "enum": [
+        "pending_payment",
+        "confirmed",
+        "scheduled",
+        "completed",
+        "cancelled",
+        "expired"
+      ],
+      "default": "pending_payment",
+      "description": "Overall booking status"
+    },
+    "booking_source": {
+      "type": "string",
+      "enum": [
+        "website",
+        "manual_manager",
+        "import"
+      ],
+      "default": "website",
+      "description": "How this booking was created"
+    },
+    "location": {
+      "type": "string",
+      "description": "Session location (e.g., office address, Online (Zoom), Phone call, or custom text)"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the session is scheduled"
+    },
+    "checkout_expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the checkout soft-hold expires"
+    },
+    "reminder_24h_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "24-hour reminder email sent"
+    },
+    "reminder_1h_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "1-hour reminder email sent"
+    },
+    "sms_reminder_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "SMS reminder sent"
+    },
+    "sms_24h_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "24-hour SMS sent"
+    },
+    "sms_1h_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "1-hour SMS sent"
+    },
+    "last_reminder_sent": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When last reminder was sent"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Client notes or requirements"
+    },
+    "manager_notes": {
+      "type": "string",
+      "description": "Private manager notes about the booking"
+    },
+    "session_notes": {
+      "type": "string",
+      "description": "Notes from the completed session"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the session was marked completed"
+    },
+    "zoom_meeting_id": {
+      "type": "string",
+      "description": "Zoom meeting ID"
+    },
+    "zoom_join_url": {
+      "type": "string",
+      "description": "Zoom join URL for client"
+    },
+    "zoom_start_url": {
+      "type": "string",
+      "description": "Zoom host/start URL for manager"
+    },
+    "zoom_password": {
+      "type": "string",
+      "description": "Zoom meeting password"
+    },
+    "zoom_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "created",
+        "failed"
+      ],
+      "default": "pending",
+      "description": "Zoom meeting creation status"
+    },
+    "google_event_id": {
+      "type": "string",
+      "description": "Google Calendar event ID for sync cleanup"
+    },
+    "recurring_series_id": {
+      "type": "string",
+      "description": "ID linking recurring bookings together"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this part of a recurring series"
+    },
+    "recurrence_frequency": {
+      "type": "string",
+      "enum": [
+        "weekly",
+        "biweekly",
+        "monthly"
+      ],
+      "description": "Frequency of recurring bookings"
+    },
+    "cancellation_reason": {
+      "type": "string",
+      "description": "Reason for cancellation"
+    },
+    "cancelled_by": {
+      "type": "string",
+      "description": "Email of person who cancelled"
+    },
+    "cancelled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the booking was cancelled"
+    },
+    "can_reschedule": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether client can reschedule this booking"
+    },
+    "can_cancel": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether client can cancel this booking"
+    },
+    "client_phone": {
+      "type": "string",
+      "description": "Client phone number"
+    },
+    "client_contact_preference": {
+      "type": "string",
+      "enum": [
+        "email",
+        "phone",
+        "text"
+      ],
+      "description": "Preferred contact method"
+    },
+    "client_how_heard": {
+      "type": "string",
+      "description": "How they heard about the service"
+    },
+    "client_goals": {
+      "type": "string",
+      "description": "What client hopes to achieve"
+    },
+    "client_concerns": {
+      "type": "string",
+      "description": "Specific concerns or topics to address"
+    },
+    "client_previous_experience": {
+      "type": "string",
+      "description": "Previous experience with hypnosis/coaching"
+    },
+    "client_health_considerations": {
+      "type": "string",
+      "description": "Medical or mental health considerations"
+    }
+  },
+  "required": [
+    "user_email",
+    "user_name",
+    "service_type",
+    "amount"
+  ]
+}

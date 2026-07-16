@@ -1,0 +1,36 @@
+{
+  "name": "QuizQuestionPool",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "description": "Reference to Quiz entity"
+    },
+    "pool_name": {
+      "type": "string",
+      "description": "Name of this question pool"
+    },
+    "pool_size": {
+      "type": "number",
+      "description": "How many questions to randomly select from this pool"
+    },
+    "question_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "All question IDs in this pool"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this pool active"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "pool_name",
+    "pool_size",
+    "question_ids"
+  ]
+}

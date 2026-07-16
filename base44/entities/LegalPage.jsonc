@@ -1,0 +1,28 @@
+{
+  "name": "LegalPage",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Page title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "content": {
+      "type": "string",
+      "description": "Legal page content (HTML)"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "Last review date"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "content"
+  ]
+}

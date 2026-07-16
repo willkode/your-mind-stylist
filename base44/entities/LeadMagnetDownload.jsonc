@@ -1,0 +1,48 @@
+{
+  "name": "LeadMagnetDownload",
+  "type": "object",
+  "properties": {
+    "lead_magnet_id": {
+      "type": "string",
+      "description": "Reference to LeadMagnet entity"
+    },
+    "lead_magnet_title": {
+      "type": "string",
+      "description": "Snapshot of the lead magnet title"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email of the person who downloaded"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Name of the person who downloaded"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "landing_page",
+        "blog_post",
+        "homepage",
+        "other"
+      ],
+      "default": "landing_page",
+      "description": "Where they came from"
+    },
+    "mailerlite_synced": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether subscriber was added to MailerLite"
+    },
+    "email_sent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether confirmation email was sent"
+    }
+  },
+  "required": [
+    "lead_magnet_id",
+    "user_email",
+    "user_name"
+  ]
+}

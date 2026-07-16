@@ -1,0 +1,95 @@
+{
+  "name": "GrowthInsight",
+  "type": "object",
+  "properties": {
+    "insight_type": {
+      "type": "string",
+      "enum": [
+        "pattern",
+        "trend",
+        "prediction",
+        "celebration",
+        "recommendation",
+        "observation"
+      ],
+      "description": "Type of insight"
+    },
+    "insight_category": {
+      "type": "string",
+      "enum": [
+        "emotional",
+        "learning",
+        "consistency",
+        "growth",
+        "connection",
+        "breakthrough"
+      ],
+      "description": "What aspect of transformation this insight relates to"
+    },
+    "insight_text": {
+      "type": "string",
+      "description": "The insight message displayed to user"
+    },
+    "insight_detail": {
+      "type": "string",
+      "description": "Additional context or explanation"
+    },
+    "data_sources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Which entities/data contributed to this insight"
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "How confident is this insight (for AI-generated)"
+    },
+    "generated_by": {
+      "type": "string",
+      "enum": [
+        "ai",
+        "system",
+        "manager"
+      ],
+      "default": "system",
+      "description": "Who/what generated this insight"
+    },
+    "viewed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Has user seen this insight"
+    },
+    "viewed_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When insight was viewed"
+    },
+    "helpful": {
+      "type": "boolean",
+      "description": "User feedback: was this helpful"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium",
+      "description": "Display priority"
+    },
+    "expires_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this insight is no longer relevant (optional)"
+    }
+  },
+  "required": [
+    "insight_type",
+    "insight_category",
+    "insight_text"
+  ]
+}
