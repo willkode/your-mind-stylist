@@ -9,12 +9,18 @@ Deno.serve(async (req) => {
     const base44 = createClientFromRequest(req);
     const user = await base44.auth.me();
 
-    if (!user || (user.role !== 'manager' && user.role !== 'admin')) {
+    const isManagerOrAdmin = user && (user.role === 'admin' || user.role === 'manager' || user.custom_role === 'manager');
+    if (!isManagerOrAdmin) {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     const body = await req.json().catch(() => ({}));
     const demo_email = body.demo_email || 'demo@yourmindstylist.com';
+
+    // Safety: only dedicated demo accounts — never delete/seed a real user's data
+    if (!demo_email.toLowerCase().startsWith('demo@')) {
+      return Response.json({ error: 'demo_email must be a demo@ address' }, { status: 400 });
+    }
 
     // Create demo user if doesn't exist
     const demoUser = { email: demo_email };
@@ -25,8 +31,16 @@ Deno.serve(async (req) => {
     const existingSnapshots = await base44.asServiceRole.entities.TransformationSnapshot.filter({ created_by: demo_email });
     const existingCheckIns = await base44.asServiceRole.entities.DailyStyleCheck.filter({ created_by: demo_email });
 
-    for (const item of [...existingReflections, ...existingMilestones, ...existingSnapshots, ...existingCheckIns]) {
-      await base44.asServiceRole.entities[item.__entity_name].delete(item.id);
+    const toDelete = [
+      ['LearningReflection', existingReflections],
+      ['Milestone', existingMilestones],
+      ['TransformationSnapshot', existingSnapshots],
+      ['DailyStyleCheck', existingCheckIns],
+    ];
+    for (const [entityName, items] of toDelete) {
+      for (const item of items) {
+        await base44.asServiceRole.entities[entityName].delete(item.id);
+      }
     }
 
     const now = new Date();

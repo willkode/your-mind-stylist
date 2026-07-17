@@ -79,6 +79,25 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Invalid signature' }, { status: 400 });
         }
 
+        // Idempotency guard: Stripe retries deliveries — skip events we've already processed
+        const alreadyProcessed = await base44.asServiceRole.entities.ProcessedStripeEvent.filter({ event_id: event.id });
+        if (alreadyProcessed.length > 0) {
+            return Response.json({ received: true, duplicate: true });
+        }
+        await base44.asServiceRole.entities.ProcessedStripeEvent.create({ event_id: event.id, event_type: event.type });
+
+        // Helper to consume a gift code after successful payment
+        const consumeGiftCode = async (code) => {
+            const codes = await base44.asServiceRole.entities.GiftCode.filter({ code: code.toUpperCase() });
+            const gc = codes[0];
+            if (gc) {
+                await base44.asServiceRole.entities.GiftCode.update(gc.id, {
+                    times_used: (gc.times_used || 0) + 1,
+                    is_active: gc.is_single_use ? false : gc.is_active,
+                });
+            }
+        };
+
         // Handle the event
         switch (event.type) {
             case 'checkout.session.completed': {
@@ -312,7 +331,8 @@ Deno.serve(async (req) => {
                     
                     if (giftCodeRecord) {
                         await base44.asServiceRole.entities.GiftCode.update(giftCodeRecord.id, {
-                            times_used: (giftCodeRecord.times_used || 0) + 1
+                            times_used: (giftCodeRecord.times_used || 0) + 1,
+                            is_active: giftCodeRecord.is_single_use ? false : giftCodeRecord.is_active
                         });
                         
                         const product = await base44.asServiceRole.entities.Product.get(productId);
@@ -350,8 +370,19 @@ Deno.serve(async (req) => {
                         ? session.metadata.user_id
                         : null;
 
-                    const allProducts = await base44.asServiceRole.entities.Product.filter({});
-                    const purchasedProducts = allProducts.filter(p => productIdList.includes(p.id));
+                    // Consume gift code now that payment has actually succeeded
+                    if (session.metadata.gift_code) {
+                        try {
+                            await consumeGiftCode(session.metadata.gift_code);
+                        } catch (gcErr) {
+                            console.error('Gift code consumption failed (non-critical):', gcErr.message);
+                        }
+                    }
+
+                    // Fetch only the purchased products (avoid full-table scan)
+                    const purchasedProducts = (await Promise.all(
+                        productIdList.map(id => base44.asServiceRole.entities.Product.get(id).catch(() => null))
+                    )).filter(Boolean);
 
                     const allCourseIds = new Set();
                     const productNames = [];
@@ -363,7 +394,9 @@ Deno.serve(async (req) => {
                         if (product.access_grants?.length > 0) product.access_grants.forEach(id => allCourseIds.add(id));
 
                         if (product.is_bundle && product.bundled_product_ids?.length > 0) {
-                            const bundledProducts = allProducts.filter(p => product.bundled_product_ids.includes(p.id));
+                            const bundledProducts = (await Promise.all(
+                                product.bundled_product_ids.map(id => base44.asServiceRole.entities.Product.get(id).catch(() => null))
+                            )).filter(Boolean);
                             for (const bp of bundledProducts) {
                                 if (bp.related_course_id) allCourseIds.add(bp.related_course_id);
                                 if (bp.access_grants?.length > 0) bp.access_grants.forEach(id => allCourseIds.add(id));

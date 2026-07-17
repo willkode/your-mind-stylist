@@ -1,0 +1,17 @@
+{
+  "name": "ProcessedStripeEvent",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Stripe event ID (evt_...) used for webhook idempotency"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Stripe event type"
+    }
+  },
+  "required": [
+    "event_id"
+  ]
+}

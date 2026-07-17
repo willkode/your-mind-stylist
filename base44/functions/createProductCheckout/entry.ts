@@ -15,7 +15,7 @@ Deno.serve(async (req) => {
       // Not logged in — guest checkout via Stripe
     }
 
-    const { product_id, product_ids, selected_price_id, affiliate_code, gift_code } = await req.json();
+    const { product_id, product_ids, affiliate_code, gift_code } = await req.json();
 
     // Support both single and multiple products
     const ids = product_ids || (product_id ? [product_id] : []);
@@ -81,31 +81,30 @@ Deno.serve(async (req) => {
       quantity: 1,
     }));
 
-    // Handle gift code discount
-    let giftCodeRecord = null;
+    // Handle gift code discount — VALIDATE ONLY here.
+    // Usage is recorded in stripeWebhook after payment actually succeeds,
+    // so abandoned checkouts never burn a code.
     let discountConfig = {};
     if (gift_code) {
       const giftCodes = await base44.asServiceRole.entities.GiftCode.filter({ code: gift_code.toUpperCase() });
       const gc = giftCodes[0];
-      if (gc && gc.is_active) {
-        giftCodeRecord = gc;
-
-        // Gift codes grant 100% off — they represent pre-paid access
-        const discountPct = gc.discount_percentage || 100;
-        const coupon = await stripe.coupons.create({
-          percent_off: discountPct,
-          duration: 'once',
-          name: `Gift Code: ${gift_code}`,
-        });
-        discountConfig = { discounts: [{ coupon: coupon.id }] };
-
-        await base44.asServiceRole.entities.GiftCode.update(gc.id, {
-          times_used: (gc.times_used || 0) + 1,
-          is_active: gc.is_single_use ? false : gc.is_active,
-        });
-      } else if (gift_code) {
+      const isExpired = gc?.expires_at && new Date(gc.expires_at) < new Date();
+      const isExhausted = gc && (
+        (gc.is_single_use && (gc.times_used || 0) >= 1) ||
+        (gc.max_uses && (gc.times_used || 0) >= gc.max_uses)
+      );
+      if (!gc || !gc.is_active || isExpired || isExhausted) {
         return Response.json({ error: 'Invalid or expired gift code' }, { status: 400 });
       }
+
+      // Gift codes grant 100% off — they represent pre-paid access
+      const discountPct = gc.discount_percentage || 100;
+      const coupon = await stripe.coupons.create({
+        percent_off: discountPct,
+        duration: 'once',
+        name: `Gift Code: ${gift_code}`,
+      });
+      discountConfig = { discounts: [{ coupon: coupon.id }] };
     }
 
     const origin = req.headers.get('origin') || 'https://yourmindstylist.com';

@@ -51,11 +51,6 @@ export default function AuthLayout({ children, currentPageName }) {
           return;
         }
         
-        console.log('🔍 AuthLayout User Data:', {
-          email: currentUser.email,
-          role: currentUser.role,
-          custom_role: currentUser.custom_role
-        });
         setUser(currentUser);
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -117,7 +112,6 @@ export default function AuthLayout({ children, currentPageName }) {
         { name: "Courses", page: "CourseManager", group: "Content" },
         { name: "Audio", page: "StudioAudio", group: "Studio" },
         { name: "Audiobooks", page: "ManagerAudiobooks", group: "Studio" },
-        { name: "Messages", page: "MessagesManager", group: "Studio" },
         { name: "Staff", page: "StaffManagement", group: "More" },
         { name: "Affiliates", page: "ManagerAffiliates", group: "More" },
         { name: "Web Analytics", page: "ManagerWebAnalytics", group: "More" },
