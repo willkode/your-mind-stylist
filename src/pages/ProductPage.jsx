@@ -74,17 +74,22 @@ export default function ProductPage() {
       product_key: product.key
     }).catch(() => {});
     
-    const response = await base44.functions.invoke('createProductCheckout', {
-      product_id: product.id,
-      selected_price_id: selectedPriceId,
-      gift_code: appliedGiftCode,
-    });
+    try {
+      const response = await base44.functions.invoke('createProductCheckout', {
+        product_id: product.id,
+        selected_price_id: selectedPriceId,
+        gift_code: appliedGiftCode,
+      });
 
-    if (response.data?.url) {
-      window.location.href = response.data.url;
-    } else {
-      const errMsg = response.data?.error || 'Failed to create checkout session';
-      toast.error(errMsg);
+      if (response.data?.url) {
+        window.location.href = response.data.url;
+      } else {
+        const errMsg = response.data?.error || 'Failed to create checkout session';
+        toast.error(errMsg);
+        setCheckoutLoading(false);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.error || 'Could not start checkout. Please try again.');
       setCheckoutLoading(false);
     }
   };
