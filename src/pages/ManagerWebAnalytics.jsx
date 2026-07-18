@@ -100,8 +100,18 @@ export default function ManagerWebAnalytics() {
           </div>
         )}
 
+        {/* Not Connected State */}
+        {!isLoading && !error && data?.notConnected && (
+          <div className="bg-[#D8B46B]/10 border border-[#D8B46B]/30 rounded-xl p-8 text-center">
+            <p className="text-[#1E3A32] font-medium mb-2">Google Analytics needs to be reconnected</p>
+            <p className="text-sm text-[#2B2725]/60">
+              The Google Analytics connection didn't carry over to this site. Once it's reconnected in the app settings, your traffic data will appear here automatically.
+            </p>
+          </div>
+        )}
+
         {/* Data or Empty State */}
-        {!isLoading && !error && (
+        {!isLoading && !error && !data?.notConnected && (
           <>
             {hasData && data.overview.totalUsers < 10 && (
               <div className="bg-[#D8B46B]/10 border border-[#D8B46B]/30 rounded-lg px-5 py-3 mb-6 text-sm text-[#2B2725]/70">

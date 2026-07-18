@@ -13,7 +13,12 @@ Deno.serve(async (req) => {
 
     const { days = 30 } = await req.json().catch(() => ({}));
 
-    const { accessToken } = await base44.asServiceRole.connectors.getConnection("google_analytics");
+    let accessToken;
+    try {
+      ({ accessToken } = await base44.asServiceRole.connectors.getConnection("google_analytics"));
+    } catch (_e) {
+      return Response.json({ notConnected: true }, { status: 200 });
+    }
 
     const startDate = `${days}daysAgo`;
     const endDate = 'today';

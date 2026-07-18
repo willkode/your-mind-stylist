@@ -87,7 +87,7 @@ export default function AuthLayout({ children, currentPageName }) {
     const isSupport = effectiveRole === "support_staff";
 
     const commonLinks = [
-      { name: "Dashboard", page: isAdmin ? "AdminDashboard" : isManager ? "ManagerDashboard" : "Dashboard" },
+      { name: "Dashboard", page: isManager ? "ManagerDashboard" : "Dashboard" },
     ];
 
     if (isAdmin) {

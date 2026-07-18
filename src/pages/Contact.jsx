@@ -16,9 +16,11 @@ import { base44 } from "@/api/base44Client";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
+    inquiry: "",
     message: ""
   });
 
@@ -31,7 +33,7 @@ export default function Contact() {
     if (interest === "private-sessions") {
       setFormData(prev => ({
         ...prev,
-        interests: ["Private Mind Styling (1:1)"]
+        inquiry: "Private Mind Styling (1:1)"
       }));
     }
   }, []);
@@ -45,24 +47,23 @@ export default function Contact() {
     "Something else / I'm not sure",
   ];
 
-  const handleInterestToggle = (interest) => {
-    setFormData((prev) => ({
-      ...prev,
-      interests: prev.interests.includes(interest)
-        ? prev.interests.filter((i) => i !== interest)
-        : [...prev.interests, interest],
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    if (!formData.inquiry) {
+      alert("Please select what you're inquiring about.");
+      return;
+    }
+
     try {
       // Submit via backend function (works for logged-out visitors too)
       await base44.functions.invoke('submitContactForm', {
-        name: formData.name,
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        name: `${formData.first_name} ${formData.last_name}`.trim(),
         email: formData.email,
         phone: formData.phone,
+        inquiry: formData.inquiry,
         message: formData.message,
       });
 
@@ -71,9 +72,11 @@ export default function Contact() {
       // Reset form after a delay
       setTimeout(() => {
         setFormData({
-          name: "",
+          first_name: "",
+          last_name: "",
           email: "",
           phone: "",
+          inquiry: "",
           message: ""
         });
         setSubmitted(false);
@@ -185,17 +188,31 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Name */}
-                <div>
-                  <Label htmlFor="name" className="text-[#2B2725] mb-2 block">
-                    Name *
-                  </Label>
-                  <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="border-[#E4D9C4] focus:border-[#D8B46B] focus:ring-[#D8B46B]"
-                    required
-                  />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <Label htmlFor="first_name" className="text-[#2B2725] mb-2 block">
+                      First Name *
+                    </Label>
+                    <Input
+                      id="first_name"
+                      value={formData.first_name}
+                      onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                      className="border-[#E4D9C4] focus:border-[#D8B46B] focus:ring-[#D8B46B]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="last_name" className="text-[#2B2725] mb-2 block">
+                      Last Name *
+                    </Label>
+                    <Input
+                      id="last_name"
+                      value={formData.last_name}
+                      onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
+                      className="border-[#E4D9C4] focus:border-[#D8B46B] focus:ring-[#D8B46B]"
+                      required
+                    />
+                  </div>
                 </div>
 
                 {/* Email */}
@@ -229,6 +246,29 @@ export default function Contact() {
                 </div>
 
 
+
+                {/* What are you inquiring about? */}
+                <div>
+                  <Label htmlFor="inquiry" className="text-[#2B2725] mb-2 block">
+                    What are you inquiring about? *
+                  </Label>
+                  <Select
+                    value={formData.inquiry}
+                    onValueChange={(value) => setFormData({ ...formData, inquiry: value })}
+                    required
+                  >
+                    <SelectTrigger id="inquiry" className="border-[#E4D9C4] focus:border-[#D8B46B] focus:ring-[#D8B46B]">
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {interestOptions.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 {/* Message */}
                 <div>
