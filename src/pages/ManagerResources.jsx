@@ -64,9 +64,12 @@ export default function ManagerResources() {
 
   const types = ["pdf", "video", "audio", "image", "text", "link", "worksheet"];
 
+  const q = searchQuery.trim().toLowerCase();
   const filteredResources = resources.filter((resource) => {
-    const matchesSearch = resource.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         resource.description?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = !q ||
+      resource.title?.toLowerCase().includes(q) ||
+      resource.description?.toLowerCase().includes(q) ||
+      resource.tags?.some(t => t?.toLowerCase().includes(q));
     const matchesCategory = filterCategory === "all" || resource.category === filterCategory;
     const matchesType = filterType === "all" || resource.resource_type === filterType;
     return matchesSearch && matchesCategory && matchesType;

@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import SEO from "../components/SEO";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, CheckCircle, Lightbulb, Shield, Brain, Users, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Loader2 } from "lucide-react";
 import CmsText from "../components/cms/CmsText";
 import { base44 } from "@/api/base44Client";
 
 export default function FreeMasterclass() {
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  const handleMasterclassSignup = async (e) => {
+    e.preventDefault();
+    setFormError("");
+    setSubmitting(true);
+    try {
+      const formData = new FormData(e.target);
+      await base44.functions.invoke('sendMasterclassConfirmation', {
+        email: formData.get('email'),
+        full_name: formData.get('name'),
+      });
+      window.location.href = createPageUrl("Masterclass");
+    } catch (error) {
+      setFormError(error.response?.data?.error || "Something went wrong. Please try again.");
+      setSubmitting(false);
+    }
+  };
+
   const learnings = [
     "What imposter syndrome really is — and what it isn't",
     "The emotional and cognitive patterns behind \"I'm not enough\"",
@@ -65,27 +85,6 @@ export default function FreeMasterclass() {
       number: "4",
       title: "Take your next step",
       description: "When you're ready, you can explore the Mind Styling Certification™, Private Mind Styling, or The Inner Rehearsal Sessions™ from within your dashboard.",
-    },
-  ];
-
-  const offerings = [
-    {
-      icon: Brain,
-      title: "The Mind Styling Certification™",
-      description: "For identity-level change and emotional intelligence.",
-      link: "LearnHypnosis",
-    },
-    {
-      icon: Users,
-      title: "LENS™",
-      description: "For personalized support in shifting long-held patterns.",
-      link: "CleaningOutYourCloset",
-    },
-    {
-      icon: Star,
-      title: "The Inner Rehearsal Sessions™",
-      description: "For ongoing internal resets and future-self rehearsal.",
-      link: "InnerRehearsal",
     },
   ];
 
@@ -178,25 +177,7 @@ export default function FreeMasterclass() {
                     contentType="short_text"
                   />
                 </p>
-                <form
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.target);
-                    const email = formData.get('email');
-                    const name = formData.get('name');
-                    
-                    try {
-                      await base44.functions.invoke('sendMasterclassConfirmation', {
-                        email,
-                        full_name: name,
-                      });
-                      window.location.href = createPageUrl("Masterclass");
-                    } catch (error) {
-                      alert('Error: ' + error.message);
-                    }
-                  }}
-                  className="space-y-4"
-                >
+                <form onSubmit={handleMasterclassSignup} className="space-y-4">
                   <div>
                     <input
                       type="text"
@@ -217,10 +198,15 @@ export default function FreeMasterclass() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-8 py-4 bg-[#1E3A32] text-[#F9F5EF] text-sm tracking-wide hover:bg-[#2B2725] transition-all duration-300 rounded"
+                    disabled={submitting}
+                    className="w-full px-8 py-4 bg-[#1E3A32] text-[#F9F5EF] text-sm tracking-wide hover:bg-[#2B2725] transition-all duration-300 rounded disabled:opacity-60 flex items-center justify-center gap-2"
                   >
-                    Watch Free Masterclass Now
+                    {submitting && <Loader2 size={16} className="animate-spin" />}
+                    {submitting ? "Getting Your Access..." : "Watch Free Masterclass Now"}
                   </button>
+                  {formError && (
+                    <p className="text-sm text-red-600 text-center" role="alert">{formError}</p>
+                  )}
                 </form>
                 <p className="text-xs text-[#2B2725]/50 mt-4 text-center">
                   We respect your privacy. Unsubscribe anytime.

@@ -7,6 +7,7 @@ import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import SEO from "../components/SEO";
 import { Button } from "@/components/ui/button";
+import { useBookingUrl } from "../components/cms/useBookingUrl";
 
 const SERVICES = [
   {
@@ -40,7 +41,7 @@ const SERVICES = [
     details: ["Small group format", "Personalized attention", "Community support & connection", "Guided by Roberta directly"],
     color: "border-[#D8B46B]",
     accentColor: "text-[#D8B46B]",
-    linkPage: "LENS",
+    linkUrl: "/ProductPage?key=salon-coaching",
   },
   {
     key: "couture",
@@ -51,7 +52,7 @@ const SERVICES = [
     details: ["Fully bespoke engagement", "Ongoing private access to Roberta", "Custom timeline & scope", "Application-based enrollment"],
     color: "border-[#A6B7A3]",
     accentColor: "text-[#1E3A32]",
-    linkPage: "LENS",
+    linkPage: "Contact",
   },
   {
     key: "pocket-mindset",
@@ -67,6 +68,7 @@ const SERVICES = [
 ];
 
 export default function SignatureServices() {
+  const bookingUrl = useBookingUrl();
   const { data: products = [] } = useQuery({
     queryKey: ["signature-products"],
     queryFn: async () => {
@@ -119,7 +121,7 @@ export default function SignatureServices() {
             <p className="text-white/80 text-xl max-w-2xl mx-auto mb-10">
               High-touch, one-on-one hypnosis and coaching experiences — tailored entirely to you.
             </p>
-            <a href="https://koalendar.com/u/roberta" target="_blank" rel="noopener noreferrer">
+            <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
               <Button className="bg-[#D8B46B] text-[#1E3A32] hover:bg-[#C5A35B] px-8 py-4 text-base font-semibold">
                 Book a Free Consultation
                 <ArrowRight size={16} className="ml-2" />
@@ -167,7 +169,7 @@ export default function SignatureServices() {
                   ))}
                 </ul>
                 <Link
-                  to={createPageUrl(service.linkPage)}
+                  to={service.linkUrl || createPageUrl(service.linkPage)}
                   className={`inline-flex items-center gap-2 text-sm font-medium ${service.accentColor} hover:opacity-75 transition-opacity`}
                 >
                   Learn More <ArrowRight size={14} />
