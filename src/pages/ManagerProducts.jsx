@@ -11,6 +11,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Plus, Edit, Trash2, Eye, Sparkles, RefreshCw, Download, Upload, Package, BookOpen, Video, GraduationCap, Info, GripVertical, Gift, ExternalLink, Headphones } from "lucide-react";
 import { toast } from "react-hot-toast";
 import ReactQuill from "react-quill";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import BundleCreator from "../components/manager/BundleCreator";
 import ProductCard from "../components/manager/ProductCard";
 import GiftCodeGenerator from "../components/manager/GiftCodeGenerator";
@@ -185,6 +187,27 @@ export default function ManagerProducts() {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
+
+  const reorderMutation = useMutation({
+    mutationFn: (updates) => base44.entities.Product.bulkUpdate(updates),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+      toast.success("Display order saved");
+    },
+    onError: () => toast.error("Failed to save order"),
+  });
+
+  const handleDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination || source.droppableId !== destination.droppableId) return;
+    if (source.index === destination.index) return;
+    const group = groupedProducts.find(g => (g.key || "no-subtype") === source.droppableId);
+    if (!group) return;
+    const items = [...group.items];
+    const [moved] = items.splice(source.index, 1);
+    items.splice(destination.index, 0, moved);
+    reorderMutation.mutate(items.map((p, i) => ({ id: p.id, display_order: i })));
+  };
 
   const handleSyncAll = async () => {
     setSyncing(true);
@@ -508,39 +531,18 @@ export default function ManagerProducts() {
               <Package size={16} className="mr-2" />
               Create Bundle
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => {
-                const menu = document.createElement('div');
-                menu.style.cssText = 'position:absolute;background:white;border:1px solid #E4D9C4;border-radius:4px;padding:8px;z-index:100;';
-                menu.innerHTML = `
-                  <button class="export-json" style="display:block;width:100%;text-align:left;padding:8px;border:none;background:none;cursor:pointer;font-size:14px;">Export as JSON</button>
-                  <button class="export-csv" style="display:block;width:100%;text-align:left;padding:8px;border:none;background:none;cursor:pointer;font-size:14px;">Export as CSV</button>
-                `;
-                document.body.appendChild(menu);
-                const rect = event.target.getBoundingClientRect();
-                menu.style.top = rect.bottom + 5 + 'px';
-                menu.style.left = rect.left + 'px';
-
-                menu.querySelector('.export-json').onclick = () => {
-                  handleExportJSON();
-                  document.body.removeChild(menu);
-                };
-                menu.querySelector('.export-csv').onclick = () => {
-                  handleExportCSV();
-                  document.body.removeChild(menu);
-                };
-
-                setTimeout(() => {
-                  const closeMenu = () => document.body.contains(menu) && document.body.removeChild(menu);
-                  document.addEventListener('click', closeMenu, { once: true });
-                }, 100);
-              }}
-              className="border-[#D8B46B]"
-            >
-              <Download size={16} className="mr-2" />
-              Export
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="border-[#D8B46B]">
+                  <Download size={16} className="mr-2" />
+                  Export
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={handleExportJSON}>Export as JSON</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleExportCSV}>Export as CSV</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               variant="outline"
               onClick={() => fileInputRef.current?.click()}
@@ -580,17 +582,24 @@ export default function ManagerProducts() {
           </div>
         </div>
 
-        {/* Products grouped by subtype */}
+        {/* Products grouped by subtype — drag rows to reorder within a group */}
+        <DragDropContext onDragEnd={handleDragEnd}>
         {groupedProducts.map(group => (
           <div key={group.key || "no-subtype"} className="mb-10">
             <div className="flex items-baseline gap-3 mb-4">
               <h2 className="font-serif text-2xl text-[#1E3A32]">{group.label}</h2>
               <span className="text-sm text-[#2B2725]/50">{group.items.length} product{group.items.length !== 1 ? "s" : ""}</span>
             </div>
-            <div className="space-y-2">
+            <Droppable droppableId={group.key || "no-subtype"}>
+              {(dropProvided) => (
+              <div className="space-y-2" ref={dropProvided.innerRef} {...dropProvided.droppableProps}>
               {group.items.map((product, idx) => (
-                <div key={product.id} className="flex items-center gap-3 bg-white p-4 rounded-lg border border-[#E4D9C4] hover:border-[#D8B46B]/50 transition-all">
-                  <GripVertical size={18} className="text-[#D8B46B]/50 flex-shrink-0" />
+                <Draggable key={product.id} draggableId={product.id} index={idx}>
+                  {(dragProvided, snapshot) => (
+                <div ref={dragProvided.innerRef} {...dragProvided.draggableProps} className={`flex items-center gap-3 bg-white p-4 rounded-lg border transition-all ${snapshot.isDragging ? "border-[#D8B46B] shadow-lg" : "border-[#E4D9C4] hover:border-[#D8B46B]/50"}`}>
+                  <span {...dragProvided.dragHandleProps} className="cursor-grab active:cursor-grabbing flex-shrink-0" title="Drag to reorder">
+                    <GripVertical size={18} className="text-[#D8B46B]/50" />
+                  </span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <h3 className="font-medium text-[#1E3A32] truncate">{product.name}</h3>
@@ -652,10 +661,16 @@ export default function ManagerProducts() {
                     <Button size="sm" variant="outline" onClick={() => { if (confirm("Delete this product?")) deleteMutation.mutate(product.id); }}><Trash2 size={14}/></Button>
                   </div>
                 </div>
+                  )}
+                </Draggable>
               ))}
-            </div>
+              {dropProvided.placeholder}
+              </div>
+              )}
+            </Droppable>
           </div>
         ))}
+        </DragDropContext>
 
         {/* Legacy category-based display — hidden now, replaced above */}
         {false && ['webinar', 'book', 'course'].map(subtype => {
@@ -1392,14 +1407,7 @@ export default function ManagerProducts() {
                 <Input
                   type="number"
                   value={formData.display_order}
-                  onChange={(e) => {
-                   const newOrder = parseInt(e.target.value) || 0;
-                   setFormData({ ...formData, display_order: newOrder });
-                   // Auto-save immediately if editing existing product
-                   if (editingProduct) {
-                     updateMutation.mutate({ id: editingProduct.id, data: { display_order: newOrder } });
-                   }
-                  }}
+                  onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) || 0 })}
                 />
               </div>
             </div>

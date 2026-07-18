@@ -7,16 +7,21 @@ import SEO from "../components/SEO";
 import { ArrowLeft, BookOpen, ShoppingCart, Loader2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
+import CmsText from "../components/cms/CmsText";
 
 export default function ProgramsBooks() {
   const [checkoutLoading, setCheckoutLoading] = useState(null);
 
   const handlePurchase = async (bookId) => {
     setCheckoutLoading(bookId);
-    const response = await base44.functions.invoke('createProductCheckout', { product_id: bookId });
-    if (response.data?.url) {
-      window.location.href = response.data.url;
-    } else {
+    try {
+      const response = await base44.functions.invoke('createProductCheckout', { product_id: bookId });
+      if (response.data?.url) {
+        window.location.href = response.data.url;
+      } else {
+        setCheckoutLoading(null);
+      }
+    } catch (error) {
       setCheckoutLoading(null);
     }
   };
@@ -81,10 +86,25 @@ export default function ProgramsBooks() {
           >
             <div className="flex items-center gap-3 mb-4">
               <BookOpen size={40} />
-              <h1 className="font-serif text-4xl md:text-5xl">Books & Resources</h1>
+              <h1 className="font-serif text-4xl md:text-5xl">
+                <CmsText
+                  contentKey="books.hero.title"
+                  page="ProgramsBooks"
+                  blockTitle="Books Hero Title"
+                  fallback="Books & Resources"
+                  contentType="short_text"
+                  as="span"
+                />
+              </h1>
             </div>
             <p className="text-xl text-[#1E3A32]/90 max-w-3xl">
-              Foundational reading to deepen your understanding of Mind Styling principles and emotional intelligence.
+              <CmsText
+                contentKey="books.hero.description"
+                page="ProgramsBooks"
+                blockTitle="Books Hero Description"
+                fallback="Foundational reading to deepen your understanding of Mind Styling principles and emotional intelligence."
+                contentType="rich_text"
+              />
             </p>
           </motion.div>
         </div>
@@ -175,9 +195,24 @@ export default function ProgramsBooks() {
       {/* CTA Section */}
       <section className="py-16 bg-[#1E3A32] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-serif text-3xl mb-4">Transform Your Understanding</h2>
+          <h2 className="font-serif text-3xl mb-4">
+            <CmsText
+              contentKey="books.cta.title"
+              page="ProgramsBooks"
+              blockTitle="Books CTA Title"
+              fallback="Transform Your Understanding"
+              contentType="short_text"
+              as="span"
+            />
+          </h2>
           <p className="text-white/80 mb-8 text-lg">
-            These books are designed to complement your journey with practical wisdom and deep insights.
+            <CmsText
+              contentKey="books.cta.description"
+              page="ProgramsBooks"
+              blockTitle="Books CTA Description"
+              fallback="These books are designed to complement your journey with practical wisdom and deep insights."
+              contentType="rich_text"
+            />
           </p>
           <Link to={createPageUrl("Contact")}>
             <Button variant="outline" className="border-[#D8B46B] text-[#D8B46B] hover:bg-[#D8B46B] hover:text-[#1E3A32] px-8 py-6 text-lg">
