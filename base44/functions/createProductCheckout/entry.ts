@@ -97,6 +97,15 @@ Deno.serve(async (req) => {
         return Response.json({ error: 'Invalid or expired gift code' }, { status: 400 });
       }
 
+      // Gift codes are product-specific — the coupon discounts the whole session,
+      // so only allow it when the checkout is exactly the code's product.
+      if (gc.product_id && !ids.includes(gc.product_id)) {
+        return Response.json({ error: 'This gift code is not valid for the items in your cart' }, { status: 400 });
+      }
+      if (gc.product_id && ids.length > 1) {
+        return Response.json({ error: 'Gift codes apply to a single product — please check out that item on its own' }, { status: 400 });
+      }
+
       // Gift codes grant 100% off — they represent pre-paid access
       const discountPct = gc.discount_percentage || 100;
       const coupon = await stripe.coupons.create({

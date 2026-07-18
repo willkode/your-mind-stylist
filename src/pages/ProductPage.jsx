@@ -13,6 +13,7 @@ import GiftCodeInput from "../components/purchase/GiftCodeInput";
 import { useCart } from "../components/shop/CartContext";
 import FreeProductCTA from "../components/purchase/FreeProductCTA";
 import LeadMagnetCTA from "../components/leadmagnet/LeadMagnetCTA";
+import { useBookingUrl } from "../components/cms/useBookingUrl";
 
 export default function ProductPage() {
   const [isPreview, setIsPreview] = useState(false);
@@ -21,6 +22,7 @@ export default function ProductPage() {
   const [selectedPlan, setSelectedPlan] = useState("full");
   const [appliedGiftCode, setAppliedGiftCode] = useState(null);
   const { addItem } = useCart();
+  const bookingUrl = useBookingUrl();
 
   const urlParams = new URLSearchParams(window.location.search);
   const slug = urlParams.get("slug") || "";
@@ -61,7 +63,7 @@ export default function ProductPage() {
   const handlePurchase = async () => {
     // Consultation or products without Stripe price → redirect to booking
     if (isContactOnly) {
-      window.open('https://koalendar.com/u/roberta', '_blank');
+      window.open(bookingUrl, '_blank');
       return;
     }
 
@@ -190,7 +192,7 @@ export default function ProductPage() {
             ) : isContactOnly ? (
               <div className="inline-block bg-white p-8 mb-8">
                 <p className="text-[#2B2725]/70 text-lg mb-4">Pricing discussed during consultation</p>
-                <a href="https://koalendar.com/u/roberta" target="_blank" rel="noopener noreferrer">
+                <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#1E3A32] hover:bg-[#2B2725] text-[#F9F5EF] px-12 py-6 text-lg">
                     Book a Consultation
                     <ArrowRight size={20} className="ml-2" />
@@ -342,7 +344,7 @@ export default function ProductPage() {
                 ) : isContactOnly ? (
                   <>
                     <p className="text-[#F9F5EF]/70 text-lg">Pricing discussed during consultation</p>
-                    <a href="https://koalendar.com/u/roberta" target="_blank" rel="noopener noreferrer">
+                    <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                       <Button className="bg-[#D8B46B] hover:bg-[#C9A55A] text-[#1E3A32] px-10 py-6 text-lg">
                         Book a Consultation
                         <ArrowRight size={20} className="ml-2" />
@@ -547,7 +549,7 @@ export default function ProductPage() {
                 ) : isContactOnly ? (
                   <>
                     <p className="text-[#2B2725]/70 text-lg mb-6">Pricing discussed during consultation</p>
-                    <a href="https://koalendar.com/u/roberta" target="_blank" rel="noopener noreferrer">
+                    <a href={bookingUrl} target="_blank" rel="noopener noreferrer">
                       <Button className="w-full bg-[#1E3A32] hover:bg-[#2B2725] text-[#F9F5EF] py-6 text-lg mb-3">
                         Book a Consultation
                         <ArrowRight size={20} className="ml-2" />

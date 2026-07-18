@@ -18,7 +18,6 @@ export default function PurchaseSuccess() {
     const params = new URLSearchParams(window.location.search);
     setPurchaseType(params.get("type") || "");
     setPaymentType(params.get("payment_type") || "");
-    clearCart();
 
     // Verify the Stripe session is legitimate
     const session_id = params.get("session_id");
@@ -29,6 +28,8 @@ export default function PurchaseSuccess() {
             window.location.href = createPageUrl('Programs');
             return;
           }
+          // Only clear the cart once the purchase is verified as real
+          clearCart();
           // Check if purchase includes an audiobook
           const productIds = res.data?.product_ids;
           if (productIds) {
@@ -45,8 +46,7 @@ export default function PurchaseSuccess() {
               }
               
               // Indirect match: a purchased product has a purchase_option with audiobook_id
-              const products = await base44.entities.Product.filter({});
-              const purchasedProducts = products.filter(p => ids.includes(p.id));
+              const purchasedProducts = await base44.entities.Product.filter({ id: { $in: ids } });
               for (const product of purchasedProducts) {
                 if (product.purchase_options?.length > 0) {
                   for (const opt of product.purchase_options) {
@@ -61,7 +61,7 @@ export default function PurchaseSuccess() {
                 }
                 // Also check bundled products
                 if (product.is_bundle && product.bundled_product_ids?.length > 0) {
-                  const bundledProducts = products.filter(p => product.bundled_product_ids.includes(p.id));
+                  const bundledProducts = await base44.entities.Product.filter({ id: { $in: product.bundled_product_ids } });
                   for (const bp of bundledProducts) {
                     if (bp.purchase_options?.length > 0) {
                       for (const opt of bp.purchase_options) {

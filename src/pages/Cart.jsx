@@ -28,7 +28,7 @@ export default function Cart() {
   );
 
   const discount = appliedCode
-    ? Math.round((total * appliedCode.discount_percentage) / 100)
+    ? Math.round((total * (appliedCode.discount_percentage || 100)) / 100)
     : 0;
   const finalTotal = total - discount;
 
@@ -181,7 +181,7 @@ export default function Cart() {
                     </div>
                     {appliedCode && (
                       <div className="flex justify-between text-green-600">
-                        <span>Gift Code ({appliedCode.discount_percentage}% off)</span>
+                        <span>Gift Code ({appliedCode.discount_percentage || 100}% off)</span>
                         <span>−{formatPrice(discount)}</span>
                       </div>
                     )}
