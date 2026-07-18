@@ -19,6 +19,8 @@ import ManagerQuizEditorPage from './pages/ManagerQuizEditor';
 import AudiobookPage from './pages/AudiobookPage';
 import ManagerAudiobooks from './pages/ManagerAudiobooks';
 import AdminUsageTracking from './pages/AdminUsageTracking';
+import AdminActivityLogs from './pages/AdminActivityLogs';
+import AdminRoles from './pages/AdminRoles';
 import ManagerWebAnalytics from './pages/ManagerWebAnalytics';
 import ManagerCreditUpgrade from './pages/ManagerCreditUpgrade';
 import SignIn from './pages/SignIn';
@@ -87,6 +89,8 @@ const AuthenticatedApp = () => {
       <Route path="/audiobook/:slug" element={<LayoutWrapper currentPageName="AudiobookPage"><AudiobookPage /></LayoutWrapper>} />
       <Route path="/ManagerAudiobooks" element={<LayoutWrapper currentPageName="ManagerAudiobooks"><ManagerAudiobooks /></LayoutWrapper>} />
       <Route path="/AdminUsageTracking" element={<LayoutWrapper currentPageName="AdminUsageTracking"><AdminUsageTracking /></LayoutWrapper>} />
+      <Route path="/AdminActivityLogs" element={<LayoutWrapper currentPageName="AdminActivityLogs"><AdminActivityLogs /></LayoutWrapper>} />
+      <Route path="/AdminRoles" element={<LayoutWrapper currentPageName="AdminRoles"><AdminRoles /></LayoutWrapper>} />
       <Route path="/ManagerWebAnalytics" element={<LayoutWrapper currentPageName="ManagerWebAnalytics"><ManagerWebAnalytics /></LayoutWrapper>} />
       <Route path="/ManagerCreditUpgrade" element={<LayoutWrapper currentPageName="ManagerCreditUpgrade"><ManagerCreditUpgrade /></LayoutWrapper>} />
       <Route path="/login" element={<SignIn />} />

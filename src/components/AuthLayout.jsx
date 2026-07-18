@@ -23,6 +23,9 @@ import ManagerBar from "./cms/ManagerBar";
 import { PageTransition } from "./ui/PageTransition";
 import { CartProvider } from "./shop/CartContext";
 import CartIcon from "./shop/CartIcon";
+import { getEffectiveRole, hasMinRole, getPageMinRole } from "@/lib/permissions";
+import AccessDenied from "./admin/AccessDenied";
+import RoleBadge from "./admin/RoleBadge";
 
 export default function AuthLayout({ children, currentPageName }) {
   const [user, setUser] = useState(null);
@@ -77,9 +80,11 @@ export default function AuthLayout({ children, currentPageName }) {
   const getNavLinks = () => {
     if (!user) return [];
 
-    // Check both role and custom_role fields for manager
-    const isManager = user.role === "manager" || user.custom_role === "manager";
-    const isAdmin = user.role === "admin";
+    // Centralized role hierarchy: owner > admin > manager > support_staff > user
+    const effectiveRole = getEffectiveRole(user);
+    const isAdmin = hasMinRole(user, "admin");
+    const isManager = hasMinRole(user, "manager");
+    const isSupport = effectiveRole === "support_staff";
 
     const commonLinks = [
       { name: "Dashboard", page: isAdmin ? "AdminDashboard" : isManager ? "ManagerDashboard" : "Dashboard" },
@@ -97,6 +102,8 @@ export default function AuthLayout({ children, currentPageName }) {
         { name: "Staff", page: "StaffManagement", group: "Manage" },
         { name: "Roadmap", page: "AdminRoadmap", group: "Manage" },
         { name: "Web Analytics", page: "ManagerWebAnalytics", group: "Manage" },
+        { name: "Activity Logs", page: "AdminActivityLogs", group: "Manage" },
+        { name: "Roles & Permissions", page: "AdminRoles", group: "Manage" },
         { name: "Settings", page: "StudioSettings", group: "Manage" },
       ];
     }
@@ -115,6 +122,16 @@ export default function AuthLayout({ children, currentPageName }) {
         { name: "Staff", page: "StaffManagement", group: "More" },
         { name: "Affiliates", page: "ManagerAffiliates", group: "More" },
         { name: "Web Analytics", page: "ManagerWebAnalytics", group: "More" },
+      ];
+    }
+
+    if (isSupport) {
+      return [
+        { name: "Bookings", page: "ManagerBookings" },
+        { name: "Appointments", page: "ManagerAppointments" },
+        { name: "Waiting List", page: "ManagerWaitingList" },
+        { name: "Intake Review", page: "ManagerIntakeReview" },
+        { name: "My Dashboard", page: "Dashboard" },
       ];
     }
 
@@ -151,6 +168,21 @@ export default function AuthLayout({ children, currentPageName }) {
   // Render blocked screen if account is inactive/archived/deleted
   if (accountBlocked) {
     return <AccountBlockedScreen status={accountBlocked} user={user} onLogout={handleLogout} />;
+  }
+
+  // CENTRAL ROLE GUARD — protects admin/manager/studio pages from direct URL access
+  const requiredRole = getPageMinRole(currentPageName);
+  if (requiredRole) {
+    if (!user) {
+      return (
+        <div className="min-h-screen bg-[#F9F5EF] flex items-center justify-center">
+          <div className="animate-pulse text-[#1E3A32]">Loading...</div>
+        </div>
+      );
+    }
+    if (!hasMinRole(user, requiredRole)) {
+      return <AccessDenied userRole={getEffectiveRole(user)} />;
+    }
   }
 
   return (
@@ -338,6 +370,9 @@ export default function AuthLayout({ children, currentPageName }) {
                       {user?.full_name || "User"}
                     </p>
                     <p className="text-xs text-[#2B2725]/60">{user?.email}</p>
+                    <div className="mt-1.5">
+                      <RoleBadge role={getEffectiveRole(user)} />
+                    </div>
                   </div>
                   <DropdownMenuItem asChild>
                     <Link

@@ -1,0 +1,62 @@
+{
+  "name": "InternalNote",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Type of record this note is attached to (e.g., 'person', 'lead', 'booking', 'product')"
+    },
+    "record_id": {
+      "type": "string",
+      "description": "ID or unique key (e.g., email) of the related record"
+    },
+    "content": {
+      "type": "string",
+      "description": "Note content \u2014 internal staff only, never customer-facing"
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Email of the staff member who wrote the note"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Display name of the author"
+    },
+    "author_role": {
+      "type": "string",
+      "description": "Effective role of the author at time of writing"
+    },
+    "edited": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the note has been edited since creation"
+    }
+  },
+  "required": [
+    "entity_type",
+    "record_id",
+    "content"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

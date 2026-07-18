@@ -4,23 +4,75 @@
   "properties": {
     "action": {
       "type": "string",
-      "description": "Action performed"
+      "description": "Action performed (legacy field, mirrors action_type)"
+    },
+    "action_type": {
+      "type": "string",
+      "description": "Structured action type (e.g., record_created, record_updated, status_changed, note_added, note_edited, note_deleted, role_changed)"
     },
     "actor": {
       "type": "string",
-      "description": "User who performed the action"
+      "description": "Email of user who performed the action"
+    },
+    "actor_role": {
+      "type": "string",
+      "description": "Effective role of the actor at time of action"
     },
     "target": {
       "type": "string",
-      "description": "Target of the action"
+      "description": "Human-readable target of the action"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Entity type affected (e.g., User, Booking, InternalNote)"
+    },
+    "record_id": {
+      "type": "string",
+      "description": "ID of the affected record"
     },
     "details": {
       "type": "string",
       "description": "Additional details"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional structured data \u2014 before/after values, troubleshooting context",
+      "additionalProperties": true
     }
   },
   "required": [
     "action",
     "actor"
-  ]
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "user"
+          }
+        }
+      ]
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
 }

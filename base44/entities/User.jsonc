@@ -52,7 +52,7 @@
     },
     "manager_notes": {
       "type": "string",
-      "description": "Internal notes from manager about this user"
+      "description": "Internal notes from manager about this user (legacy \u2014 use InternalNote entity)"
     },
     "timezone": {
       "type": "string",
@@ -62,11 +62,14 @@
     "custom_role": {
       "type": "string",
       "enum": [
+        "owner",
+        "admin",
         "manager",
+        "support_staff",
         "client",
         "guest_author"
       ],
-      "description": "Custom role for extended permissions"
+      "description": "Staff/extended role. Hierarchy: owner > admin > manager > support_staff"
     },
     "account_status": {
       "type": "string",

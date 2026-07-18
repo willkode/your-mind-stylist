@@ -27,6 +27,7 @@ import SafeDeleteUserDialog from "./SafeDeleteUserDialog";
 import ArchiveLeadDialog from "./ArchiveLeadDialog";
 import OptOutLeadDialog from "./OptOutLeadDialog";
 import PendingAccessGrantsSection from "./PendingAccessGrantsSection";
+import InternalNotesPanel from "../admin/InternalNotesPanel";
 
 function SectionLabel({ children }) {
   return (
@@ -708,6 +709,13 @@ export default function PersonDetailPanel({ open, onOpenChange, email, name }) {
               whatBought={whatBought}
               enrollments={enrollments}
             />
+
+            {/* Internal Staff Notes */}
+            <Separator className="bg-[#E4D9C4]" />
+            <div>
+              <SectionLabel>Internal Staff Notes</SectionLabel>
+              <InternalNotesPanel entityType="person" recordId={email?.toLowerCase()} />
+            </div>
 
             {/* Notes — user manager notes + lead notes */}
             {(userData?.manager_notes || leadData?.notes) && (
