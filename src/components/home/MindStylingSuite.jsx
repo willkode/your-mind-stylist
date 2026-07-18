@@ -4,6 +4,7 @@ import { createPageUrl } from "../../utils";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, User, Layers, Users, Brain } from "lucide-react";
 import CmsText from "../cms/CmsText";
+import SocialProofStrip from "./SocialProofStrip";
 
 export default function MindStylingSuite() {
   const services = [
@@ -148,8 +149,8 @@ export default function MindStylingSuite() {
         {/* Services Grid */}
         <div className="space-y-8">
           {services.map((service, index) => (
+            <React.Fragment key={service.title}>
             <motion.div
-              key={service.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -303,6 +304,8 @@ export default function MindStylingSuite() {
                 </div>
               </div>
             </motion.div>
+            {service.title === "Organizational Mind Styling" && <SocialProofStrip />}
+            </React.Fragment>
           ))}
         </div>
       </div>

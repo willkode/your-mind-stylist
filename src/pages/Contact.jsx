@@ -25,6 +25,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const urlParams = new URLSearchParams(window.location.search);
     const interest = urlParams.get("interest");
     if (interest === "private-sessions") {
@@ -57,35 +58,14 @@ export default function Contact() {
     e.preventDefault();
     
     try {
-      // Send email to roberta@yourmindstylist.com
-      await base44.integrations.Core.SendEmail({
-        to: "roberta@yourmindstylist.com",
-        subject: `New Contact Form Submission from ${formData.name}`,
-        body: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Phone:</strong> ${formData.phone}</p>
-          <p><strong>Message:</strong></p>
-          <p>${formData.message}</p>
-        `
+      // Submit via backend function (works for logged-out visitors too)
+      await base44.functions.invoke('submitContactForm', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
       });
 
-      // Create or update Lead via centralized function (handles duplicates, source tracking)
-      try {
-        await base44.functions.invoke('createOrUpdateLead', {
-          email: formData.email,
-          full_name: formData.name,
-          phone: formData.phone,
-          source: 'contact_form',
-          skip_sequence_enrollment: true,
-          email_consent: true,
-          consent_given_at: new Date().toISOString(),
-        });
-      } catch (leadErr) {
-        console.error("Lead creation/update failed (non-blocking):", leadErr);
-      }
-      
       setSubmitted(true);
       
       // Reset form after a delay

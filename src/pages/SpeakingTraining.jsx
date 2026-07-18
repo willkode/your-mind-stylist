@@ -584,12 +584,6 @@ export default function SpeakingTraining() {
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
-              <Link
-                to={createPageUrl("Contact")}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-[#D8B46B] text-[#F9F5EF] text-sm tracking-wide hover:bg-[#D8B46B]/10 transition-all duration-300"
-              >
-                Contact Roberta
-              </Link>
             </div>
           </motion.div>
         </div>

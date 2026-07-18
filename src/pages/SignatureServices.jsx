@@ -119,12 +119,12 @@ export default function SignatureServices() {
             <p className="text-white/80 text-xl max-w-2xl mx-auto mb-10">
               High-touch, one-on-one hypnosis and coaching experiences — tailored entirely to you.
             </p>
-            <Link to={createPageUrl("Consultations")}>
+            <a href="https://koalendar.com/u/roberta" target="_blank" rel="noopener noreferrer">
               <Button className="bg-[#D8B46B] text-[#1E3A32] hover:bg-[#C5A35B] px-8 py-4 text-base font-semibold">
                 Book a Free Consultation
                 <ArrowRight size={16} className="ml-2" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>

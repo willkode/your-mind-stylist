@@ -98,14 +98,24 @@ export default function WhatIDo() {
                       transition={{ delay: 0.3 + index * 0.1 }}
                       className="flex items-start gap-6 pb-8 border-b border-[#E4D9C4] last:border-0 last:pb-0"
                     >
-                      {item.number && (
-                        <span className="font-serif text-3xl md:text-4xl text-[#D8B46B]">
-                          {item.number}
-                        </span>
-                      )}
-                      <span className="text-[#2B2725]/70 text-sm tracking-wide pt-3">
-                        {item.label}
-                      </span>
+                      <CmsText
+                        contentKey={`home.approach.credential${index}.number`}
+                        page="Home"
+                        blockTitle={`Approach Credential ${index + 1} - Number`}
+                        fallback={item.number}
+                        contentType="short_text"
+                        as="span"
+                        className="font-serif text-3xl md:text-4xl text-[#D8B46B]"
+                      />
+                      <CmsText
+                        contentKey={`home.approach.credential${index}.label`}
+                        page="Home"
+                        blockTitle={`Approach Credential ${index + 1} - Label`}
+                        fallback={item.label}
+                        contentType="short_text"
+                        as="span"
+                        className="text-[#2B2725]/70 text-sm tracking-wide pt-3"
+                      />
                     </motion.div>
                   ))}
                 </div>

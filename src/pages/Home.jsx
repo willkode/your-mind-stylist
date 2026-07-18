@@ -1,7 +1,6 @@
 import React from "react";
 import SEO from "../components/SEO";
 import HeroSection from "../components/home/HeroSection";
-import SocialProofStrip from "../components/home/SocialProofStrip";
 import WhatIDo from "../components/home/WhatIDo";
 import MindStylingSuite from "../components/home/MindStylingSuite";
 import FreeMasterclass from "../components/home/FreeMasterclass";
@@ -21,7 +20,6 @@ export default function Home() {
       <HeroSection />
       <WhatIDo />
       <MindStylingSuite />
-      <SocialProofStrip />
       <FreeMasterclass />
       <Testimonials />
       <FinalCTA />
