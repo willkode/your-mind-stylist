@@ -41,9 +41,11 @@ export default function ProgramsWebinars() {
     },
   });
 
-  const formatPrice = (price) => {
-    if (!price || price === 0) return "Free";
-    return `$${(price / 100).toFixed(2)}`;
+  const formatPrice = (item) => {
+    if (item.price_display === "contact_for_pricing") return "Contact for Pricing";
+    if (item.price_display === "hidden") return null;
+    if (!item.price || item.price === 0) return "Free";
+    return `$${(item.price / 100).toFixed(2)}`;
   };
 
   const allWebinars = [
@@ -54,6 +56,7 @@ export default function ProgramsWebinars() {
       tagline: p.tagline,
       description: p.short_description,
       price: p.price,
+      price_display: p.price_display,
       thumbnail: p.thumbnail,
       slug: p.slug
     })),
@@ -165,8 +168,8 @@ export default function ProgramsWebinars() {
                         )}
                         
                         <div className="flex items-center justify-between pt-4 border-t border-[#E4D9C4] mt-auto">
-                          <span className="text-2xl font-bold text-[#1E3A32]">
-                            {formatPrice(item.price)}
+                          <span className={`font-bold text-[#1E3A32] ${item.price_display === "contact_for_pricing" ? "text-base" : "text-2xl"}`}>
+                            {formatPrice(item)}
                           </span>
                           <span className="text-[#6E4F7D] text-sm font-medium group-hover:translate-x-1 transition-transform">
                             Learn More →

@@ -31,11 +31,13 @@ export default function ProgramsOther() {
     },
   });
 
-  const formatPrice = (price, billing_interval) => {
-    if (!price || price === 0) return "Free";
-    const dollars = (price / 100).toFixed(2);
-    if (billing_interval === "monthly") return `$${dollars}/mo`;
-    if (billing_interval === "yearly") return `$${dollars}/yr`;
+  const formatPrice = (product) => {
+    if (product.price_display === "contact_for_pricing") return "Contact for Pricing";
+    if (product.price_display === "hidden") return null;
+    if (!product.price || product.price === 0) return "Free";
+    const dollars = (product.price / 100).toFixed(2);
+    if (product.billing_interval === "monthly") return `$${dollars}/mo`;
+    if (product.billing_interval === "yearly") return `$${dollars}/yr`;
     return `$${dollars}`;
   };
 
@@ -154,7 +156,7 @@ export default function ProgramsOther() {
 
                       <div className="pt-4 border-t border-[#E4D9C4] mt-auto">
                         <div className="text-2xl font-bold text-[#1E3A32] mb-3">
-                          {formatPrice(product.price, product.billing_interval)}
+                          {formatPrice(product)}
                         </div>
                         <div className="flex gap-2">
                           {product.slug && (
@@ -165,7 +167,14 @@ export default function ProgramsOther() {
                               Details
                             </Link>
                           )}
-                          {product.price === 0 ? (
+                          {product.price_display === "contact_for_pricing" ? (
+                            <Link
+                              to={createPageUrl("Contact")}
+                              className="flex-1 flex items-center justify-center gap-2 text-sm py-2.5 bg-[#1E3A32] text-white hover:bg-[#2B2725] transition-colors"
+                            >
+                              Contact Us
+                            </Link>
+                          ) : product.price === 0 ? (
                             <Link
                               to={createPageUrl(`ProductPage?slug=${product.slug}`)}
                               className="flex-1 flex items-center justify-center gap-2 text-sm py-2.5 bg-[#1E3A32] text-white hover:bg-[#2B2725] transition-colors"
