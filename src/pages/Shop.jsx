@@ -41,11 +41,13 @@ export default function Shop() {
 
 
 
-  const formatPrice = (price, interval) => {
-    if (!price) return "Free";
-    const d = (price / 100).toFixed(2);
-    if (interval === "monthly") return `$${d}/mo`;
-    if (interval === "yearly") return `$${d}/yr`;
+  const formatPrice = (product) => {
+    if (product.price_display === "contact_for_pricing") return "Contact for Pricing";
+    if (product.price_display === "hidden") return null;
+    if (!product.price) return "Free";
+    const d = (product.price / 100).toFixed(2);
+    if (product.billing_interval === "monthly") return `$${d}/mo`;
+    if (product.billing_interval === "yearly") return `$${d}/yr`;
     return `$${d}`;
   };
 
@@ -172,8 +174,8 @@ export default function Shop() {
                                   {product.tagline && <p className="text-[#2B2725]/60 text-sm mb-2">{product.tagline}</p>}
                                   <p className="text-[#2B2725]/60 text-sm mb-4 flex-1">{product.short_description}</p>
                                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#E4D9C4]">
-                                    <span className="font-serif text-2xl text-[#1E3A32]">
-                                      {formatPrice(product.price, product.billing_interval)}
+                                    <span className={`font-serif text-[#1E3A32] ${product.price_display === "contact_for_pricing" ? "text-base font-medium" : "text-2xl"}`}>
+                                      {formatPrice(product)}
                                     </span>
                                     <div className="flex gap-2">
                                       {product.slug && (
@@ -184,6 +186,14 @@ export default function Shop() {
                                           Details
                                         </Link>
                                       )}
+                                      {product.price_display === "contact_for_pricing" ? (
+                                        <Link
+                                          to={createPageUrl("Contact")}
+                                          className="flex items-center gap-1.5 px-4 py-2 text-sm bg-[#1E3A32] text-[#F9F5EF] hover:bg-[#2B2725] transition-all"
+                                        >
+                                          Contact Us
+                                        </Link>
+                                      ) : (
                                       <button
                                         onClick={() => inCart ? null : handleAdd(product)}
                                         className={`flex items-center gap-1.5 px-4 py-2 text-sm transition-all ${
@@ -192,6 +202,7 @@ export default function Shop() {
                                       >
                                         {inCart ? <><Check size={14} /> Added</> : <><ShoppingCart size={14} /> Buy Now</>}
                                       </button>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

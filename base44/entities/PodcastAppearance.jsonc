@@ -1,0 +1,66 @@
+{
+  "name": "PodcastAppearance",
+  "type": "object",
+  "properties": {
+    "show_name": {
+      "type": "string",
+      "description": "Name of the podcast show"
+    },
+    "episode_title": {
+      "type": "string",
+      "description": "Episode title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief episode description"
+    },
+    "episode_url": {
+      "type": "string",
+      "description": "Link to the episode (Spotify, Apple Podcasts, etc.)"
+    },
+    "embed_url": {
+      "type": "string",
+      "description": "Embed URL for inline player"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "Thumbnail image URL"
+    },
+    "air_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the episode aired"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "published",
+        "draft"
+      ],
+      "default": "published",
+      "description": "Publication status"
+    }
+  },
+  "required": [
+    "show_name",
+    "episode_title"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

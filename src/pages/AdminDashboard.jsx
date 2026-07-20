@@ -55,18 +55,18 @@ export default function AdminDashboard() {
     { icon: ListTodo, label: "Manage Roadmap", link: "AdminRoadmap", color: "#6E4F7D" },
     { icon: FileText, label: "Dev Docs", link: "StudioDevDocs", color: "#6E4F7D" },
     { icon: PenSquare, label: "Manage Blog Posts", link: "BlogManager", color: "#D8B46B" },
-    { icon: FileVideo, label: "Manage Courses", link: "AdminCourses", color: "#A6B7A3" },
-    { icon: Headphones, label: "Manage Audio Sessions", link: "AdminAudio", color: "#1E3A32" },
-    { icon: Mail, label: "View All Messages", link: "MessagesManager", color: "#6E4F7D" },
+    { icon: FileVideo, label: "Manage Courses", link: "CourseManager", color: "#A6B7A3" },
+    { icon: Headphones, label: "Manage Audio Sessions", link: "ManagerAudioSessions", color: "#1E3A32" },
+    { icon: Mail, label: "Client Hub & Messages", link: "ClientsHub", color: "#6E4F7D" },
     { icon: Users, label: "Manage Users", link: "AdminUsers", color: "#D8B46B" },
-    { icon: BarChart3, label: "Analytics & Reports", link: "AdminAnalytics", color: "#A6B7A3" },
-    { icon: Settings, label: "System Settings", link: "AdminSettings", color: "#2B2725" },
+    { icon: BarChart3, label: "Analytics & Reports", link: "ManagerAnalytics", color: "#A6B7A3" },
+    { icon: Settings, label: "System Settings", link: "ManagerSettings", color: "#2B2725" },
   ];
 
   const snapshotCards = [
     { icon: Calendar, label: "Confirmed Bookings", value: bookings.filter(b => b.booking_status === 'confirmed').length, color: "#D8B46B", link: "ManagerBookings" },
     { icon: Users, label: "Total Users", value: allUsers.length, color: "#A6B7A3" },
-    { icon: Mail, label: "New Messages", value: messages.length, color: "#6E4F7D", link: "MessagesManager" },
+    { icon: Mail, label: "New Messages", value: messages.length, color: "#6E4F7D", link: "ClientsHub" },
     { icon: FileVideo, label: "Total Courses", value: courses.length, color: "#1E3A32", link: "CourseManager" },
   ];
 

@@ -50,8 +50,11 @@ export default function ProgramsBooks() {
     },
   });
 
-  const formatPrice = (price) => {
-    return `$${(price / 100).toFixed(2)}`;
+  const formatPrice = (book) => {
+    if (book.price_display === "contact_for_pricing") return "Contact for Pricing";
+    if (book.price_display === "hidden") return null;
+    if (!book.price) return "Free";
+    return `$${(book.price / 100).toFixed(2)}`;
   };
 
   if (isLoading) {
@@ -159,7 +162,7 @@ export default function ProgramsBooks() {
                       
                       <div className="pt-4 border-t border-[#E4D9C4] mt-auto">
                         <div className="text-2xl font-bold text-[#1E3A32] mb-3">
-                          {formatPrice(book.price)}
+                          {formatPrice(book)}
                         </div>
                         <div className="flex gap-2">
                           {book.slug && (
