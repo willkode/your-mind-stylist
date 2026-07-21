@@ -3,6 +3,7 @@ import { useCmsText } from "./useCmsText";
 import { useEditMode } from "./EditModeProvider";
 import { Pencil } from "lucide-react";
 import InlineEditor from "./InlineEditor";
+import ImageEditor from "./ImageEditor";
 
 export default function CmsText({ 
   contentKey, 
@@ -22,6 +23,9 @@ export default function CmsText({
 
   if (!isManager || !isEditMode) {
     // Normal view mode
+    if (contentType === "image") {
+      return content ? <img src={content} alt={blockTitle || ""} className={className} /> : null;
+    }
     if (contentType === "short_text") {
       return <Component className={className}>{content}</Component>;
     }
@@ -32,13 +36,19 @@ export default function CmsText({
   return (
     <>
       <div
-        className={`relative ${className} cursor-pointer group hover:outline hover:outline-2 hover:outline-[#D8B46B] hover:outline-offset-2 transition-all`}
+        className={`relative ${contentType === "image" ? "" : className} cursor-pointer group hover:outline hover:outline-2 hover:outline-[#D8B46B] hover:outline-offset-2 transition-all`}
         onClick={(e) => {
           e.stopPropagation();
           setIsEditing(true);
         }}
       >
-        {contentType === "short_text" ? (
+        {contentType === "image" ? (
+          content ? <img src={content} alt={blockTitle || ""} className={className} /> : (
+            <div className={`${className} bg-gray-100 flex items-center justify-center text-gray-400 text-sm min-h-[80px]`}>
+              No image set
+            </div>
+          )
+        ) : contentType === "short_text" ? (
           <Component>{content}</Component>
         ) : (
           <Component dangerouslySetInnerHTML={{ __html: content }} />
@@ -53,16 +63,27 @@ export default function CmsText({
       </div>
 
       {isEditing && (
-        <InlineEditor
-          contentKey={contentKey}
-          blockTitle={blockTitle || contentKey}
-          page={page}
-          initialContent={content}
-          contentType={contentType}
-          maxLength={maxLength}
-          block={block}
-          onClose={() => setIsEditing(false)}
-        />
+        contentType === "image" ? (
+          <ImageEditor
+            contentKey={contentKey}
+            blockTitle={blockTitle || contentKey}
+            page={page}
+            initialContent={content}
+            block={block}
+            onClose={() => setIsEditing(false)}
+          />
+        ) : (
+          <InlineEditor
+            contentKey={contentKey}
+            blockTitle={blockTitle || contentKey}
+            page={page}
+            initialContent={content}
+            contentType={contentType}
+            maxLength={maxLength}
+            block={block}
+            onClose={() => setIsEditing(false)}
+          />
+        )
       )}
     </>
   );

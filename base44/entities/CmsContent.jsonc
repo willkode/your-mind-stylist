@@ -16,13 +16,14 @@
     },
     "content": {
       "type": "string",
-      "description": "The actual text/HTML content"
+      "description": "The actual text/HTML content, or the image URL when content_type is 'image'"
     },
     "content_type": {
       "type": "string",
       "enum": [
         "short_text",
-        "rich_text"
+        "rich_text",
+        "image"
       ],
       "default": "rich_text",
       "description": "Type of content"
