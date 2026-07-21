@@ -122,7 +122,7 @@ export default function StudioDashboard() {
   const quickLinks = [
     { icon: Users, label: "Open Manager Dashboard", link: "ManagerDashboard", color: "#1E3A32" },
     { icon: FileText, label: "Go to Blog Manager", link: "BlogManager", color: "#D8B46B" },
-    { icon: FileVideo, label: "Go to Course Manager", link: "StudioCourses", color: "#A6B7A3" },
+    { icon: FileVideo, label: "Go to Course Manager", link: "CourseManager", color: "#A6B7A3" },
     { icon: Headphones, label: "Style Pauses™", link: "StylePauses", color: "#6E4F7D" },
     { icon: ListTodo, label: "Roadmap", link: "AdminRoadmap", color: "#6E4F7D" },
     { icon: BookOpen, label: "Dev Docs", link: "StudioDevDocs", color: "#2B2725" },
