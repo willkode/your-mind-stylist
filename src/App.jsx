@@ -23,6 +23,7 @@ import AdminActivityLogs from './pages/AdminActivityLogs';
 import AdminRoles from './pages/AdminRoles';
 import ManagerWebAnalytics from './pages/ManagerWebAnalytics';
 import ManagerCreditUpgrade from './pages/ManagerCreditUpgrade';
+import AdminPageDesigner from './pages/AdminPageDesigner';
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
@@ -93,6 +94,7 @@ const AuthenticatedApp = () => {
       <Route path="/AdminRoles" element={<LayoutWrapper currentPageName="AdminRoles"><AdminRoles /></LayoutWrapper>} />
       <Route path="/ManagerWebAnalytics" element={<LayoutWrapper currentPageName="ManagerWebAnalytics"><ManagerWebAnalytics /></LayoutWrapper>} />
       <Route path="/ManagerCreditUpgrade" element={<LayoutWrapper currentPageName="ManagerCreditUpgrade"><ManagerCreditUpgrade /></LayoutWrapper>} />
+      <Route path="/AdminPageDesigner" element={<LayoutWrapper currentPageName="AdminPageDesigner"><AdminPageDesigner /></LayoutWrapper>} />
       <Route path="/login" element={<SignIn />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />

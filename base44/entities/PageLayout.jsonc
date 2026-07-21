@@ -1,0 +1,53 @@
+{
+  "name": "PageLayout",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "string",
+      "description": "Page name this layout applies to (e.g., 'Home')"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Section key from the page section registry"
+          },
+          "visible": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether this section is shown"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "description": "Ordered list of sections with visibility"
+    }
+  },
+  "required": [
+    "page",
+    "sections"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
