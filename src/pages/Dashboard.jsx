@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Layers, Sparkles, BookOpen, Calendar, Play, User, Edit3, ShoppingCart, Headphones } from "lucide-react";
+import { Sparkles, BookOpen, Calendar, Play, User, Edit3, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../utils";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -314,12 +314,8 @@ export default function Dashboard() {
             </h2>
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { label: "Client Portal", page: "ClientPortal", icon: ShoppingCart, descriptionKey: "dashboard.quicklinks.portal", fallback: "Your purchased products." },
                 { label: "Style Pauses™", page: "StylePauses", icon: Sparkles, descriptionKey: "dashboard.quicklinks.style_pauses", fallback: "1-3 minute resets." },
-
-                { label: "My Library", page: "ClientPortal", icon: Layers, descriptionKey: "dashboard.quicklinks.library", fallback: "Course progress & learning." },
                 { label: "Pocket Mindset™", page: "PocketMindset", icon: Sparkles, descriptionKey: "dashboard.quicklinks.pocket_mindset", fallback: "Enter your favorite sessions in the notes section of your dashboard." },
-                { label: "Audiobooks", page: "ClientPortal", icon: Headphones, descriptionKey: "dashboard.quicklinks.audiobooks", fallback: "Listen or download your audiobooks." },
                 { label: "Notes", page: "StudioNotes", icon: Edit3, descriptionKey: "dashboard.quicklinks.notes", fallback: "Capture insights as you learn." },
                 { label: "Free Masterclass", page: "FreeMasterclass", icon: Play, descriptionKey: "dashboard.quicklinks.masterclass", fallback: "Watch anytime." },
               ].map((link) => (
