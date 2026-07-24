@@ -222,9 +222,9 @@ export default function Dashboard() {
           <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
             Let's Style Today's Emotional Outfit
           </h2>
-          <div className="grid lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid lg:grid-cols-2 gap-6 mb-12">
             <div data-tour="emotional-weather">
-              <EmotionalWeather sentiment={studioStats?.sentiment} />
+              <EmotionalWeather sentiment={studioStats?.sentiment} className="h-full" />
             </div>
             <div data-tour="daily-prompt">
               <DailyPocketPrompt 
@@ -233,32 +233,35 @@ export default function Dashboard() {
                   setNotesContext(promptData);
                   setNotesDrawerOpen(true);
                 }}
+                className="h-full"
               />
             </div>
-          </div>
-
-          {/* Studio Action Buttons */}
-          <div className="flex flex-wrap gap-3 mb-12">
-            <Button
+            <button
               onClick={() => setShowStyleCheck(true)}
-              className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm"
+              className="bg-[#E8DCEB] p-6 rounded-lg text-left w-full hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
             >
-              The Daily Style Check
-            </Button>
-            <Link to={createPageUrl("StylePauses")} onClick={() => window.scrollTo(0, 0)}>
-              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
-                Style Pauses™
-              </Button>
+              <p className="font-serif text-lg text-[#1E3A32]">The Daily Style Check</p>
+            </button>
+            <Link
+              to={createPageUrl("StylePauses")}
+              onClick={() => window.scrollTo(0, 0)}
+              className="bg-[#DCE7DA] p-6 rounded-lg hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
+            >
+              <p className="font-serif text-lg text-[#1E3A32]">Style Pauses™</p>
             </Link>
-            <Link to={createPageUrl("StudioNotes")} onClick={() => window.scrollTo(0, 0)}>
-              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
-                Notes
-              </Button>
+            <Link
+              to={createPageUrl("StudioNotes")}
+              onClick={() => window.scrollTo(0, 0)}
+              className="bg-[#F7E3D8] p-6 rounded-lg hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
+            >
+              <p className="font-serif text-lg text-[#1E3A32]">Notes</p>
             </Link>
-            <Link to={createPageUrl("PocketMindset")} onClick={() => window.scrollTo(0, 0)}>
-              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
-                Pocket Mindset™
-              </Button>
+            <Link
+              to={createPageUrl("PocketMindset")}
+              onClick={() => window.scrollTo(0, 0)}
+              className="bg-[#D9E6EC] p-6 rounded-lg hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
+            >
+              <p className="font-serif text-lg text-[#1E3A32]">Pocket Mindset™</p>
             </Link>
           </div>
 

@@ -21,7 +21,7 @@ export default function DailyPocketPrompt({ prompt, onCreateNote, className = ""
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
-      className={`bg-gradient-to-br from-[#D8B46B]/10 to-[#A6B7A3]/10 p-6 rounded-lg border border-[#D8B46B]/20 ${className}`}
+      className={`bg-[#F5E9CE] p-6 rounded-lg ${className}`}
     >
       <div className="flex items-start gap-4">
         <div className="text-[#D8B46B] opacity-80">
