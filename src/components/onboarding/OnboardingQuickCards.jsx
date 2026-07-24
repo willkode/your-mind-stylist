@@ -34,10 +34,10 @@ export default function OnboardingQuickCards({ user }) {
     },
     {
       id: "session",
-      title: "Schedule Your First Session",
+      title: "Schedule a Session with Roberta",
       description: "Book a consultation or coaching session",
       icon: Calendar,
-      link: "Bookings",
+      external: "https://koalendar.com/u/roberta",
       color: "from-rose-500/10 to-rose-600/10",
       borderColor: "border-rose-200",
       autoCheck: false
@@ -117,14 +117,25 @@ export default function OnboardingQuickCards({ user }) {
                         className="pt-3 border-t border-[#2B2725]/10"
                       >
                         <p className="text-sm text-[#2B2725]/70 mb-4">{card.description}</p>
-                        <Link to={createPageUrl(card.link)}>
-                          <Button
-                            className="w-full text-sm bg-[#1E3A32] hover:bg-[#2B2725]"
-                            onClick={() => setExpandedCard(null)}
-                          >
-                            Go to {card.title}
-                          </Button>
-                        </Link>
+                        {card.external ? (
+                          <a href={card.external} target="_blank" rel="noopener noreferrer">
+                            <Button
+                              className="w-full text-sm bg-[#1E3A32] hover:bg-[#2B2725]"
+                              onClick={() => setExpandedCard(null)}
+                            >
+                              Go to {card.title}
+                            </Button>
+                          </a>
+                        ) : (
+                          <Link to={createPageUrl(card.link)}>
+                            <Button
+                              className="w-full text-sm bg-[#1E3A32] hover:bg-[#2B2725]"
+                              onClick={() => setExpandedCard(null)}
+                            >
+                              Go to {card.title}
+                            </Button>
+                          </Link>
+                        )}
                         {!isComplete && (
                           <Button
                             variant="ghost"
