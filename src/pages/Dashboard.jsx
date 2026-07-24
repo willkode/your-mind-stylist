@@ -229,6 +229,9 @@ export default function Dashboard() {
 
 
           {/* Mind Styling Studio Hub */}
+          <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
+            Styling Today's Emotional Outfit
+          </h2>
           <div className="grid lg:grid-cols-2 gap-6 mb-12">
             <div data-tour="emotional-weather">
               <EmotionalWeather sentiment={studioStats?.sentiment} />
