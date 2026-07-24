@@ -250,6 +250,13 @@ export default function Dashboard() {
               <p className="font-serif text-lg text-[#1E3A32]">Style Pauses™</p>
             </Link>
             <Link
+              to="/StyleJournal"
+              onClick={() => window.scrollTo(0, 0)}
+              className="bg-[#F2DCE2] p-6 rounded-lg hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
+            >
+              <p className="font-serif text-lg text-[#1E3A32]">Style Journal</p>
+            </Link>
+            <Link
               to={createPageUrl("StudioNotes")}
               onClick={() => window.scrollTo(0, 0)}
               className="bg-[#F7E3D8] p-6 rounded-lg hover:shadow-md transition-shadow flex flex-col justify-center min-h-[100px]"
