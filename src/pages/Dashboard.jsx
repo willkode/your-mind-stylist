@@ -31,6 +31,7 @@ import haptics from "@/components/utils/haptics";
 import { usePullToRefresh } from "@/components/utils/usePullToRefresh";
 import ProductCard from "@/components/dashboard/ProductCard.jsx";
 import ProfileCompletionBanner from "@/components/profile/ProfileCompletionBanner";
+import WeeklyFeaturedBlogTile from "@/components/dashboard/WeeklyFeaturedBlogTile";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -313,14 +314,17 @@ export default function Dashboard() {
               This Week's Free Offerings
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Link
-                to={createPageUrl("FreeMasterclass")}
-                onClick={() => window.scrollTo(0, 0)}
-                className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 border-2 border-amber-200 rounded-xl p-5 hover:shadow-md transition-all flex items-start gap-3"
-              >
-                <Play size={24} className="text-[#1E3A32] flex-shrink-0" />
-                <h4 className="font-medium text-[#1E3A32]">Imposter Syndrome Webinar</h4>
-              </Link>
+              <div className="flex flex-col gap-4">
+                <Link
+                  to={createPageUrl("FreeMasterclass")}
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 border-2 border-amber-200 rounded-xl p-5 hover:shadow-md transition-all flex items-start gap-3"
+                >
+                  <Play size={24} className="text-[#1E3A32] flex-shrink-0" />
+                  <h4 className="font-medium text-[#1E3A32]">Imposter Syndrome Webinar</h4>
+                </Link>
+                <WeeklyFeaturedBlogTile />
+              </div>
             </div>
           </div>
 
