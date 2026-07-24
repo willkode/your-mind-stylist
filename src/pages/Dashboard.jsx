@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Layers, Sparkles, BookOpen, Calendar, Play, User, Edit3, ShoppingCart, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -148,21 +148,6 @@ export default function Dashboard() {
     }
   };
   
-  const buyLinks = useMemo(() => [
-    {
-      label: "LENS™",
-      slug: "lens",
-      description: "Transform through a new lens",
-      color: "#6E4F7D",
-    },
-    {
-      label: "Cleaning Out Your Closet™",
-      slug: "closet",
-      description: "Clear your emotional closet",
-      color: "#1E3A32",
-    },
-  ], []);
-
   return (
     <div className="bg-[#F9F5EF] min-h-screen pt-32 pb-24">
       <div className="hidden md:block"><AIClientAssistant variant="widget" /></div>
@@ -319,28 +304,6 @@ export default function Dashboard() {
               <Link to={createPageUrl("Programs")} className="inline-flex items-center gap-2 px-8 py-3 bg-[#1E3A32] text-white text-sm hover:bg-[#2B2725] transition-colors">
                 View All Programs →
               </Link>
-            </div>
-          </div>
-
-          {/* Links to Buy */}
-          <div className="mb-12">
-            <h2 className="font-serif text-xl text-[#1E3A32] mb-6">
-              <CmsText cmsKey="dashboard.buy.title" defaultText="Explore Transformational Offerings" />
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {buyLinks.map((link) => (
-                <Link
-                  key={link.slug}
-                  to={createPageUrl(`ProductPage?slug=${link.slug}`)}
-                  onClick={() => window.scrollTo(0, 0)}
-                  className="bg-white p-6 hover:shadow-lg transition-shadow border-l-4 active:scale-98 touch-manipulation"
-                  style={{ borderLeftColor: link.color }}
-                >
-                  <h3 className="font-serif text-lg text-[#1E3A32] mb-2">{link.label}</h3>
-                  <p className="text-[#2B2725]/60 text-sm">{link.description}</p>
-                  <div className="mt-4 text-sm text-[#D8B46B] font-medium">Learn More →</div>
-                </Link>
-              ))}
             </div>
           </div>
 
