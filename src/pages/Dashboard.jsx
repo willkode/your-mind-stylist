@@ -308,12 +308,12 @@ export default function Dashboard() {
             </motion.div>
           </div>
 
-          {/* This Week's Free Offerings */}
-          <div>
-            <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
-              This Week's Free Offerings
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* This Week's Free Offerings + Announcements */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
+                This Week's Free Offerings
+              </h2>
               <div className="flex flex-col gap-4">
                 <Link
                   to={createPageUrl("FreeMasterclass")}
@@ -324,6 +324,22 @@ export default function Dashboard() {
                   <h4 className="font-medium text-[#1E3A32]">Imposter Syndrome Webinar</h4>
                 </Link>
                 <WeeklyFeaturedBlogTile />
+              </div>
+            </div>
+            <div>
+              <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
+                Announcements
+              </h2>
+              <div className="bg-white rounded-xl p-5 border border-[#E4D9C4]">
+                <p className="text-[#2B2725]/80 leading-relaxed">
+                  <CmsText
+                    contentKey="dashboard.announcements.text"
+                    page="Dashboard"
+                    blockTitle="Dashboard Announcements"
+                    fallback="There's a new Pocket Mindset™ recording called Setting Priorities, in the Emotional and Mental Wellbeing section."
+                    contentType="rich_text"
+                  />
+                </p>
               </div>
             </div>
           </div>
