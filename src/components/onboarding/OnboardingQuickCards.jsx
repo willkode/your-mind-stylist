@@ -75,7 +75,7 @@ export default function OnboardingQuickCards({ user }) {
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-4 px-1">
-        <h3 className="font-serif text-xl text-[#1E3A32]">Get Started</h3>
+        <h2 className="font-serif text-2xl text-[#1E3A32]">Get Started</h2>
         <button
           onClick={handleDismiss}
           className="text-[#2B2725]/40 hover:text-[#2B2725] transition-colors"
