@@ -32,6 +32,7 @@ import { usePullToRefresh } from "@/components/utils/usePullToRefresh";
 import ProductCard from "@/components/dashboard/ProductCard.jsx";
 import ProfileCompletionBanner from "@/components/profile/ProfileCompletionBanner";
 import WeeklyFeaturedBlogTile from "@/components/dashboard/WeeklyFeaturedBlogTile";
+import AnnouncementAudio from "@/components/dashboard/AnnouncementAudio";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -340,6 +341,7 @@ export default function Dashboard() {
                     contentType="rich_text"
                   />
                 </p>
+                <AnnouncementAudio />
               </div>
             </div>
           </div>
