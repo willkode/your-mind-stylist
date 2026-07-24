@@ -307,34 +307,20 @@ export default function Dashboard() {
             </motion.div>
           </div>
 
-          {/* Quick Links */}
+          {/* This Week's Free Offerings */}
           <div>
-            <h2 className="font-serif text-xl text-[#1E3A32] mb-6">
-              <CmsText cmsKey="dashboard.quicklinks.title" defaultText="Quick Links" />
+            <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
+              This Week's Free Offerings
             </h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {[
-                { label: "Free Masterclass", page: "FreeMasterclass", icon: Play, descriptionKey: "dashboard.quicklinks.masterclass", fallback: "Watch anytime." },
-              ].map((link) => (
-                <Link
-                  key={link.label}
-                  to={createPageUrl(link.page)}
-                  onClick={() => window.scrollTo(0, 0)}
-                  className="bg-white p-4 hover:shadow-md transition-shadow flex flex-col gap-2 min-h-[100px] active:scale-98 touch-manipulation"
-                >
-                  <link.icon size={20} className="text-[#D8B46B]" />
-                  <span className="text-[#1E3A32] text-sm font-medium">{link.label}</span>
-                  <span className="text-[#2B2725]/60 text-xs">
-                    <CmsText 
-                      contentKey={link.descriptionKey}
-                      page="Dashboard"
-                      blockTitle={`Quick Link ${link.label} Description`}
-                      fallback={link.fallback}
-                      contentType="short_text"
-                    />
-                  </span>
-                </Link>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link
+                to={createPageUrl("FreeMasterclass")}
+                onClick={() => window.scrollTo(0, 0)}
+                className="bg-gradient-to-br from-amber-500/10 to-amber-600/10 border-2 border-amber-200 rounded-xl p-5 hover:shadow-md transition-all flex items-start gap-3"
+              >
+                <Play size={24} className="text-[#1E3A32] flex-shrink-0" />
+                <h4 className="font-medium text-[#1E3A32]">Imposter Syndrome Webinar</h4>
+              </Link>
             </div>
           </div>
 
