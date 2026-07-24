@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, User, Video, Calendar, X } from "lucide-react";
+import { ChevronDown, User, Calendar, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../../utils";
@@ -31,16 +31,6 @@ export default function OnboardingQuickCards({ user }) {
       color: "from-blue-500/10 to-blue-600/10",
       borderColor: "border-blue-200",
       autoCheck: !!user?.full_name
-    },
-    {
-      id: "masterclass",
-      title: "Watch the Free Masterclass",
-      description: "Learn the Mind Styling fundamentals",
-      icon: Video,
-      link: "FreeMasterclass",
-      color: "from-purple-500/10 to-purple-600/10",
-      borderColor: "border-purple-200",
-      autoCheck: false
     },
     {
       id: "session",
