@@ -185,16 +185,6 @@ export default function Dashboard() {
           onUpdatePayment={handleUpdatePayment}
         />
 
-        {/* Daily Style Check CTA - Featured at top */}
-        <div className="mb-8">
-          <Button
-            onClick={() => setShowStyleCheck(true)}
-            className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 w-full md:w-auto border border-[#E4D9C4] shadow-sm"
-          >
-            The Daily Style Check
-          </Button>
-        </div>
-
         {/* Onboarding Quick Cards */}
          {user && <OnboardingQuickCards user={user} />}
         
@@ -232,7 +222,7 @@ export default function Dashboard() {
           <h2 className="font-serif text-2xl text-[#1E3A32] mb-6">
             Let's Style Today's Emotional Outfit
           </h2>
-          <div className="grid lg:grid-cols-2 gap-6 mb-12">
+          <div className="grid lg:grid-cols-2 gap-6 mb-6">
             <div data-tour="emotional-weather">
               <EmotionalWeather sentiment={studioStats?.sentiment} />
             </div>
@@ -245,6 +235,31 @@ export default function Dashboard() {
                 }}
               />
             </div>
+          </div>
+
+          {/* Studio Action Buttons */}
+          <div className="flex flex-wrap gap-3 mb-12">
+            <Button
+              onClick={() => setShowStyleCheck(true)}
+              className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm"
+            >
+              The Daily Style Check
+            </Button>
+            <Link to={createPageUrl("StylePauses")} onClick={() => window.scrollTo(0, 0)}>
+              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
+                Style Pauses™
+              </Button>
+            </Link>
+            <Link to={createPageUrl("StudioNotes")} onClick={() => window.scrollTo(0, 0)}>
+              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
+                Notes
+              </Button>
+            </Link>
+            <Link to={createPageUrl("PocketMindset")} onClick={() => window.scrollTo(0, 0)}>
+              <Button className="bg-white text-[#1E3A32] hover:bg-white/90 min-h-[48px] px-6 border border-[#E4D9C4] shadow-sm">
+                Pocket Mindset™
+              </Button>
+            </Link>
           </div>
 
           {/* Your Purchased Products / Client Portal */}
@@ -289,9 +304,6 @@ export default function Dashboard() {
             </h2>
             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
               {[
-                { label: "Style Pauses™", page: "StylePauses", icon: Sparkles, descriptionKey: "dashboard.quicklinks.style_pauses", fallback: "1-3 minute resets." },
-                { label: "Pocket Mindset™", page: "PocketMindset", icon: Sparkles, descriptionKey: "dashboard.quicklinks.pocket_mindset", fallback: "Enter your favorite sessions in the notes section of your dashboard." },
-                { label: "Notes", page: "StudioNotes", icon: Edit3, descriptionKey: "dashboard.quicklinks.notes", fallback: "Capture insights as you learn." },
                 { label: "Free Masterclass", page: "FreeMasterclass", icon: Play, descriptionKey: "dashboard.quicklinks.masterclass", fallback: "Watch anytime." },
               ].map((link) => (
                 <Link
