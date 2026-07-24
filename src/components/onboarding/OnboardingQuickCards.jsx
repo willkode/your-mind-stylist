@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, User, Calendar, X } from "lucide-react";
+import { ChevronDown, User, Calendar, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../../utils";
@@ -40,6 +40,15 @@ export default function OnboardingQuickCards({ user }) {
       external: "https://koalendar.com/u/roberta",
       color: "from-rose-500/10 to-rose-600/10",
       borderColor: "border-rose-200",
+      autoCheck: false
+    },
+    {
+      id: "programs",
+      title: "View All Tools & Programs",
+      description: "Discover the full range of transformational offerings — from introductory tools to deep transformation coaching.",
+      icon: Sparkles,
+      link: "Programs",
+      solid: true,
       autoCheck: false
     }
   ];
@@ -87,7 +96,7 @@ export default function OnboardingQuickCards({ user }) {
               layout
             >
               <Card
-                className={`bg-gradient-to-br ${card.color} border-2 ${card.borderColor} cursor-pointer transition-all ${
+                className={`${card.solid ? "bg-[#A6B7A3] border-2 border-[#A6B7A3]" : `bg-gradient-to-br ${card.color} border-2 ${card.borderColor}`} cursor-pointer transition-all ${
                   isComplete ? "opacity-60" : "hover:shadow-md"
                 }`}
                 onClick={() => setExpandedCard(isExpanded ? null : card.id)}
@@ -95,14 +104,14 @@ export default function OnboardingQuickCards({ user }) {
                 <div className="p-5">
                   <div className="flex items-start gap-3 mb-3 justify-between w-full">
                     <div className="flex items-start gap-3 flex-1">
-                      <CardIcon size={24} className="text-[#1E3A32] flex-shrink-0" />
-                      <h4 className={`font-medium text-[#1E3A32] ${isComplete ? "line-through text-[#2B2725]/60" : ""}`}>
+                      <CardIcon size={24} className={`${card.solid ? "text-white" : "text-[#1E3A32]"} flex-shrink-0`} />
+                      <h4 className={`font-medium ${card.solid ? "text-white" : "text-[#1E3A32]"} ${isComplete ? "line-through opacity-60" : ""}`}>
                         {card.title}
                       </h4>
                     </div>
                     <ChevronDown
                       size={18}
-                      className={`text-[#2B2725]/60 flex-shrink-0 transition-transform ${
+                      className={`${card.solid ? "text-white/70" : "text-[#2B2725]/60"} flex-shrink-0 transition-transform ${
                         isExpanded ? "rotate-180" : ""
                       }`}
                     />
@@ -116,7 +125,7 @@ export default function OnboardingQuickCards({ user }) {
                         exit={{ opacity: 0, height: 0 }}
                         className="pt-3 border-t border-[#2B2725]/10"
                       >
-                        <p className="text-sm text-[#2B2725]/70 mb-4">{card.description}</p>
+                        <p className={`text-sm ${card.solid ? "text-white/90" : "text-[#2B2725]/70"} mb-4`}>{card.description}</p>
                         {card.external ? (
                           <a href={card.external} target="_blank" rel="noopener noreferrer">
                             <Button

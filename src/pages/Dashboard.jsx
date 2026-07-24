@@ -279,19 +279,6 @@ export default function Dashboard() {
             </motion.div>
           </div>
 
-          {/* Explore More Programs */}
-          <div className="mb-12">
-            <div className="bg-white p-8 text-center border border-[#E4D9C4]">
-              <h2 className="font-serif text-2xl text-[#1E3A32] mb-3">Explore All Tools & Programs</h2>
-              <p className="text-[#2B2725]/70 leading-relaxed mb-6">
-                Discover the full range of transformational offerings — from introductory tools to deep transformation coaching.
-              </p>
-              <Link to={createPageUrl("Programs")} className="inline-flex items-center gap-2 px-8 py-3 bg-[#1E3A32] text-white text-sm hover:bg-[#2B2725] transition-colors">
-                View All Programs →
-              </Link>
-            </div>
-          </div>
-
           {/* Quick Links */}
           <div>
             <h2 className="font-serif text-xl text-[#1E3A32] mb-6">
