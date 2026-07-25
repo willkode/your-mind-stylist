@@ -58,7 +58,6 @@ export default function HeroSection() {
               page="home"
               blockTitle="Homepage Hero Title"
               contentType="short_text"
-              maxLength={120}
               fallback="Rewrite Your Mind. Restyle Your Life."
               as="h1"
               className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-[#1E3A32] leading-[1.1] mb-8"
@@ -70,7 +69,6 @@ export default function HeroSection() {
               page="home"
               blockTitle="Homepage Hero Subtitle"
               contentType="rich_text"
-              maxLength={500}
               fallback="Your thinking shapes everything—your choices, confidence, relationships, and leadership. When your thoughts evolve, so does your entire life. I help you identify the patterns that no longer fit, release the ones holding you back, and redesign your mindset so you can move forward with clarity, confidence, and emotional intelligence."
               as="p"
               className="text-[#2B2725]/80 text-lg md:text-xl leading-relaxed mb-10 max-w-xl"
@@ -86,7 +84,6 @@ export default function HeroSection() {
                   page="home"
                   blockTitle="Homepage Hero Experience CTA"
                   contentType="short_text"
-                  maxLength={60}
                   fallback="Experience Hypnosis with Roberta"
                   as="span"
                 />
@@ -103,7 +100,6 @@ export default function HeroSection() {
                   page="home"
                   blockTitle="Homepage Hero Primary CTA"
                   contentType="short_text"
-                  maxLength={60}
                   fallback="Book Your Complimentary Consultation"
                   as="span"
                 />
@@ -122,7 +118,6 @@ export default function HeroSection() {
                   page="home"
                   blockTitle="Homepage Hero Secondary CTA"
                   contentType="short_text"
-                  maxLength={60}
                   fallback="Watch the Free Webinar"
                   as="span"
                 />

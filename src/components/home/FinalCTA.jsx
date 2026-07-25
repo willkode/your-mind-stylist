@@ -29,7 +29,6 @@ export default function FinalCTA() {
             page="home"
             blockTitle="Homepage Closing Title"
             contentType="short_text"
-            maxLength={120}
             fallback="When You Change Your Thinking, Everything Changes."
             as="h2"
             className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#1E3A32] leading-tight mb-8"
@@ -40,7 +39,6 @@ export default function FinalCTA() {
             page="home"
             blockTitle="Homepage Closing Body"
             contentType="rich_text"
-            maxLength={500}
             fallback="If you're ready to release old patterns, elevate your emotional intelligence, and build a life that feels aligned, grounded, and emotionally clear—I'd love to support you."
             as="p"
             className="text-[#2B2725]/80 text-lg md:text-xl leading-relaxed mb-12 max-w-2xl mx-auto"

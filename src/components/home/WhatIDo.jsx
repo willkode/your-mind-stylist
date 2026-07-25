@@ -26,7 +26,6 @@ export default function WhatIDo() {
               page="home"
               blockTitle="Homepage Intro Title"
               contentType="short_text"
-              maxLength={120}
               fallback="Helping You Think From Where You Want to Be"
               as="h2"
               className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#1E3A32] leading-tight mb-8"
@@ -37,7 +36,6 @@ export default function WhatIDo() {
               page="home"
               blockTitle="Homepage Intro Body"
               contentType="rich_text"
-              maxLength={1000}
               fallback="<p>Hi, I'm <strong>Roberta Fernandez — Your Mind Stylist.</strong></p><p>I'm an Integrative Emotional Intelligence Specialist, Master Practitioner of NLP, and Board-certified Hypnotherapist with decades of experience helping individuals and teams transform the way they think, communicate, and lead.</p><p>My work blends neuroscience, emotional intelligence, inner pattern work, and guided mental rehearsal to create meaningful, sustainable change.</p>"
               as="div"
               className="text-[#2B2725]/80 text-lg leading-relaxed mb-10"
