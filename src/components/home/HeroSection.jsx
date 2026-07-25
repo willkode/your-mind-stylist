@@ -164,7 +164,7 @@ export default function HeroSection() {
               </BookingLink>
               <Link
                 to={createPageUrl("FreeMasterclass")}
-                className="group inline-flex items-center justify-center gap-3 px-[31px] py-[15px] border border-[#D8B46B] text-[#1E3A32] text-sm tracking-wide hover:bg-[#D8B46B]/10 transition-all duration-300"
+                className="group self-start inline-flex items-center justify-center gap-3 px-[31px] py-[15px] border border-[#D8B46B] text-[#1E3A32] text-sm tracking-wide hover:bg-[#D8B46B]/10 transition-all duration-300"
               >
                 <Play size={16} className="text-[#D8B46B]" />
                 <CmsText
