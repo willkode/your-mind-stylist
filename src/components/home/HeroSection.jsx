@@ -74,55 +74,6 @@ export default function HeroSection() {
               className="text-[#2B2725]/80 text-lg md:text-xl leading-relaxed mb-10 max-w-xl"
             />
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <BookingLink
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D8B46B] text-[#1E3A32] text-sm font-semibold tracking-wide hover:bg-[#C5A35B] transition-all duration-300 shadow-lg"
-              >
-                <CmsText
-                  contentKey="home.hero.cta_experience"
-                  page="home"
-                  blockTitle="Homepage Hero Experience CTA"
-                  contentType="short_text"
-                  fallback="Experience Hypnosis with Roberta"
-                  as="span"
-                />
-                <ArrowRight
-                  size={16}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </BookingLink>
-              <BookingLink
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#1E3A32] text-[#F9F5EF] text-sm tracking-wide hover:bg-[#2B2725] transition-all duration-300"
-              >
-                <CmsText
-                  contentKey="home.hero.cta_primary"
-                  page="home"
-                  blockTitle="Homepage Hero Primary CTA"
-                  contentType="short_text"
-                  fallback="Book Your Complimentary Consultation"
-                  as="span"
-                />
-                <ArrowRight
-                  size={16}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </BookingLink>
-              <Link
-                to={createPageUrl("FreeMasterclass")}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-[#D8B46B] text-[#1E3A32] text-sm tracking-wide hover:bg-[#D8B46B]/10 transition-all duration-300"
-              >
-                <Play size={16} className="text-[#D8B46B]" />
-                <CmsText
-                  contentKey="home.hero.cta_secondary"
-                  page="home"
-                  blockTitle="Homepage Hero Secondary CTA"
-                  contentType="short_text"
-                  fallback="Watch the Free Webinar"
-                  as="span"
-                />
-              </Link>
-            </div>
           </motion.div>
 
           {/* Image */}
@@ -176,6 +127,56 @@ export default function HeroSection() {
                 "When you change your thinking, everything changes."
               </p>
             </motion.div>
+
+            {/* CTAs */}
+            <div className="flex flex-col gap-4 mt-20">
+              <BookingLink
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#D8B46B] text-[#1E3A32] text-sm font-semibold tracking-wide hover:bg-[#C5A35B] transition-all duration-300 shadow-lg"
+              >
+                <CmsText
+                  contentKey="home.hero.cta_experience"
+                  page="home"
+                  blockTitle="Homepage Hero Experience CTA"
+                  contentType="short_text"
+                  fallback="Experience Hypnosis with Roberta"
+                  as="span"
+                />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </BookingLink>
+              <BookingLink
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#1E3A32] text-[#F9F5EF] text-sm tracking-wide hover:bg-[#2B2725] transition-all duration-300"
+              >
+                <CmsText
+                  contentKey="home.hero.cta_primary"
+                  page="home"
+                  blockTitle="Homepage Hero Primary CTA"
+                  contentType="short_text"
+                  fallback="Book Your Complimentary Consultation"
+                  as="span"
+                />
+                <ArrowRight
+                  size={16}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </BookingLink>
+              <Link
+                to={createPageUrl("FreeMasterclass")}
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-[#D8B46B] text-[#1E3A32] text-sm tracking-wide hover:bg-[#D8B46B]/10 transition-all duration-300"
+              >
+                <Play size={16} className="text-[#D8B46B]" />
+                <CmsText
+                  contentKey="home.hero.cta_secondary"
+                  page="home"
+                  blockTitle="Homepage Hero Secondary CTA"
+                  contentType="short_text"
+                  fallback="Watch the Free Webinar"
+                  as="span"
+                />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
