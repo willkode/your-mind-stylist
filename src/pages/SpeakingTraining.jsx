@@ -121,8 +121,8 @@ export default function SpeakingTraining() {
   return (
     <div className="bg-[#F9F5EF]">
       <SEO
-        title="Speaking & Training | Your Mind Stylist"
-        description="Bring emotional intelligence, clarity, and communication into your organization with keynotes, workshops, and leadership trainings by Roberta Fernandez."
+        title="Your Organizational Culture Mind Stylist | Leadership EQ Consulting, Las Vegas"
+        description="Nearly 20 years helping organizations restyle culture and leadership through integrative emotional intelligence consulting — based in Las Vegas, NV."
         canonical="/SpeakingTraining"
       />
       {/* Hero Section */}

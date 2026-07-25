@@ -25,8 +25,9 @@ export default function LearnHypnosis() {
   return (
     <div className="bg-[#F9F5EF]">
       <SEO
-        title="Learn Hypnosis | The Mind Stylist™"
-        description="Become a confident, ethical, emotionally intelligent hypnotist using Roberta's signature Mind Styling™ approach to subconscious change. Perfect for beginners and professionals."
+        title="What Is Hypnotherapy? A Las Vegas Hypnotist Explains"
+        description="Curious how hypnotherapy works? Your Mind Stylist breaks down clinical hypnosis, what a session feels like, and who it helps — Las Vegas & Henderson, NV."
+        exactTitle
         canonical="/learn-hypnosis"
       />
 

@@ -71,8 +71,8 @@ export default function ProgramsBooks() {
   return (
     <div className="min-h-screen bg-[#F9F5EF]">
       <SEO
-        title="Books & Resources | Your Mind Stylist"
-        description="Deep dives and practical guides for your transformation journey"
+        title="Stop Wearing Emotional Hand-Me-Downs | Your Mind Stylist"
+        description="An Identity Expansion Dress Code for High-Achievers — 50 Restyle chapters from Board-Certified Hypnotist Roberta Fernandez."
       />
 
       {/* Hero */}

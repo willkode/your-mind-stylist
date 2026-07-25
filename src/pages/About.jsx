@@ -88,8 +88,8 @@ export default function About() {
   return (
     <div className="bg-[#F9F5EF]">
       <SEO
-        title="About Roberta | Your Mind Stylist"
-        description="Meet Your Mind Stylist, Roberta Fernandez. Learn how decades of emotional intelligence, mindset work, and leadership coaching shaped her unique Mind Styling method."
+        title="Meet Your Mind Stylist | Board-Certified Hypnotist in Henderson, NV"
+        description="15 years in private practice helping Las Vegas & Henderson clients clear emotional clutter through integrative hypnotherapy."
         canonical="/about"
       />
       {/* Hero Section */}

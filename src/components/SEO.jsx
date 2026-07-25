@@ -12,8 +12,9 @@ export default function SEO({
   modifiedTime,
   tags = [],
   category,
+  exactTitle = false,
 }) {
-  const fullTitle = title.includes("Your Mind Stylist") 
+  const fullTitle = (exactTitle || title.includes("Your Mind Stylist"))
     ? title 
     : `${title} | Your Mind Stylist`;
   

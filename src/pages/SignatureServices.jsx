@@ -92,8 +92,8 @@ export default function SignatureServices() {
   return (
     <div className="bg-[#F9F5EF] min-h-screen">
       <SEO
-        title="Signature Services | Your Mind Stylist"
-        description="One-on-one hypnosis, coaching, and private sessions with Roberta Fernandez — Your Mind Stylist."
+        title="Hypnotherapy Services Las Vegas & Henderson | Your Mind Stylist"
+        description="Stress relief, confidence building, habit change & emotional wardrobe coaching through Board-Certified hypnotherapy — serving Las Vegas & Henderson, NV."
         canonical="/signature-services"
       />
 

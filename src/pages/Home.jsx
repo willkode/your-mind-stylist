@@ -10,8 +10,8 @@ export default function Home() {
     <div className="bg-[#F9F5EF]">
       <SmartLoginRedirect />
       <SEO
-        title="Your Mind Stylist | Emotional Intelligence & Mindset Transformation"
-        description="Emotional intelligence, mind styling, and inner transformation with Your Mind Stylist, Roberta Fernandez. Rewrite your patterns and restyle your life from the inside out."
+        title="Your Mind Stylist | Board-Certified Hypnotist, Las Vegas & Henderson NV"
+        description="Rewrite Your Mind. Restyle Your Life. Board-Certified Hypnotherapy in Henderson & Las Vegas — clearing emotional clutter so you can step into a life that fits."
         canonical="/"
       />
       {sections.map((section) => {

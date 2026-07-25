@@ -148,8 +148,8 @@ export default function Blog() {
   return (
     <div className="bg-[#F9F5EF]" {...pullToRefreshHandlers}>
       <SEO
-        title="Your Mind Styling Journal | Articles & Reflections"
-        description="Articles, written reflections, video posts, and Mind-Styling Podcasts on mindset, emotional intelligence, and inner pattern shifts."
+        title="Emotional Wellness Blog | Your Mind Stylist, Las Vegas"
+        description="Tools, insights, and stories on clearing emotional clutter, building confidence, and restyling your mindset — from Your Mind Stylist in Henderson, NV."
         canonical="/blog"
       />
 
