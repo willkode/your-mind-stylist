@@ -172,7 +172,7 @@ export default function HeroSection() {
                   page="home"
                   blockTitle="Homepage Hero Secondary CTA"
                   contentType="short_text"
-                  fallback="Watch the Free Webinar"
+                  fallback="Free Imposter Syndrome Webinar"
                   as="span"
                 />
               </Link>
