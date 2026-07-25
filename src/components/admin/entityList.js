@@ -1,0 +1,21 @@
+// All entity names available for JSON export
+export const ENTITY_NAMES = [
+  "ActivityLog", "Affiliate", "AffiliatePayout", "AffiliateReferral", "AppointmentType",
+  "Application", "AudioSession", "Audiobook", "Author", "AvailabilityRule",
+  "AvailabilitySettings", "BlogAnalytics", "BlogPost", "Booking", "BugComment",
+  "BugReport", "CalendarSyncLog", "CmsContent", "CmsRevision", "ConstellationEvent",
+  "ConsultationForm", "ConsultationIntake", "Course", "CourseAnalytics", "CreditAllowance",
+  "DailyPrompt", "DailyStyleCheck", "DepthMarker", "DevDoc", "DiaryEntry",
+  "EmailSendLog", "EmailSequence", "EmailSequenceStep", "EmailTemplate", "GiftCode",
+  "GroupSession", "GrowthInsight", "GuestAuthorInvite", "IdentityWardrobe", "IntegrationUsageLog",
+  "InternalNote", "Lead", "LeadActivity", "LeadMagnet", "LeadMagnetDownload",
+  "LearningReflection", "LegalPage", "Lesson", "LessonComment", "Message",
+  "Milestone", "Module", "MomentumLog", "MasterclassSignup", "Note",
+  "PageLayout", "PodcastAppearance", "ProcessedStripeEvent", "Product", "ProductFeature",
+  "ProductPrice", "ProductVisibility", "Quiz", "QuizAnalytics", "QuizArchetype",
+  "QuizQuestion", "QuizQuestionPool", "Resource", "RoadmapItem", "ServicePackage",
+  "StylePause", "StylePauseCompletion", "TransformationSnapshot", "User", "UserAudiobookProgress",
+  "UserAudioSession", "UserCourseProgress", "UserEmailSequence", "UserLessonProgress", "UserPackage",
+  "UserQuizAttempt", "UserStreak", "UserWebinarAccess", "VoiceProfile", "WaitingList",
+  "Webinar",
+];
