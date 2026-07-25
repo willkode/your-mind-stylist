@@ -114,19 +114,19 @@ export default function HeroSection() {
                   <Play size={32} className="text-[#1E3A32] ml-1" fill="currentColor" />
                 </button>
               </div>
-            </div>
 
-            {/* Floating Quote */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="absolute -bottom-8 -left-8 md:left-auto md:-right-8 bg-white p-6 shadow-xl max-w-xs"
-            >
-              <p className="font-serif text-[#1E3A32] italic text-lg leading-relaxed">
-                "When you change your thinking, everything changes."
-              </p>
-            </motion.div>
+              {/* Floating Quote */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="absolute -bottom-8 -left-8 md:left-auto md:-right-8 bg-white p-6 shadow-xl max-w-xs"
+              >
+                <p className="font-serif text-[#1E3A32] italic text-lg leading-relaxed">
+                  "When you change your thinking, everything changes."
+                </p>
+              </motion.div>
+            </div>
 
             {/* CTAs */}
             <div className="flex flex-col gap-4 mt-20">
